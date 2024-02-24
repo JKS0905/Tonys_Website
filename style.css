@@ -455,11 +455,7 @@ body {
     .img-box-description {
         margin-left: 0;
         margin-top: 0;
-    }
-
-    .main-logo {
-        margin-left: 20px;
-        margin-right: 20px;
+        padding: 0 10px 50px 10px;
     }
 
     .img-box-img1 img,
@@ -532,10 +528,6 @@ body {
 
     .location-box-right {
         margin-top: 10px;
-    }
-
-    .img-box-description {
-        padding: 0 10px 50px 10px;
     }
 }
 
