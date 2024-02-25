@@ -1,8 +1,10 @@
 /*   logo text farge    #f3a33c     */
 
+
 html {
     scroll-behavior: smooth;
 }
+
 
 body {
     background: snow;
@@ -12,27 +14,7 @@ body {
 
 }
 
-@keyframes loadAnimation {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-
-@keyframes loadAnimation_right {
-    0% {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0px);
-    }
-}
+/* ↓ Code for the nav-bar on top of website ↓ */
 
 .header-main { 
     background-color: snow;
@@ -72,6 +54,7 @@ body {
     color: #b32e31;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    transition: 0.3s;
 }
 
 .menu {
@@ -79,6 +62,57 @@ body {
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: snow;
+    min-width: 160px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 4px 0px #adadad86;;
+    z-index: 1;
+    animation: loadAnimation_nav 0.3s ease;
+}
+
+.dropdown-content a {
+    color: rgb(78, 77, 77);
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: #b32e31;
+    transition: 0.3s;
+}
+
+.arrow {
+    font-size: 30px;
+    position: relative;
+    margin-left: 5px;
+    top: 13px;
+    display: inline-block;
+    transition: transform 0.5s ease;
+    margin-left: 5px;
+}
+
+.dropdown:hover .arrow {
+    transform: rotateX(180deg);
+    top: -5px;
+    
+}
+
+/* ↑ Code for the nav-bar on top of website ↑ */
 
 .order-box {
     margin-left: auto;
@@ -426,6 +460,8 @@ body {
 
 /* ↑ Code for the menu-container ↑ */
 
+/* ↓ when screen gets smaler f. eks mobile ↓ */
+
 @media screen and (max-width: 1820px) {
 
     .img-main-box {
@@ -619,6 +655,47 @@ body {
     }
 }
 
+/* ↑ when screen gets smaler f. eks mobile ↑ */
+
+/* ↓ Code for Animation ↓ */
+
+@keyframes loadAnimation_nav {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes loadAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes loadAnimation_right {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* ↑ Code for Animation ↑ */
+
+/* ↓ Imported Fonts ↓ */
+
 @font-face {
     font-family: 'PeachCake';
     src: url('fonts/peach_cake/Peach\ Cake.otf') format('woff2'),
@@ -636,3 +713,5 @@ body {
     src: url('fonts/ubuntu_title/ubuntu-title-fr-1.1.ttf') format('woff2'),
          url('fonts/ubuntu_title/ubuntu-title-fr-1.1.ttf') format('woff'),
 }
+
+/* ↑ Imported Fonts ↑ */
