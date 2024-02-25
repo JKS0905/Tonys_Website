@@ -5,15 +5,37 @@ html {
 }
 
 body {
-    background: white;
+    background: snow;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
 
 }
 
+@keyframes loadAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes loadAnimation_right {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
 .header-main { 
-    background-color: white;
+    background-color: snow;
     position: fixed;
     top: 0;
     left: 0;
@@ -25,6 +47,7 @@ body {
     align-items: center;
     z-index: 100;
     box-shadow: 0 6px 6px -6px #adadad86;
+    animation: loadAnimation 1s ease;
 
 }
 
@@ -156,6 +179,7 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
+    animation: loadAnimation 1s ease;
 }
 
 .img-box-description {
@@ -166,7 +190,7 @@ body {
     justify-items: center;
     text-align: center;
     align-items: center;
-    margin: 100px 0 0 30px
+    margin: 100px 0 0 30px;
 }
 
 .img-box-right {
@@ -221,6 +245,7 @@ body {
     justify-content: center;
     padding: 15px;
     padding-top: 60px;
+    animation: loadAnimation_right ease 1s;
 
 }
 
