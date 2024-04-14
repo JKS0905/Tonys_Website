@@ -14,7 +14,7 @@ body {
 /* ↓ Code for the nav-bar on top of website ↓ */
 
 .header-main { 
-    background-color: white;
+    background-color: snow;
     position: fixed;
     top: 0;
     left: 0;
@@ -27,7 +27,6 @@ body {
     z-index: 100;
     box-shadow: 0 6px 6px -6px #adadad86;
     animation: loadAnimation 1s ease;
-
 }
 
 .nav-box {
@@ -37,32 +36,28 @@ body {
 }
 
 .nav-bar a {
-    margin: 20px;
+    margin: 15px;
     text-decoration: none;
 }
 
-.nav-bar-item {
+.nav-bar-item, 
+.nav-bar-item-menu a {
     color: rgb(78, 77, 77);
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.nav-bar-item:hover {
+.nav-bar-item:hover,
+.nav-bar-item-menu a:hover {
     color: #b32e31;
-    font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     transition: 0.3s;
 }
 
-.dropdown {
-    display: inline-block;
-    position: relative;
-}
-
 .dropdown-content {
     display: none;
+    background-color: snow;
     position: absolute;
-    background-color: white;
     min-width: 160px;
     border-radius: 15px;
     box-shadow: 0px 0px 4px 0px #adadad86;;
@@ -78,29 +73,30 @@ body {
     display: block;
 }
 
-.dropdown:hover .dropdown-content {
+/* ↓ Code for the nav-bar on top of website ↓ .show .dropdown-content {
     display: block;
 }
 
-.dropdown-content a:hover {
-    color: #b32e31;
-    transition: 0.3s;
+.hide .dropdown-content {
+    display: none;
+
+}*/
+
+.nav-bar-item-menu{
+    margin: -25px 0 0 300px;
 }
 
-.arrow {
-    font-size: 30px;
-    position: relative;
-    margin-left: 5px;
-    top: 13px;
-    display: inline-block;
-    transition: transform 0.5s ease;
-    margin-left: 5px;
+.nav-bar-item-menu svg{
+    margin: 0 0 -11px -5px;
+    transition: transform 0.3s ease;
 }
 
-.dropdown:hover .arrow {
-    transform: rotateX(180deg);
-    top: -5px;
-    
+.nav-bar-item-menu:hover svg{
+    transform: rotate(180deg);
+}
+
+.nav-bar-item-menu:hover .dropdown-content {
+    display: block;
 }
 
 .sidebar {
@@ -115,33 +111,30 @@ body {
     cursor: pointer;
 }
 
-.bar1, .bar2, .bar3 {
+.topLine, .middleLine, .bottomLine {
 width: 35px;
 height: 3px;
+border-radius: 2px;
 background-color: #b32e31;
 margin: 3.5px 0;
 transition: transform 0.15s;
 }
 
-.change .bar1 {
+.change .topLine {
     transform: translate(0, 10px) rotate(45deg);
 }
   
-.change .bar2 {
+.change .middleLine {
     visibility: hidden;
 }
 
-.change .bar3 {
+.change .bottomLine {
     transform: translate(0, -10px) rotate(-45deg);
 }
 
 /* ↑ Code for the nav-bar on top of website ↑ */
 
-.order-box {
-    margin-left: auto;
-    margin-right: 30px;
 
-}
 
 .order-button {
     background-color: #b32e31; 
@@ -196,7 +189,7 @@ transition: transform 0.15s;
     font-size: 20px;
     font-weight: 700;
     width: 150px;
-    margin: 80px auto 40px auto;
+    margin: 0;
     padding: 20px;
     border-radius: 35px;
     transition: all 0.3s ease;
@@ -204,6 +197,12 @@ transition: transform 0.15s;
 }
 
 .order-button-link {
+    border-radius: 35px;
+    text-decoration: none;
+    margin-right: 15px;
+}
+.order-button-2-link {
+    border-radius: 35px;
     text-decoration: none;
 }
 
@@ -218,6 +217,7 @@ transition: transform 0.15s;
     text-align: center;
     font-size: 20px;
     line-height: 1.6;
+    margin-bottom: 60px;
 }
 
 .h1-text {
@@ -585,16 +585,6 @@ transition: transform 0.15s;
 
 @media screen and (max-width: 900px) {
 
-
-    .sidebar {
-        display: flex;
-    }
-
-    .order-box {
-        margin-left: auto;
-        margin-right: 10px;
-    }
-
     .location-box {
         flex-direction: row-reverse;
     }
@@ -602,23 +592,20 @@ transition: transform 0.15s;
     .location-box-right {
         margin: 20px;
     }
-
-    .sidebar {
-        visibility: visible;
-    }
-
-    .nav-box {
-        display: none;
-    }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
+
+    .nav-box {
+    display: none;
+    }
 
     .sidebar {
+        display: flex;
         margin-left: auto;
     }
 
-    .order-box {
+    .order-button {
         display: none;
     }
 }
@@ -631,9 +618,9 @@ transition: transform 0.15s;
     }
 
     .order-button-2 {
-        width: 350px;
+        width: 75vW;
     }
- 
+
     .img-box-img1 img,
     .img-box-img2 img,
     .img-box-img3 img,
@@ -684,12 +671,6 @@ transition: transform 0.15s;
         margin-top: -5px;
     }
 }
-@media screen and (max-width: 400px) {
-    
-    .order-button-2 {
-        width: 230px;
-    }
-}
 
 @media screen and (max-width: 370px) {
     .pizza-item {
@@ -712,6 +693,16 @@ transition: transform 0.15s;
     }
     100% {
         opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes loadAnimation_nav2 {
+    0% {
+        opacity: 1;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 0;
         transform: translateY(0px);
     }
 }

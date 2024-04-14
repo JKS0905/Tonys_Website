@@ -21,10 +21,10 @@
                 <a class="nav-bar-item" href="#">Hjem</a>
                 <a class="nav-bar-item" href="#">Lokasjon</a>
                 <a class="nav-bar-item" href="#">Om oss</a>
-                <div class="dropdown">
-                    <a class="nav-bar-item" href="#menu">Meny <span class="arrow">&#8963;</span></a>
+                <div class="nav-bar-item-menu">
+                    <a href="#italienskPizza" id="italienskPizzaLink1">Meny <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M7 10l5 5 5-5"/></svg></a>
                     <div class="dropdown-content">
-                        <a href="#italienskPizza" id="italienskPizzaLink">Italiens pizza</a>
+                        <a href="#italienskPizza" id="italienskPizzaLink2">Italiensk pizza</a>
                         <a href="#hvitPizza" id="hvitPizzaLink">Hvit pizza</a>
                         <a href="#calzone" id="calzoneLink">Calzone</a>
                         <a href="#pasta" id="pastaLink">Pasta</a>
@@ -34,24 +34,22 @@
                 </div>
             </nav>
         </div>
-        <div class="order-box">
-            <a class="order-button-link" href="index.html">
-                <div class="order-button">Bestill Nå</div>
-            </a>
-        </div>
+        <a class="order-button-link" href="#">
+            <div class="order-button" id="orderButtonDiv">Bestill Nå</div>
+        </a>
         <div class="sidebar" onclick="showSidebar()">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
+            <div class="topLine"></div>
+            <div class="middleLine"></div>
+            <div class="bottomLine"></div>
         </div>
     </header>
-    <div class="img-main-box"> <!-- Pictures and text of images -->
+    <div class="img-main-box"> <!-- Pictures and text of images &#8963;--> 
         <div class="img-box-description">
             <div class="main-logo">
                 <img src="images/logo/main logo.png" alt="image logo">
             </div>
             <p class="p-text">Tony's Pizza er stolt av å servere autentiske smaker fra Italia midt i Haugesund. Med ferske ingredienser og hemmelige oppskrifter skaper vi de mest delikate pizzaene som vil glede enhver gane. Fra sprø skorpe til saftig ost, hver bit er en smaksopplevelse du sent vil glemme. Velkommen til Tony's, hvor lidenskap for pizza møter smaken av kvalitet.</p>
-            <a class="order-button-link" href="index.html">
+            <a class="order-button-2-link" href="index.html">
                 <div class="order-button-2">Bestill Nå</div>
             </a>
         </div>
