@@ -12,24 +12,24 @@
 <body>
     <header class="header-main">
         <figure class="small-logo">
-            <a href="index.html">
+            <a href="#">
                 <div class="logo-overlay"><img src="images/logo/small logo.png" alt="image"></div>
             </a>
         </figure>
         <div class="nav-box">
             <nav class="nav-bar">
-                <a class="home" href="index.html">Hjem</a>
-                <a class="menu" href="index.html">Lokasjon</a>
-                <a class="menu" href="index.html">Om oss</a>
+                <a class="nav-bar-item" href="#">Hjem</a>
+                <a class="nav-bar-item" href="#">Lokasjon</a>
+                <a class="nav-bar-item" href="#">Om oss</a>
                 <div class="dropdown">
-                    <a class="menu" href="#">Meny <span class="arrow">&#8963;</span></a>
+                    <a class="nav-bar-item" href="#menu">Meny <span class="arrow">&#8963;</span></a>
                     <div class="dropdown-content">
-                        <a href="#">Italiens pizza</a>
-                        <a href="#">Hvit pizza</a>
-                        <a href="#">Calzone</a>
-                        <a href="#">Pasta</a>
-                        <a href="#">Dressing</a>
-                        <a href="#">Drikke</a>
+                        <a href="#italienskPizza" id="italienskPizzaLink">Italiens pizza</a>
+                        <a href="#hvitPizza" id="hvitPizzaLink">Hvit pizza</a>
+                        <a href="#calzone" id="calzoneLink">Calzone</a>
+                        <a href="#pasta" id="pastaLink">Pasta</a>
+                        <a href="#dressing" id="dressingLink">Dressing</a>
+                        <a href="#drikke" id="drikkeLink">Drikke</a>
                     </div>
                 </div>
             </nav>
@@ -39,12 +39,10 @@
                 <div class="order-button">Bestill Nå</div>
             </a>
         </div>
-        <div class="parent-nav-container">
-            <div class="nav-container" onclick="myFunction(this)">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-            </div>
+        <div class="sidebar" onclick="showSidebar()">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
         </div>
     </header>
     <div class="img-main-box"> <!-- Pictures and text of images -->
@@ -84,8 +82,7 @@
             <p class="p-text">Tony's Pizza i Haugesund ønsker deg velkommen til et sjarmerende og innbydende lokale. Med en rustikk atmosfære og autentisk italiensk preg gir vårt pizza-sted deg en følelse av å være i hjertet av Italia. De smakfulle aromaene fra våre steinovner fyller rommet, mens den vennlige betjeningen skaper en varm og hyggelig stemning. Uansett om du ønsker en uformell lunsj, en romantisk middag eller en hyggelig kveld med venner, er Tony's Pizza det perfekte stedet å nyte de beste smakene og stemningen i Haugesund</p>
         </div>
     </div>
-
-    <h1 class="menu-header">Italiensk Pizza</h1>
+    <h1 class="menu-header" id="italienskPizza">Italiensk Pizza</h1>
     <div class="menu-container"> <!--  ITALIAN PIZZA MENU  -->
         <div class="container">
             <div class="pizza-item">    <!-- MENU ITEM NR. 1   -->
@@ -425,7 +422,7 @@
         </div>
     </div>
 
-    <h1 class="menu-header">Hvit Pizza</h1>
+    <h1 class="menu-header" id="hvitPizza">Hvit Pizza</h1>
     <div class="menu-container"> <!--  WHITE PIZZA MENU  -->
 
         <div class="container">
@@ -501,7 +498,7 @@
         </div>
     </div>
 
-    <h1 class="menu-header">Calzone</h1>
+    <h1 class="menu-header" id="calzone">Calzone</h1>
     <div class="menu-container"> <!--  Calzone  -->
 
         <div class="container">
@@ -588,7 +585,7 @@
         </div>
     </div>
 
-    <h1 class="menu-header">Pasta</h1>
+    <h1 class="menu-header" id="pasta">Pasta</h1>
     <div class="menu-container"> <!--  PASTA MENU  -->
 
         <div class="container">

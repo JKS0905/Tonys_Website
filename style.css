@@ -1,46 +1,39 @@
 /*   logo text farge    #f3a33c     */
-
-.parent-nav-container {
-    background-color: #b32e31;
-    width: 57px;
-    height: 45px;
-    margin-right: 30px;
-    display: none;
-    flex-direction: row;
-    margin-left: 10px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    border: 3px solid #b32e31;
-}
-
-.nav-container {
-    display: inline-block;
-    cursor: pointer;
-  }
-  
-  .bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 3px;
-    background-color: white;
-    margin: 7px 0;
-    transition: 0.4s;
-  }
-  
-  .change .bar1 {
-    transform: translate(0, 10px) rotate(-45deg);
-  }
-  
-  .change .bar2 {opacity: 0;}
-  
-  .change .bar3 {
-    transform: translate(0, -10px) rotate(45deg);
-  }
-
 html {
     scroll-behavior: smooth;
 }
 
+.sidebar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    display: none;
+    flex-direction: column;
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+width: 35px;
+height: 3px;
+background-color: #b32e31;
+margin: 3.5px 0;
+transition: transform 0.1s;
+}
+
+.change .bar1 {
+    transform: translate(0, 10px) rotate(45deg);
+}
+  
+.change .bar2 {
+    visibility: hidden;
+}
+
+.change .bar3 {
+    transform: translate(0, -10px) rotate(-45deg);
+}
 
 body {
     background: snow;
@@ -80,24 +73,17 @@ body {
     text-decoration: none;
 }
 
-.home {
+.nav-bar-item {
     color: rgb(78, 77, 77);
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.home:hover, 
-.menu:hover {
+.nav-bar-item:hover {
     color: #b32e31;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     transition: 0.3s;
-}
-
-.menu {
-    color: rgb(78, 77, 77);
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .dropdown {
@@ -600,7 +586,7 @@ body {
 @media screen and (max-width: 900px) {
 
 
-    .parent-nav-container {
+    .sidebar {
         display: flex;
     }
 
@@ -617,7 +603,7 @@ body {
         margin: 20px;
     }
 
-    .parent-nav-container {
+    .sidebar {
         visibility: visible;
     }
 
@@ -628,7 +614,7 @@ body {
 
 @media screen and (max-width: 700px) {
 
-    .parent-nav-container {
+    .sidebar {
         margin-left: auto;
     }
 
