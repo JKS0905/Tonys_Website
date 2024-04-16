@@ -41,28 +41,39 @@ body {
 }
 
 .nav-bar-item, 
-.nav-bar-item-menu a {
+.nav-bar-item-menu {
     color: rgb(78, 77, 77);
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav-bar-item:hover,
+.nav-bar-item-menu:hover,
 .nav-bar-item-menu a:hover {
     color: #b32e31;
     font-family: Arial, Helvetica, sans-serif;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .dropdown-content {
-    display: none;
+    display: block;
     background-color: snow;
     position: absolute;
-    min-width: 160px;
+    min-width: 180px;
     border-radius: 15px;
-    box-shadow: 0px 0px 4px 0px #adadad86;;
+    box-shadow: 0px 0px 4px 0px #adadad86;
     z-index: 1;
-    animation: loadAnimation_nav 0.3s ease;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+}
+
+.dropdown-content.open {
+    max-height: 250px;
+}
+.dropdown-content.close {
+    max-height: 0;
 }
 
 .dropdown-content a {
@@ -71,32 +82,54 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     display: block;
+    height: 20px;
 }
 
 /* ↓ Code for the nav-bar on top of website ↓ .show .dropdown-content {
     display: block;
 }
 
-.hide .dropdown-content {
-    display: none;
+.dropdown-content {
+    display: block;
+    background-color: snow;
+    position: absolute;
+    min-width: 180px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 4px 0px #adadad86;
+    z-index: 1;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+}
+
+.dropdown-content a {
+    color: rgb(78, 77, 77);
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    display: block;
+    height: 20px;
+}
+
+.nav-bar-item-menu:hover .dropdown-content {
+    max-height: 250px;
+}
+
+
 
 }*/
 
 .nav-bar-item-menu{
-    margin: -25px 0 0 300px;
+    margin: -26px 0 0 315px;
 }
 
-.nav-bar-item-menu svg{
+.nav-bar-item-menu .menu-arrow{
     margin: 0 0 -11px -5px;
     transition: transform 0.3s ease;
 }
 
-.nav-bar-item-menu:hover svg{
+.menu-arrow.rotate{
     transform: rotate(180deg);
-}
-
-.nav-bar-item-menu:hover .dropdown-content {
-    display: block;
 }
 
 .sidebar {

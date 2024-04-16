@@ -1,10 +1,9 @@
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
-    const offset = 70; //adjust offset here for scroll
+    const offset = 70; // Adjust offset here for scroll
+    const dropdownLinks = document.querySelectorAll(".dropdown-content a");
 
-    function scrollToSection(linkId){
-        const link = document.getElementById(linkId);
-
+    function scrollToSection(link) {
         link.addEventListener("click", event => {
             event.preventDefault();
             const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
@@ -12,40 +11,39 @@ document.addEventListener("DOMContentLoaded", event => {
             window.scrollTo(0, scrollPosition);
         });
     }
-    // dropdown-content href id
-    scrollToSection("italienskPizzaLink1");
-    scrollToSection("italienskPizzaLink2");
-    scrollToSection("hvitPizzaLink");
-    scrollToSection("calzoneLink");
-    scrollToSection("pastaLink");
-    //scrollToSection("dressingLink");
-    //scrollToSection("drikkeLink");
 
+    // Attach scrollToSection function to each link inside dropdown-content
+    dropdownLinks.forEach(link => {
+        scrollToSection(link);
+    });
 });
 
 
-// Activates menu drop down
-function showSidebar() {
-    const sidebar = document.querySelector(".sidebar");
-    sidebar.classList.toggle("change");
-}
+    // Nav bar dropdown menu events
+    const toggleBtn = document.querySelector(".nav-bar-item-menu");
+    const dropdownContent = document.querySelector(".dropdown-content");
+    const menuArrow = document.querySelector(".nav-bar-item-menu .menu-arrow")
+
+    toggleBtn.addEventListener("mouseenter", event => {
+        dropdownContent.classList.remove("close");
+        dropdownContent.classList.add("open");
+        menuArrow.classList.add("rotate");
+    });
+    toggleBtn.addEventListener("mouseleave", event => {
+        dropdownContent.classList.remove("open");
+        dropdownContent.classList.add("close");
+        menuArrow.classList.remove("rotate");
+    });
+    toggleBtn.addEventListener("click", event => {
+        dropdownContent.classList.toggle("open");
+        menuArrow.classList.toggle("rotate");
+    });
 
 
-//const menuDropdown = document.querySelector(".nav-bar-item-menu");
-//const dropdownContent = document.querySelector(".dropdown-content");
-//
-//menuDropdown.addEventListener("mouseenter", () => {
-//    dropdownContent.clast.add("show");
-//    dropdownContent.classList.remove("hide"); // Remove the hide class if it was added previously
-//});
-//
-//menuDropdown.addEventListener("mouseleave", () => {
-//    dropdownContent.classList.remove("show");
-//    dropdownContent.classList.add("hide"); // Apply the hide animation
-//});
-//
-//dropdownContent.addEventListener("transitionend", () => {
-//    if (!dropdownContent.classList.contains("show")) {
-//        dropdownContent.classList.remove("hide"); // Remove the hide animation class when transition ends
-//    }
-//});
+    // Activates menu drop down
+    const sidebar = document.querySelector(".sidebar")
+
+    sidebar.addEventListener("click", event => {
+        sidebar.classList.toggle("change");
+    });
+
