@@ -8,7 +8,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-
 }
 
 /* ↓ Code for the nav-bar on top of website ↓ */
@@ -57,7 +56,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
-
 
 .dropdown-content {
     margin-left: -10px;
@@ -157,8 +155,6 @@ transition: transform 0.15s;
 
 /* ↑ Code for the nav-bar on top of website ↑ */
 
-
-
 .order-button {
     background-color: #b32e31; 
     color: white;
@@ -176,8 +172,6 @@ transition: transform 0.15s;
     background-color: transparent;
     color: rgb(78, 77, 77)
 }
-
-
 
 .small-logo {
     height: 75px;
@@ -375,7 +369,6 @@ transition: transform 0.15s;
     flex-wrap: wrap;
     gap: 10px;  
 }
-
 
 .pizza-item {
     background: #e9bb8638;
@@ -709,26 +702,6 @@ transition: transform 0.15s;
 
 /* ↓ Code for Animation ↓ */
 
-@keyframes loadAnimation_nav {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-@keyframes loadAnimation_nav2 {
-    0% {
-        opacity: 1;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(0px);
-    }
-}
 
 @keyframes loadAnimation {
     0% {
