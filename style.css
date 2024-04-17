@@ -45,90 +45,80 @@ body {
     color: rgb(78, 77, 77);
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    transition: color 300ms ease;
 }
 
 .nav-bar-item:hover,
-.nav-bar-item-menu:hover,
+.menu-text-arrow:hover,
+.menu-text-arrow svg:hover,
 .nav-bar-item-menu a:hover {
+    fill: #b32e31;
     color: #b32e31;
     font-family: Arial, Helvetica, sans-serif;
-    transition: 0.3s;
     cursor: pointer;
 }
 
+
 .dropdown-content {
+    margin-left: -10px;
+    top: 85%;
     display: block;
     background-color: snow;
+    text-align: left;
     position: absolute;
-    min-width: 180px;
+    min-width: 160px;
     border-radius: 15px;
     box-shadow: 0px 0px 4px 0px #adadad86;
-    z-index: 1;
     overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.5s ease;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
 }
 
 .dropdown-content.open {
-    max-height: 250px;
-}
-.dropdown-content.close {
-    max-height: 0;
-}
-
-.dropdown-content a {
-    color: rgb(78, 77, 77);
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    display: block;
-    height: 20px;
-}
-
-/* ↓ Code for the nav-bar on top of website ↓ .show .dropdown-content {
-    display: block;
-}
-
-.dropdown-content {
-    display: block;
-    background-color: snow;
-    position: absolute;
-    min-width: 180px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 4px 0px #adadad86;
-    z-index: 1;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.5s ease;
+    transform: translateY(0);
+    pointer-events: auto;
+    opacity: 1;
 }
 
 .dropdown-content a {
     color: rgb(78, 77, 77);
     font-size: 16px;
+    border-bottom: 1px solid hsl(0, 0%, 0%, 0.2);
+    padding: 8px;
+    margin: 0px 15px;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     display: block;
     height: 20px;
+    transition: color 300ms ease;
 }
-
-.nav-bar-item-menu:hover .dropdown-content {
-    max-height: 250px;
+#drikkeLink{
+    border-bottom: none;
 }
-
-
-
-}*/
 
 .nav-bar-item-menu{
+    margin: -22px 0 0 315px;
+    height: 40px;
+    width: 140px;
+    position: absolute;
+}
+.nav-bar-item-menu.open{
     margin: -26px 0 0 315px;
+    height: 40px;
 }
 
-.nav-bar-item-menu .menu-arrow{
-    margin: 0 0 -11px -5px;
-    transition: transform 0.3s ease;
+.menu-text-arrow {
+    width: 70px;
+    transition: color 300ms ease;
+}
+.menu-text-arrow svg{
+    margin: -5px -3px;
+    transition: fill 300ms ease, transform 300ms ease;
 }
 
-.menu-arrow.rotate{
+.menu-text-arrow svg.rotate{
     transform: rotate(180deg);
 }
 

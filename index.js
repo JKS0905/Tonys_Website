@@ -19,31 +19,34 @@ document.addEventListener("DOMContentLoaded", event => {
 });
 
 
-    // Nav bar dropdown menu events
-    const toggleBtn = document.querySelector(".nav-bar-item-menu");
-    const dropdownContent = document.querySelector(".dropdown-content");
-    const menuArrow = document.querySelector(".nav-bar-item-menu .menu-arrow")
+// Nav bar dropdown menu events
+const menuText = document.querySelector(".menu-text-arrow");
+const menuArrow = document.querySelector(".menu-text-arrow svg")
+const navBarItemMenu = document.querySelector(".nav-bar-item-menu");
+const dropdownContent = document.querySelector(".dropdown-content");
 
-    toggleBtn.addEventListener("mouseenter", event => {
-        dropdownContent.classList.remove("close");
-        dropdownContent.classList.add("open");
-        menuArrow.classList.add("rotate");
-    });
-    toggleBtn.addEventListener("mouseleave", event => {
-        dropdownContent.classList.remove("open");
-        dropdownContent.classList.add("close");
-        menuArrow.classList.remove("rotate");
-    });
-    toggleBtn.addEventListener("click", event => {
-        dropdownContent.classList.toggle("open");
-        menuArrow.classList.toggle("rotate");
-    });
+menuText.addEventListener("mouseenter", event => {
+    dropdownContent.classList.add("open");
+    menuText.classList.add("open")
+    menuArrow.classList.add("rotate");
+});
+
+navBarItemMenu.addEventListener("mouseleave", event => {
+    dropdownContent.classList.remove("open");
+    menuText.classList.remove("open")
+    menuArrow.classList.remove("rotate");
+});
+menuText.addEventListener("click", event => {
+    dropdownContent.classList.toggle("open");
+    menuText.classList.toggle("open")
+    menuArrow.classList.toggle("rotate");
+});
 
 
-    // Activates menu drop down
-    const sidebar = document.querySelector(".sidebar")
+// Activates menu drop down
+const sidebar = document.querySelector(".sidebar")
 
-    sidebar.addEventListener("click", event => {
-        sidebar.classList.toggle("change");
-    });
+sidebar.addEventListener("click", event => {
+    sidebar.classList.toggle("change");
+});
 
