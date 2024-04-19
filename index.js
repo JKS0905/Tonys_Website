@@ -43,10 +43,10 @@ menuText.addEventListener("click", event => {
 });
 
 
-// Activates menu drop down
-const sidebar = document.querySelector(".sidebar")
+// Activates menu drop down/ Sidebar events
+const sidebarBtn = document.querySelector(".sidebar-button")
 
-sidebar.addEventListener("click", event => {
-    sidebar.classList.toggle("change");
+
+sidebarBtn.addEventListener("click", event => {
+    sidebarBtn.classList.toggle("change");
 });
-

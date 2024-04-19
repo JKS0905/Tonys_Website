@@ -31,7 +31,6 @@ body {
 .nav-box {
     margin-right: auto;
     margin-left: 0;
-    visibility: visible;
 }
 
 .nav-bar a {
@@ -39,12 +38,15 @@ body {
     text-decoration: none;
 }
 
-.nav-bar-item, 
-.nav-bar-item-menu {
+.nav-bar-item,
+.sidebar-item,
+.nav-bar-item-menu,
+.sidebar-item-menu {
     color: rgb(78, 77, 77);
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     transition: color 300ms ease;
+    text-decoration: none;
 }
 
 .nav-bar-item:hover,
@@ -120,7 +122,7 @@ body {
     transform: rotate(180deg);
 }
 
-.sidebar {
+.sidebar-button {
     width: 50px;
     height: 50px;
     margin-right: 15px;
@@ -611,20 +613,35 @@ transition: transform 0.15s;
 }
 
 @media screen and (max-width: 750px) {
-
-    .nav-box {
-    display: none;
+    
+    .order-button {
+        display: none;
     }
 
-    .sidebar {
+    .nav-box {
+        display: none;
+    }
+
+    .sidebar-button {
         display: flex;
         margin-left: auto;
     }
 
-    .order-button {
-        display: none;
+    .sidebar {
+        background-color: snow;
+        position: fixed;
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
     }
-}
+
+    .sidebar-item, .sidebar-text-arrow {
+        padding: 20px;
+        margin-left: 25px;
+        margin-right: 25px;
+        border-bottom: 1px solid hsl(0, 0%, 0%, 0.1);
+    }
 
 @media screen and (max-width: 520px) {
   
@@ -745,6 +762,7 @@ transition: transform 0.15s;
     font-family: 'UbuntuTitle';
     src: url('fonts/ubuntu_title/ubuntu-title-fr-1.1.ttf') format('woff2'),
          url('fonts/ubuntu_title/ubuntu-title-fr-1.1.ttf') format('woff'),
+}
 }
 
 /* ↑ Imported Fonts ↑ */
