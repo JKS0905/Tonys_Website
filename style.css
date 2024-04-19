@@ -45,14 +45,18 @@ body {
     color: rgb(78, 77, 77);
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    transition: color 300ms ease;
+    transition: color 300ms ease, fill 300ms ease;
     text-decoration: none;
 }
 
 .nav-bar-item:hover,
+.sidebar-item:hover,
 .menu-text-arrow:hover,
+.sidebar-text-arrow:hover,
 .menu-text-arrow svg:hover,
-.nav-bar-item-menu a:hover {
+.sidebar-text-arrow svg:hover,
+.nav-bar-item-menu a:hover,
+.sidebar-item-menu:hover {
     fill: #b32e31;
     color: #b32e31;
     font-family: Arial, Helvetica, sans-serif;
@@ -634,6 +638,7 @@ transition: transform 0.15s;
         display: flex;
         flex-direction: column;
         width: 100vw;
+        box-shadow: 0 6px 6px -6px #adadad86;
     }
 
     .sidebar-item, .sidebar-text-arrow {
@@ -641,6 +646,10 @@ transition: transform 0.15s;
         margin-left: 25px;
         margin-right: 25px;
         border-bottom: 1px solid hsl(0, 0%, 0%, 0.1);
+    }
+
+    .sidebar-text-arrow {
+        border-bottom: none;
     }
 
 @media screen and (max-width: 520px) {
