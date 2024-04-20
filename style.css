@@ -650,14 +650,16 @@ transition: transform 0.15s;
         display: flex;
         flex-direction: column;
         width: 100vw;
-        max-height: 0;
+        top: -215px;
+        opacity: 0;
         overflow: hidden;
         box-shadow: 0 6px 6px -6px #adadad86;
-        transition: max-height 700ms ease-in-out;
+        transition: top 500ms ease, opacity 500ms ease;
     }
 
     .sidebar.open {
-        max-height: 600px;
+        top: 0;
+        opacity: 1;
     }
 
     .sidebar-item, .sidebar-text-arrow {

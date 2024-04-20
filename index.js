@@ -99,7 +99,6 @@ document.body.addEventListener("touchstart", event => {
         menuText.classList.remove("open");
         menuArrow.classList.remove("rotate");
         navBarItemMenu.classList.remove("pressed");
-
         // Reset the styles
         navBarItemMenu.style.color = gray;
         navBarItemMenu.style.fill = gray;    
@@ -114,4 +113,5 @@ const sidebarBtn = document.querySelector(".sidebar-button")
 sidebarBtn.addEventListener("click", event => {
     sidebarBtn.classList.toggle("change");
     sidebar.classList.toggle("open")
+    console.log("time")
 });
