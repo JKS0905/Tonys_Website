@@ -32,22 +32,25 @@ const gray = "#4e4d4d";
 
 menuText.addEventListener("mouseenter", event => {
     dropdownContent.classList.add("open");
-    menuText.classList.add("open")
     menuArrow.classList.add("rotate");
 });
 
 navBarItemMenu.addEventListener("mouseleave", event => {
     dropdownContent.classList.remove("open");
-    menuText.classList.remove("open")
+    menuText.classList.remove("open");
     menuArrow.classList.remove("rotate");
 });
 
 menuText.addEventListener("click", event => {
     dropdownContent.classList.toggle("open");
-    menuText.classList.toggle("open")
+    menuText.classList.toggle("open");
     menuArrow.classList.toggle("rotate");
 });
 
+
+// Settings for touch devices
+
+// when clicking an item it will pulse red color
 navBarItem.forEach(item => {
     item.addEventListener("touchstart", event => {
         item.style.color = (red);
@@ -56,6 +59,8 @@ navBarItem.forEach(item => {
         },300)
     });
 });
+
+// when clicking an item it will pulse red color
 sidebarItem.forEach(item => {
     item.addEventListener("touchstart", event => {
         item.style.color = (red);
@@ -65,6 +70,7 @@ sidebarItem.forEach(item => {
     });
 });
 
+// when clicking an item it will pulse red color
 navBarItemMenuLink.forEach(item => {
     item.addEventListener("touchstart", event => {
         item.style.color = (red);
@@ -78,7 +84,7 @@ navBarItemMenuLink.forEach(item => {
 menuText.addEventListener("touchstart", event => {
     event.preventDefault();
     dropdownContent.classList.toggle("open");
-    menuText.classList.toggle("open")
+    menuText.classList.toggle("open");
     menuArrow.classList.toggle("rotate");
     navBarItemMenu.classList.add("pressed");
     if (dropdownContent.classList.contains("open")){
@@ -91,27 +97,43 @@ menuText.addEventListener("touchstart", event => {
     }
 });
 
+// If dropdown manu is open it will close it if you click outside it.
 document.body.addEventListener("touchstart", event => {
-    // Check if the touch event target is not within the dropdown content
     if (!dropdownContent.contains(event.target) && !navBarItemMenu.contains(event.target)) {
-        // Close the dropdown
         dropdownContent.classList.remove("open");
         menuText.classList.remove("open");
         menuArrow.classList.remove("rotate");
         navBarItemMenu.classList.remove("pressed");
-        // Reset the styles
         navBarItemMenu.style.color = gray;
         navBarItemMenu.style.fill = gray;    
     }
 });
 
-
 // Activates menu drop down/ Sidebar events
-const sidebar = document.querySelector(".sidebar")
-const sidebarBtn = document.querySelector(".sidebar-button")
+const sidebar = document.querySelector(".sidebar");
+const sidebarBtn = document.querySelector(".sidebar-button");
+const sidebarItemMenu = document.querySelector(".sidebar-item-menu");
+const sidebarDropdownContent = document.querySelector(".sidebar-dropdown-content");
+const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
+const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
+
+
 
 sidebarBtn.addEventListener("click", event => {
     sidebarBtn.classList.toggle("change");
-    sidebar.classList.toggle("open")
-    console.log("time")
+    sidebar.classList.toggle("open");
 });
+
+sidebarItemMenu.addEventListener("touchstart", event => {
+    sidebarDropdownContent.classList.toggle("open");
+    sidebarMenuArrow.classList.toggle("rotate");
+});
+
+// If sidebar is open and you click outside the sidebare it will close
+document.body.addEventListener("click", event => {
+    if (!sidebar.contains(event.target) && !sidebarBtn.contains(event.target)) {
+        sidebarBtn.classList.remove("change");
+        sidebar.classList.remove("open");
+    }
+});
+
