@@ -2,11 +2,13 @@
 document.addEventListener("DOMContentLoaded", event => {
     const offset = 70; // Adjust offset here for scroll
     const dropdownLinks = document.querySelectorAll(".dropdown-content a");
+    const sidebarDropdownLinks = document.querySelectorAll(".sidebar-dropdown-content a");
 
     function scrollToSection(link) {
         link.addEventListener("click", event => {
             event.preventDefault();
             const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
+            console.log(targetId)
             const scrollPosition = document.getElementById(targetId).offsetTop - offset;
             window.scrollTo(0, scrollPosition);
         });
@@ -14,6 +16,9 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Attach scrollToSection function to each link inside dropdown-content
     dropdownLinks.forEach(link => {
+        scrollToSection(link);
+    });
+    sidebarDropdownLinks.forEach(link => {
         scrollToSection(link);
     });
 });
@@ -66,7 +71,11 @@ sidebarItem.forEach(item => {
         item.style.color = (red);
         setTimeout(() => {
             item.style.color = (gray);
+            sidebar.classList.remove("open");
+            sidebarBtn.classList.remove("change");
+            sidebarDropdownContent.classList.remove("open")
         },300)
+
     });
 });
 
@@ -114,24 +123,32 @@ const sidebar = document.querySelector(".sidebar");
 const sidebarBtn = document.querySelector(".sidebar-button");
 const sidebarItemMenu = document.querySelector(".sidebar-item-menu");
 const sidebarDropdownContent = document.querySelector(".sidebar-dropdown-content");
+const sidebarDropdownContentLink = document.querySelectorAll(".sidebar-dropdown-content a");
 const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
 const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 
 
-
+//opens the sidebar
 sidebarBtn.addEventListener("click", event => {
     sidebarBtn.classList.toggle("change");
     sidebar.classList.toggle("open");
     if (!sidebar.classList.contains("open")) {
         sidebarDropdownContent.classList.remove("open");
-        console.log("remove")
     }
 });
 
+//Opens the menu dropdown menu
 sidebarItemMenu.addEventListener("touchstart", event => {
     sidebarDropdownContent.classList.toggle("open");
     sidebarMenuArrow.classList.toggle("rotate");
-    console.log("add")
+});
+
+// if any of the dropdownmenu items is clicke the sidebar will close
+sidebarDropdownContentLink.forEach(item => {
+    item.addEventListener("touchstart", event => {
+        sidebar.classList.remove("open");
+        sidebarBtn.classList.remove("change");
+    })
 });
 
 // If sidebar is open and you click outside the sidebare it will close
@@ -139,6 +156,8 @@ document.body.addEventListener("click", event => {
     if (!sidebar.contains(event.target) && !sidebarBtn.contains(event.target)) {
         sidebarBtn.classList.remove("change");
         sidebar.classList.remove("open");
+        sidebarBtn.classList.remove("change");
+        sidebarDropdownContent.classList.remove("open")
     }
 });
 
