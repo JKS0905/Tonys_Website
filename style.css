@@ -25,7 +25,6 @@ body {
     align-items: center;
     z-index: 100;
     box-shadow: 0 6px 6px -6px #adadad86;
-    animation: loadAnimation 1s ease;
 }
 
 .nav-box {
@@ -652,15 +651,13 @@ transition: transform 0.15s;
         overflow: hidden;
         width: 100vw;
         top: -215px;
-        opacity: 0;
         box-shadow: 0 6px 6px -6px #adadad86;
-        transition: top 500ms ease, opacity 500ms ease;
+        transition: top 500ms ease;
         z-index: 90;
     }
 
     .sidebar.open {
         top: 0;
-        opacity: 1;
     }
 
     .sidebar-item, .sidebar-text-arrow {
@@ -681,23 +678,21 @@ transition: transform 0.15s;
     }
 
     .sidebar-dropdown-content {
-        visibility: visible;
         display: flex;
         flex-direction: column;
         background-color: snow;
         text-align: left;
-        position: fixed;
+        overflow: hidden;
         width: 100vW;
-        top: -200px;
+        height: 0; 
         opacity: 1;
-        transition: top 500ms ease, opacity 500ms ease;
+        transition: height 500ms ease; 
         z-index: 80;
     }
     
     .sidebar-dropdown-content.open {
-        top: 295px;
         pointer-events: auto;
-        opacity: 1;
+        height: 325px;
     }
     
     .sidebar-dropdown-content a {
@@ -710,6 +705,9 @@ transition: transform 0.15s;
         padding: 15px;
         margin-left: 25px;
         margin-right: 25px;
+    }
+    #italienskPizzaLink {
+        border-top: 1px solid hsl(0, 0%, 0%, 0.1);
     }
 }
     

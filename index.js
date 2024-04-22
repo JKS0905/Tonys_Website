@@ -122,11 +122,16 @@ const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 sidebarBtn.addEventListener("click", event => {
     sidebarBtn.classList.toggle("change");
     sidebar.classList.toggle("open");
+    if (!sidebar.classList.contains("open")) {
+        sidebarDropdownContent.classList.remove("open");
+        console.log("remove")
+    }
 });
 
 sidebarItemMenu.addEventListener("touchstart", event => {
     sidebarDropdownContent.classList.toggle("open");
     sidebarMenuArrow.classList.toggle("rotate");
+    console.log("add")
 });
 
 // If sidebar is open and you click outside the sidebare it will close
