@@ -1,27 +1,34 @@
-// Scroll behavior for menu items
+// Scroll behavior for menu items homoujliuyhy
 document.addEventListener("DOMContentLoaded", event => {
     const offset = 70; // Adjust offset here for scroll
-    const dropdownLinks = document.querySelectorAll(".dropdown-content a");
-    const sidebarDropdownLinks = document.querySelectorAll(".sidebar-dropdown-content a");
+    
+    // Select main menu links
+    const mainMenuLinks = document.querySelectorAll(".menu-link");
+
+    // Select sidebar menu links
+    const sidebarMenuLinks = document.querySelectorAll(".sidebar-link");
 
     function scrollToSection(link) {
         link.addEventListener("click", event => {
             event.preventDefault();
             const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
-            console.log(targetId)
             const scrollPosition = document.getElementById(targetId).offsetTop - offset;
             window.scrollTo(0, scrollPosition);
         });
     }
 
-    // Attach scrollToSection function to each link inside dropdown-content
-    dropdownLinks.forEach(link => {
+    // Attach scrollToSection function to each link inside main menu
+    mainMenuLinks.forEach(link => {
         scrollToSection(link);
     });
-    sidebarDropdownLinks.forEach(link => {
+
+    // Attach scrollToSection function to each link inside sidebar menu
+    sidebarMenuLinks.forEach(link => {
         scrollToSection(link);
+        console.log(link)
     });
 });
+
 
 
 // Nav bar dropdown menu events
