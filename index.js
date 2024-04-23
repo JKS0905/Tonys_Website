@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", event => {
         link.addEventListener("click", event => {
             event.preventDefault();
             const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
+            console.log(targetId)
             const scrollPosition = document.getElementById(targetId).offsetTop - offset;
             window.scrollTo(0, scrollPosition);
         });
