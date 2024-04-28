@@ -1,4 +1,5 @@
 // Scroll behavior for menu items
+
 document.addEventListener("DOMContentLoaded", event => {
     const offset = 70; // Adjust offset here for scroll
     
