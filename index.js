@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Scrolls to the target on screen
     function scrollToTarget(link) {
-        alert(link)
         const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
         const scrollPosition = document.getElementById(targetId).offsetTop - offset;
         window.scrollTo(0, scrollPosition);
