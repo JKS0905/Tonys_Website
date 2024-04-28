@@ -2,18 +2,15 @@
 document.addEventListener("DOMContentLoaded", event => {
     const offset = 70; // Adjust offset here for scroll
     
-    // Select main menu links
+    // Select menu links
     const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
-
-    // Select sidebar menu links
     const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
 
-    // Attach scrollToSection function to each link inside main menu
+    // Attach scrollToSection function to each link inside menu links
     mainMenuLinks.forEach(link => {
         scrollToSection(link);
     });
 
-    // Attach scrollToSection function to each link inside sidebar menu
     sidebarMenuLinks.forEach(link => {
         scrollToSection(link);
     });
@@ -34,12 +31,11 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Scrolls to the target on screen
     function scrollToTarget(link) {
-            const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
-            const scrollPosition = document.getElementById(targetId).offsetTop - offset;
-            window.scrollTo(0, scrollPosition);
+        console.log(link)
+        const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
+        const scrollPosition = document.getElementById(targetId).offsetTop - offset;
+        window.scrollTo(0, scrollPosition);
     }
-
-
 });
 
 
@@ -66,6 +62,7 @@ navBarItemMenu.addEventListener("mouseleave", event => {
     menuArrow.classList.remove("rotate");
 });
 
+// desktop dropdown menu
 menuText.addEventListener("click", event => {
     dropdownContent.classList.toggle("open");
     menuText.classList.toggle("open");
@@ -79,9 +76,11 @@ menuText.addEventListener("click", event => {
 navBarItem.forEach(item => {
     item.addEventListener("touchstart", event => {
         item.style.color = (red);
-        setTimeout(() => {
-            item.style.color = (gray);
-        },300)
+    });
+});
+navBarItem.forEach(item => {
+    item.addEventListener("touchend", event => {
+        item.style.color = (gray);
     });
 });
 
@@ -89,13 +88,15 @@ navBarItem.forEach(item => {
 sidebarItem.forEach(item => {
     item.addEventListener("touchstart", event => {
         item.style.color = (red);
-        setTimeout(() => {
+    });
+});
+sidebarItem.forEach(item => {
+    item.addEventListener("touchend", event => {
+        item.style.color = (gray);
             item.style.color = (gray);
             sidebar.classList.remove("open");
             sidebarBtn.classList.remove("change");
             sidebarDropdownContent.classList.remove("open")
-        },300)
-
     });
 });
 
@@ -103,14 +104,16 @@ sidebarItem.forEach(item => {
 navBarItemMenuLink.forEach(item => {
     item.addEventListener("touchstart", event => {
         item.style.color = (red);
-        setTimeout(() => {
-            item.style.color = (gray);
-        },300)
+    });
+});
+navBarItemMenuLink.forEach(item => {
+    item.addEventListener("touchend", event => {
+        item.style.color = (gray);
     });
 });
 
 // Menu dropdown event
-menuText.addEventListener("touchstart", event => {
+menuText.addEventListener("touchend", event => {
     event.preventDefault();
     dropdownContent.classList.toggle("open");
     menuText.classList.toggle("open");
@@ -158,21 +161,30 @@ sidebarBtn.addEventListener("click", event => {
 });
 
 //Opens the menu dropdown menu
-sidebarItemMenu.addEventListener("touchstart", event => {
+sidebarItemMenu.addEventListener("touchend", event => {
     sidebarDropdownContent.classList.toggle("open");
     sidebarMenuArrow.classList.toggle("rotate");
+    if (sidebarDropdownContent.classList.contains("open")){
+        sidebarItemMenu.style.color = red;
+        sidebarItemMenu.style.fill = red;
+    }
+    else {
+        sidebarItemMenu.style.color = gray;
+        sidebarItemMenu.style.fill = gray;
+    }
 });
 
-// if any of the dropdownmenu items is clicke the sidebar will close
+//if any of the dropdownmenu items is clicked the sidebar will close
 sidebarDropdownContentLink.forEach(item => {
-    item.addEventListener("touchstart", event => {
+    item.addEventListener("touchend", event => {
         sidebar.classList.remove("open");
+
         sidebarBtn.classList.remove("change");
     })
 });
 
 // If sidebar is open and you click outside the sidebare it will close
-document.body.addEventListener("click", event => {
+document.body.addEventListener("touchstart", event => {
     if (!sidebar.contains(event.target) && !sidebarBtn.contains(event.target)) {
         sidebarBtn.classList.remove("change");
         sidebar.classList.remove("open");
