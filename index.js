@@ -1,22 +1,12 @@
-// Scroll behavior for menu items homoujliuyhy
+// Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
     const offset = 70; // Adjust offset here for scroll
     
     // Select main menu links
-    const mainMenuLinks = document.querySelectorAll(".menu-link");
+    const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
 
     // Select sidebar menu links
-    const sidebarMenuLinks = document.querySelectorAll(".sidebar-link");
-
-    function scrollToSection(link) {
-        link.addEventListener("click", event => {
-            event.preventDefault();
-            const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
-            console.log(targetId)
-            const scrollPosition = document.getElementById(targetId).offsetTop - offset;
-            window.scrollTo(0, scrollPosition);
-        });
-    }
+    const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
 
     // Attach scrollToSection function to each link inside main menu
     mainMenuLinks.forEach(link => {
@@ -26,8 +16,30 @@ document.addEventListener("DOMContentLoaded", event => {
     // Attach scrollToSection function to each link inside sidebar menu
     sidebarMenuLinks.forEach(link => {
         scrollToSection(link);
-        console.log(link)
     });
+
+    // Diffrend Eventlisteners to trigger the scrollToTarget function
+    function scrollToSection(link) {
+        link.addEventListener("click", event => {
+            event.preventDefault();
+            scrollToTarget(link);
+        })
+    }
+    function scrollToSection(link) {
+        link.addEventListener("touchend", event => {
+            event.preventDefault();
+            scrollToTarget(link);
+        })
+    }
+
+    // Scrolls to the target on screen
+    function scrollToTarget(link) {
+            const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
+            const scrollPosition = document.getElementById(targetId).offsetTop - offset;
+            window.scrollTo(0, scrollPosition);
+    }
+
+
 });
 
 
