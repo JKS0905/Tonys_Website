@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", event => {
     }
     function scrollToSection(link) {
         link.addEventListener("touchend", event => {
-            //event.preventDefault();
+            event.preventDefault();
             scrollToTarget(link);
         })
     }
