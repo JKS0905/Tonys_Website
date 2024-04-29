@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", event => {
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
         link.addEventListener("click", event => {
-            //event.preventDefault();
+            event.preventDefault();
             scrollToTarget(link);
         })
     }
