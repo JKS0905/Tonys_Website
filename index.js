@@ -19,18 +19,19 @@ document.addEventListener("DOMContentLoaded", event => {
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
         link.addEventListener("click", event => {
+            //event.preventDefault();
             scrollToTarget(link);
         })
     }
     function scrollToSection(link) {
         link.addEventListener("touchend", event => {
+            //event.preventDefault();
             scrollToTarget(link);
         })
     }
 
     // Scrolls to the target on screen
     function scrollToTarget(link) {
-        event.preventDefault();
         const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
         const scrollPosition = document.getElementById(targetId).offsetTop - offset;
         window.scrollTo(0, scrollPosition);
