@@ -19,11 +19,8 @@ const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
 const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 
 // Variuable to check for browser support for event types
-
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
 const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart" : "click";
-console.log(`Start ${eventToUseStart}`)
-console.log(`End ${eventToUseEnd}`)
 
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
