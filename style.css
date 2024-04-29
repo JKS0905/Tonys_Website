@@ -710,8 +710,11 @@ transition: transform 0.15s;
         margin-left: 25px;
         margin-right: 25px;
     }
-    #italienskPizzaLink {
+    .sidebar-dropdown-content a:nth-child(1) {
         border-top: 1px solid hsl(0, 0%, 0%, 0.1);
+    }
+    .sidebar-dropdown-content a:nth-child(6) {
+        border-bottom: none;
     }
 }
     

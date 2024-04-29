@@ -1,5 +1,31 @@
-// Scroll behavior for menu items 
+// Nav bar dropdown menu events
+const menuText = document.querySelector(".menu-text-arrow");
+const menuArrow = document.querySelector(".menu-text-arrow svg");
+const navBarItem = document.querySelectorAll(".nav-bar-item");
+const sidebarItem = document.querySelectorAll(".sidebar-item");
+const navBarItemMenu = document.querySelector(".nav-bar-item-menu");
+const navBarItemMenuLink = document.querySelectorAll(".nav-bar-item-menu a");
+const dropdownContent = document.querySelector(".dropdown-content");
+const red = "#b32e31";
+const gray = "#4e4d4d";
 
+// Activates menu drop down/ Sidebar events
+const sidebar = document.querySelector(".sidebar");
+const sidebarBtn = document.querySelector(".sidebar-button");
+const sidebarItemMenu = document.querySelector(".sidebar-item-menu");
+const sidebarDropdownContent = document.querySelector(".sidebar-dropdown-content");
+const sidebarDropdownContentLink = document.querySelectorAll(".sidebar-dropdown-content a");
+const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
+const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
+
+// Variuable to check for browser support for event types
+
+const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
+const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart" : "click";
+console.log(`Start ${eventToUseStart}`)
+console.log(`End ${eventToUseEnd}`)
+
+// Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
     const offset = 70; // Adjust offset here for scroll
     
@@ -18,17 +44,11 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
-        link.addEventListener("click", event => {
+        link.addEventListener(eventToUseEnd, event => {
             event.preventDefault();
             scrollToTarget(link);
         })
     }
-    //function scrollToSection(link) {
-     //   link.addEventListener("touchend", event => {
-     //       event.preventDefault();
-     //       scrollToTarget(link);
-    //    })
-  //  }
 
     // Scrolls to the target on screen
     function scrollToTarget(link) {
@@ -37,19 +57,6 @@ document.addEventListener("DOMContentLoaded", event => {
         window.scrollTo(0, scrollPosition);
     }
 });
-
-
-
-// Nav bar dropdown menu events
-const menuText = document.querySelector(".menu-text-arrow");
-const menuArrow = document.querySelector(".menu-text-arrow svg");
-const navBarItem = document.querySelectorAll(".nav-bar-item");
-const sidebarItem = document.querySelectorAll(".sidebar-item");
-const navBarItemMenu = document.querySelector(".nav-bar-item-menu");
-const navBarItemMenuLink = document.querySelectorAll(".nav-bar-item-menu a");
-const dropdownContent = document.querySelector(".dropdown-content");
-const red = "#b32e31";
-const gray = "#4e4d4d";
 
 menuText.addEventListener("mouseenter", event => {
     dropdownContent.classList.add("open");
@@ -69,51 +76,49 @@ menuText.addEventListener("click", event => {
     menuArrow.classList.toggle("rotate");
 });
 
-
 // Settings for touch devices
 
 // when clicking an item it will pulse red color
 navBarItem.forEach(item => {
-    item.addEventListener("touchstart", event => {
+    item.addEventListener(eventToUseStart, event => {
         item.style.color = (red);
     });
 });
 navBarItem.forEach(item => {
-    item.addEventListener("touchend", event => {
+    item.addEventListener(eventToUseEnd, event => {
         item.style.color = (gray);
     });
 });
 
 // when clicking an item it will pulse red color
 sidebarItem.forEach(item => {
-    item.addEventListener("touchstart", event => {
+    item.addEventListener(eventToUseStart, event => {
         item.style.color = (red);
     });
 });
 sidebarItem.forEach(item => {
-    item.addEventListener("touchend", event => {
+    item.addEventListener(eventToUseEnd, event => {
         item.style.color = (gray);
-            item.style.color = (gray);
-            sidebar.classList.remove("open");
-            sidebarBtn.classList.remove("change");
-            sidebarDropdownContent.classList.remove("open")
+        sidebar.classList.remove("open");
+        sidebarBtn.classList.remove("change");
+        sidebarDropdownContent.classList.remove("open")
     });
 });
 
 // when clicking an item it will pulse red color
 navBarItemMenuLink.forEach(item => {
-    item.addEventListener("touchstart", event => {
+    item.addEventListener(eventToUseStart, event => {
         item.style.color = (red);
     });
 });
 navBarItemMenuLink.forEach(item => {
-    item.addEventListener("touchend", event => {
+    item.addEventListener(eventToUseEnd, event => {
         item.style.color = (gray);
     });
 });
 
 // Menu dropdown event
-menuText.addEventListener("touchend", event => {
+menuText.addEventListener(eventToUseEnd, event => {
     event.preventDefault();
     dropdownContent.classList.toggle("open");
     menuText.classList.toggle("open");
@@ -129,8 +134,8 @@ menuText.addEventListener("touchend", event => {
     }
 });
 
-// If dropdown manu is open it will close it if you click outside it.
-document.body.addEventListener("touchstart", event => {
+// If dropdown menu is open it will close it if you click outside it.
+document.body.addEventListener(eventToUseStart, event => {
     if (!dropdownContent.contains(event.target) && !navBarItemMenu.contains(event.target)) {
         dropdownContent.classList.remove("open");
         menuText.classList.remove("open");
@@ -141,18 +146,8 @@ document.body.addEventListener("touchstart", event => {
     }
 });
 
-// Activates menu drop down/ Sidebar events
-const sidebar = document.querySelector(".sidebar");
-const sidebarBtn = document.querySelector(".sidebar-button");
-const sidebarItemMenu = document.querySelector(".sidebar-item-menu");
-const sidebarDropdownContent = document.querySelector(".sidebar-dropdown-content");
-const sidebarDropdownContentLink = document.querySelectorAll(".sidebar-dropdown-content a");
-const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
-const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
-
-
 //opens the sidebar
-sidebarBtn.addEventListener("click", event => {
+sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebarBtn.classList.toggle("change");
     sidebar.classList.toggle("open");
     if (!sidebar.classList.contains("open")) {
@@ -161,14 +156,16 @@ sidebarBtn.addEventListener("click", event => {
 });
 
 //Opens the menu dropdown menu
-sidebarItemMenu.addEventListener("touchend", event => {
+sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     sidebarDropdownContent.classList.toggle("open");
     sidebarMenuArrow.classList.toggle("rotate");
     if (sidebarDropdownContent.classList.contains("open")){
         sidebarItemMenu.style.color = red;
         sidebarItemMenu.style.fill = red;
+        console.log("Red")
     }
     else {
+        console.log("Gray")
         sidebarItemMenu.style.color = gray;
         sidebarItemMenu.style.fill = gray;
     }
@@ -176,7 +173,7 @@ sidebarItemMenu.addEventListener("touchend", event => {
 
 //if any of the dropdownmenu items is clicked the sidebar will close
 sidebarDropdownContentLink.forEach(item => {
-    item.addEventListener("touchend", event => {
+    item.addEventListener(eventToUseEnd, event => {
         sidebar.classList.remove("open");
 
         sidebarBtn.classList.remove("change");
@@ -184,7 +181,7 @@ sidebarDropdownContentLink.forEach(item => {
 });
 
 // If sidebar is open and you click outside the sidebare it will close
-document.body.addEventListener("touchstart", event => {
+document.body.addEventListener(eventToUseStart, event => {
     if (!sidebar.contains(event.target) && !sidebarBtn.contains(event.target)) {
         sidebarBtn.classList.remove("change");
         sidebar.classList.remove("open");
