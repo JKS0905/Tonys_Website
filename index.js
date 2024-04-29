@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", event => {
             scrollToTarget(link);
         })
     }
-    function scrollToSection(link) {
-        link.addEventListener("touchend", event => {
-            event.preventDefault();
-            scrollToTarget(link);
-        })
-    }
+    //function scrollToSection(link) {
+     //   link.addEventListener("touchend", event => {
+     //       event.preventDefault();
+     //       scrollToTarget(link);
+    //    })
+  //  }
 
     // Scrolls to the target on screen
     function scrollToTarget(link) {
