@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", event => {
     function scrollToTarget(link) {
         const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
         const scrollPosition = document.getElementById(targetId).offsetTop - offset;
+        console.log(link)
         window.scrollTo(0, scrollPosition);
     }
 });
