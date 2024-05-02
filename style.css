@@ -646,7 +646,7 @@ transition: transform 0.15s;
     }
 
     .sidebar {
-        visibility: visible;
+        visibility: hidden;
         background-color: snow;
         position: fixed;
         margin-top: 80px;
@@ -654,14 +654,10 @@ transition: transform 0.15s;
         flex-direction: column;
         overflow: hidden;
         width: 100vw;
-        top: -215px;
         box-shadow: 0 6px 6px -6px #adadad86;
-        transition: top 500ms ease;
         z-index: 90;
-    }
-
-    .sidebar.open {
-        top: 0;
+        height: auto;
+        top: -220px;
     }
 
     .sidebar-item, .sidebar-text-arrow {

@@ -8,6 +8,7 @@ const navBarItemMenuLink = document.querySelectorAll(".nav-bar-item-menu a");
 const dropdownContent = document.querySelector(".dropdown-content");
 const red = "#b32e31";
 const gray = "#4e4d4d";
+const tl = gsap.timeline();
 
 // Activates menu drop down/ Sidebar events
 const sidebar = document.querySelector(".sidebar");
@@ -146,9 +147,15 @@ document.body.addEventListener(eventToUseStart, event => {
 //opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebarBtn.classList.toggle("change");
-    sidebar.classList.toggle("open");
-    if (!sidebar.classList.contains("open")) {
+    if (sidebar.style.top !== "auto") {
+        tl.to(sidebar, {duration: 0, visibility: "visible"});
+        tl.to(sidebar, {duration: 0.35, top: "auto", ease: "power1.out"});
         sidebarDropdownContent.classList.remove("open");
+        console.log("Auto")
+    }
+    else{
+        tl.to(sidebar, {duration: 0.35, top: -220, ease: "power1.out"});
+        tl.to(sidebar, {duration: 0, visibility: "hidden"});
     }
 });
 
@@ -159,10 +166,8 @@ sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     if (sidebarDropdownContent.classList.contains("open")){
         sidebarItemMenu.style.color = red;
         sidebarItemMenu.style.fill = red;
-        console.log("Red")
     }
     else {
-        console.log("Gray")
         sidebarItemMenu.style.color = gray;
         sidebarItemMenu.style.fill = gray;
     }
@@ -181,9 +186,10 @@ sidebarDropdownContentLink.forEach(item => {
 document.body.addEventListener(eventToUseStart, event => {
     if (!sidebar.contains(event.target) && !sidebarBtn.contains(event.target)) {
         sidebarBtn.classList.remove("change");
-        sidebar.classList.remove("open");
         sidebarBtn.classList.remove("change");
         sidebarDropdownContent.classList.remove("open")
+        tl.to(sidebar, {duration: 0.35, top: -220, ease: "power1.out"});
+        tl.to(sidebar, {duration: 0, visibility: "hidden"});
     }
 });
 
