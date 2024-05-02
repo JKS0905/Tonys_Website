@@ -8,7 +8,6 @@ const navBarItemMenuLink = document.querySelectorAll(".nav-bar-item-menu a");
 const dropdownContent = document.querySelector(".dropdown-content");
 const red = "#b32e31";
 const gray = "#4e4d4d";
-const tl = gsap.timeline();
 
 // Activates menu drop down/ Sidebar events
 const sidebar = document.querySelector(".sidebar");
@@ -22,6 +21,14 @@ const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 // Variuable to check for browser support for event types
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
 const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart" : "click";
+
+// gsap timeline
+const tl = gsap.timeline();
+
+// Gets Top value from CSS
+const sidebarStyle = window.getComputedStyle(sidebar);
+const topValue = sidebarStyle.getPropertyValue('top');
+const sidebarTopValue = parseFloat(topValue);
 
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
@@ -149,12 +156,12 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebarBtn.classList.toggle("change");
     if (sidebar.style.top !== "auto") {
         tl.to(sidebar, {duration: 0, visibility: "visible"});
-        tl.to(sidebar, {duration: 0.35, top: "auto", ease: "power1.out"});
+        tl.to(sidebar, {duration: 0.3, top: "auto", ease: "power1.out"});
         sidebarDropdownContent.classList.remove("open");
         console.log("Auto")
     }
     else{
-        tl.to(sidebar, {duration: 0.35, top: -220, ease: "power1.out"});
+        tl.to(sidebar, {duration: 0.3, top: sidebarTopValue, ease: "power1.out"});
         tl.to(sidebar, {duration: 0, visibility: "hidden"});
     }
 });
@@ -177,7 +184,6 @@ sidebarItemMenu.addEventListener(eventToUseEnd, event => {
 sidebarDropdownContentLink.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
         sidebar.classList.remove("open");
-
         sidebarBtn.classList.remove("change");
     })
 });
@@ -188,7 +194,7 @@ document.body.addEventListener(eventToUseStart, event => {
         sidebarBtn.classList.remove("change");
         sidebarBtn.classList.remove("change");
         sidebarDropdownContent.classList.remove("open")
-        tl.to(sidebar, {duration: 0.35, top: -220, ease: "power1.out"});
+        tl.to(sidebar, {duration: 0.3, top: sidebarTopValue, ease: "power1.out"});
         tl.to(sidebar, {duration: 0, visibility: "hidden"});
     }
 });
