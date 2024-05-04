@@ -182,7 +182,6 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
         tl.to(sidebar, {duration: 0, visibility: "visible"});
         tl.to(sidebar, {duration: 0.5, top: "auto", ease: "power1.out"});
         sidebarDropdownContent.classList.remove("open");
-        console.log("Auto")
     }
     else{
         tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
@@ -192,15 +191,19 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
 
 //Opens the menu dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
-    sidebarDropdownContent.classList.toggle("open");
     sidebarMenuArrow.classList.toggle("rotate");
-    if (sidebarDropdownContent.classList.contains("open")){
+    if (sidebarDropdownContent.style.height !== "auto") {
         sidebarItemMenu.style.color = red;
         sidebarItemMenu.style.fill = red;
+        tl.to(sidebarDropdownContent, {duration: 0, visibility: "visible"});
+        tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "power1.out"});
+        console.log(sidebarDropdownContent.style.height)
     }
-    else {
+    else{
         sidebarItemMenu.style.color = gray;
         sidebarItemMenu.style.fill = gray;
+        tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
+        tl.to(sidebarDropdownContent, {duration: 0, visibility: "hidden"});
     }
 });
 
@@ -218,7 +221,7 @@ document.body.addEventListener(eventToUseStart, event => {
         sidebarBtn.classList.remove("change");
         sidebarBtn.classList.remove("change");
         sidebarDropdownContent.classList.remove("open")
-        tl.to(sidebar, {duration: 0.3, top: sidebarTopValue, ease: "power1.out"});
+        tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
         tl.to(sidebar, {duration: 0, visibility: "hidden"});
     }
 });

@@ -655,7 +655,6 @@ transition: transform 0.15s;
         overflow: hidden;
         width: 100vw;
         box-shadow: 0 6px 6px -6px #adadad86;
-        z-index: 90;
         height: auto;
         top: -220px;
     }
@@ -678,21 +677,15 @@ transition: transform 0.15s;
     }
 
     .sidebar-dropdown-content {
+        visibility: hidden;
         display: flex;
         flex-direction: column;
         background-color: snow;
         text-align: left;
         overflow: hidden;
         width: 100vW;
-        height: 0; 
-        opacity: 1;
+        height: 0;
         transition: height 500ms ease; 
-        z-index: 80;
-    }
-    
-    .sidebar-dropdown-content.open {
-        pointer-events: auto;
-        height: 325px;
     }
     
     .sidebar-dropdown-content a {
