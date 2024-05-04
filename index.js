@@ -179,13 +179,13 @@ document.body.addEventListener(eventToUseStart, event => {
 sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebarBtn.classList.toggle("change");
     if (sidebar.style.top !== "auto") {
-        tl.to(sidebar, {duration: 0, visibility: "visible"});
+        tl.set(sidebar, {display: "flex"});
         tl.to(sidebar, {duration: 0.5, top: "auto", ease: "power1.out"});
         sidebarDropdownContent.classList.remove("open");
     }
     else{
         tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
-        tl.to(sidebar, {duration: 0, visibility: "hidden"});
+        tl.set(sidebar, {display: "none"});
     }
 });
 
@@ -195,15 +195,15 @@ sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     if (sidebarDropdownContent.style.height !== "auto") {
         sidebarItemMenu.style.color = red;
         sidebarItemMenu.style.fill = red;
-        tl.to(sidebarDropdownContent, {duration: 0, visibility: "visible"});
-        tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "power1.out"});
+        tl.set(sidebarDropdownContent, {display: "flex"});
+        tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "none"});
         console.log(sidebarDropdownContent.style.height)
     }
     else{
         sidebarItemMenu.style.color = gray;
         sidebarItemMenu.style.fill = gray;
-        tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
-        tl.to(sidebarDropdownContent, {duration: 0, visibility: "hidden"});
+        tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "none"});
+        tl.set(sidebarDropdownContent, {display: "none"});
     }
 });
 

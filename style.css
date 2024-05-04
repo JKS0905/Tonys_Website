@@ -646,11 +646,11 @@ transition: transform 0.15s;
     }
 
     .sidebar {
-        visibility: hidden;
+        visibility: visible;
         background-color: snow;
         position: fixed;
         margin-top: 80px;
-        display: flex;
+        display: none;
         flex-direction: column;
         overflow: hidden;
         width: 100vw;
@@ -677,14 +677,14 @@ transition: transform 0.15s;
     }
 
     .sidebar-dropdown-content {
-        visibility: hidden;
-        display: flex;
+        visibility: visible;
+        display: none;
         flex-direction: column;
         background-color: snow;
         text-align: left;
         overflow: hidden;
         width: 100vW;
-        height: 0;
+        height: auto;
         transition: height 500ms ease; 
     }
     
