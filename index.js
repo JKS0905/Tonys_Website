@@ -25,10 +25,34 @@ const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart
 // gsap timeline
 const tl = gsap.timeline();
 
-// Gets Top value from CSS
-const sidebarStyle = window.getComputedStyle(sidebar);
-const topValue = sidebarStyle.getPropertyValue('top');
-const sidebarTopValue = parseFloat(topValue);
+// gets CSS element
+const sidebarTopValue = getComputedPropertyValue(sidebar, "top")
+
+// get CSS value from a class
+function getComputedPropertyValue(element, property) {
+    // Get the computed style of the "element"
+    const elementStyle = window.getComputedStyle(element);
+
+    // Get the value of the "property" from the computed style
+    const elementValue = elementStyle.getPropertyValue(property);
+
+    // If the value is empty, log an error and return
+    if (elementValue === "") {
+        console.error(`Invalid or missing CSS property: ${property}`);
+        return;
+    }
+
+    // Check if the value contains any numbers
+    const containNumbers = /\d/.test(elementValue);
+
+    // If the value contains numbers, return the numeric value
+    if (containNumbers) {
+        return parseFloat(elementValue);
+    } else {
+        return elementValue;
+    }
+}
+
 
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
@@ -156,12 +180,12 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebarBtn.classList.toggle("change");
     if (sidebar.style.top !== "auto") {
         tl.to(sidebar, {duration: 0, visibility: "visible"});
-        tl.to(sidebar, {duration: 0.3, top: "auto", ease: "power1.out"});
+        tl.to(sidebar, {duration: 0.5, top: "auto", ease: "power1.out"});
         sidebarDropdownContent.classList.remove("open");
         console.log("Auto")
     }
     else{
-        tl.to(sidebar, {duration: 0.3, top: sidebarTopValue, ease: "power1.out"});
+        tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
         tl.to(sidebar, {duration: 0, visibility: "hidden"});
     }
 });
