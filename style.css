@@ -71,7 +71,8 @@ body {
 .touch-device .sidebar-text-arrow:active,
 .touch-device .sidebar-text-arrow svg:active,
 .touch-device .nav-bar-item-menu a:active,
-.touch-device .sidebar-item-menu a:active {
+.touch-device .sidebar-item-menu a:active,
+.touch-device .sidebar-item:active {
     fill: #b32e31;
     color: #b32e31;
 }

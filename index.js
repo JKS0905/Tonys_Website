@@ -130,7 +130,6 @@ function closeSidebarDropdown() {
 }
 
 menuText.addEventListener("mouseenter", event => {
-    console.log("mouseenter")
     menuText.style.color = red;
     menuArrow.style.fill = red;
     dropdownContent.classList.add("open");
@@ -138,7 +137,6 @@ menuText.addEventListener("mouseenter", event => {
 });
 
 navBarItemMenu.addEventListener("mouseleave", event => {
-    console.log("mouseleave")
     menuText.style.color = gray;
     menuArrow.style.fill = gray;
     dropdownContent.classList.remove("open");
@@ -148,7 +146,6 @@ navBarItemMenu.addEventListener("mouseleave", event => {
 
 // desktop dropdown menu
 menuText.addEventListener(eventToUseEnd, event => {
-    console.log("clicked")
     if (dropdownContent.classList.contains("open")) {
         menuText.style.color = gray;
         menuArrow.style.fill = gray;
@@ -195,13 +192,11 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
 //Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     if (sidebarDropdownContent.style.height !== "auto") {
-        console.log("color red")
         sidebarItemMenu.style.color = red;
         sidebarItemMenu.style.fill = red;
         openSidebarDropdown();
     }
     else{
-        console.log("Gray")
         sidebarItemMenu.style.color = gray;
         sidebarItemMenu.style.fill = gray;
         closeSidebarDropdown();
