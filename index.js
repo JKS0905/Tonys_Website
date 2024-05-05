@@ -19,6 +19,9 @@ const sidebarDropdownContentLink = document.querySelectorAll(".sidebar-dropdown-
 const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
 const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 
+// Scroll behavior for menu items, ScrollTo function
+let offset = 70; // Adjust offset here for scroll
+
 let isTouchscreen;
 
 // JavaScript to detect touch devices
@@ -66,11 +69,37 @@ function getComputedPropertyValue(element, property) {
     }
 }
 
+// Variabels related to this function
+const header = document.querySelector('.header-main');
+let lastScrollPosition = window.pageYOffset;
+const deadZoneThreshold = 20; // Adjust the threshold as needed
+
+function handleScroll() {
+  const currentScrollPosition = window.pageYOffset;
+  const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
+
+  // Check if the scroll difference is greater than the dead zone threshold
+  if (scrollDifference > deadZoneThreshold) {
+    if (currentScrollPosition > lastScrollPosition) {
+      gsap.to(header, { duration: 0.2, top: -100, ease: "none" });
+    } else {
+      gsap.to(header, { duration: 0.2, top: 0, ease: "none" });
+    }
+    lastScrollPosition = currentScrollPosition;
+  }
+}
+
+// Add scroll event listener only if screen width is less than or equal to 750px
+if (window.matchMedia("(max-width: 750px)").matches) {
+    window.addEventListener('scroll', handleScroll);
+
+    // Offset for the ScrollTo function
+    offset = 0;
+}
 
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
-    const offset = 70; // Adjust offset here for scroll
-    
+
     // Select menu links
     const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
     const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
@@ -89,6 +118,7 @@ document.addEventListener("DOMContentLoaded", event => {
         link.addEventListener(eventToUseEnd, event => {
             event.preventDefault();
             scrollToTarget(link);
+            console.log(offset)
         })
     }
 
@@ -111,7 +141,7 @@ function closeSidebar() {
     sidebarItemMenu.style.fill = gray;
     sidebarBtn.classList.remove("change")
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
+    tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
     tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
     tl.set(sidebar, { visibility: "hidden" });
@@ -226,3 +256,8 @@ document.body.addEventListener(eventToUseStart, event => {
         }
     }
 });
+
+
+
+
+
