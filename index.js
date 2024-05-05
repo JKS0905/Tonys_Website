@@ -87,6 +87,32 @@ document.addEventListener("DOMContentLoaded", event => {
     }
 });
 
+function openSidebar(){
+    sidebarBtn.classList.add("change");
+    tl.set(sidebar, {visibility: "visible"});
+    tl.to(sidebar, {duration: 0.5, top: "auto", ease: "power1.out"});
+}
+
+function closeSidebar() {
+    sidebarBtn.classList.remove("change")
+    tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
+    tl.set(sidebarDropdownContent, { visibility: "hidden",});
+    tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
+    tl.set(sidebar, { visibility: "hidden" });
+}
+
+function openSidebarDropdown() {
+    sidebarMenuArrow.classList.add("rotate");
+    tl.set(sidebarDropdownContent, {visibility: "visible"});
+    tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "power1.out"});
+}
+
+function closeSidebarDropdown() {
+    sidebarMenuArrow.classList.remove("rotate");
+    tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
+    tl.set(sidebarDropdownContent, {visibility: "hidden"});
+}
+
 menuText.addEventListener("mouseenter", event => {
     dropdownContent.classList.add("open");
     menuArrow.classList.add("rotate");
@@ -128,9 +154,7 @@ sidebarItem.forEach(item => {
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
         item.style.color = (gray);
-        sidebarBtn.classList.toggle("change")
-        tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
-        tl.set(sidebar, {visibility: "hidden"});
+        closeSidebar();
     });
 });
 
@@ -149,41 +173,26 @@ navBarItemMenuLink.forEach(item => {
 
 //opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
-    sidebarBtn.classList.toggle("change");
-    if (sidebar.style.top !== "auto") {
-        tl.set(sidebar, {visibility: "visible"});
-        tl.to(sidebar, {duration: 0.5, top: "auto", ease: "power1.out"});
-    }
-    else{
-        tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
-        tl.set(sidebar, {visibility: "hidden"});
-    }
+    sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
 });
 
 //Opens the menu dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
-    sidebarMenuArrow.classList.toggle("rotate");
     if (sidebarDropdownContent.style.height !== "auto") {
         sidebarItemMenu.style.color = red;
         sidebarItemMenu.style.fill = red;
-        tl.set(sidebarDropdownContent, {visibility: "visible"});
-        tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "power1.out"});
+        openSidebarDropdown();
     }
     else{
         sidebarItemMenu.style.color = gray;
         sidebarItemMenu.style.fill = gray;
-        tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
-        tl.set(sidebarDropdownContent, {visibility: "hidden"});
+        closeSidebarDropdown();
     }
 });
 
 // if a dropdown item is clicked it will close the whole sidebar
 sidebarDropdownContent.addEventListener(eventToUseEnd, event => {
-    sidebarBtn.classList.toggle("change")
-    tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
-    tl.set(sidebarDropdownContent, { visibility: "hidden",});
-    tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
-    tl.set(sidebar, { visibility: "hidden" });
+    closeSidebar();
 });
 
 
@@ -196,17 +205,11 @@ document.body.addEventListener(eventToUseStart, event => {
     if (isSidebarOpen && !sidebar.contains(event.target) && !sidebarBtn.contains(event.target) && !sidebarDropdownContent.contains(event.target)) {
         // If both sidebar and dropdown content are open
         if (isSidebarVisible && isDropdownVisible) {
-            sidebarBtn.classList.remove("change");
-            tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
-            tl.set(sidebarDropdownContent, { visibility: "hidden",});
-            tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
-            tl.set(sidebar, { visibility: "hidden" });
+            closeSidebar();
         }
         // If only sidebar is open
         else if (isSidebarVisible) {
-            sidebarBtn.classList.remove("change");
-            tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out" });
-            tl.set(sidebar, { visibility: "hidden" });
+            closeSidebar();
         }
     }
 });
