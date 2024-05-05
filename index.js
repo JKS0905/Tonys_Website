@@ -128,9 +128,9 @@ sidebarItem.forEach(item => {
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
         item.style.color = (gray);
-        sidebar.classList.remove("open");
-        sidebarBtn.classList.remove("change");
-        sidebarDropdownContent.classList.remove("open")
+        sidebarBtn.classList.toggle("change")
+        tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
+        tl.set(sidebar, {visibility: "hidden"});
     });
 });
 
@@ -146,46 +146,17 @@ navBarItemMenuLink.forEach(item => {
     });
 });
 
-// Menu dropdown event
-menuText.addEventListener(eventToUseEnd, event => {
-    event.preventDefault();
-    dropdownContent.classList.toggle("open");
-    menuText.classList.toggle("open");
-    menuArrow.classList.toggle("rotate");
-    navBarItemMenu.classList.add("pressed");
-    if (dropdownContent.classList.contains("open")){
-        navBarItemMenu.style.color = red;
-        navBarItemMenu.style.fill = red;
-    }
-    else {
-        navBarItemMenu.style.color = gray;
-        navBarItemMenu.style.fill = gray;
-    }
-});
-
-// If dropdown menu is open it will close it if you click outside it.
-document.body.addEventListener(eventToUseStart, event => {
-    if (!dropdownContent.contains(event.target) && !navBarItemMenu.contains(event.target)) {
-        dropdownContent.classList.remove("open");
-        menuText.classList.remove("open");
-        menuArrow.classList.remove("rotate");
-        navBarItemMenu.classList.remove("pressed");
-        navBarItemMenu.style.color = gray;
-        navBarItemMenu.style.fill = gray;    
-    }
-});
 
 //opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebarBtn.classList.toggle("change");
     if (sidebar.style.top !== "auto") {
-        tl.set(sidebar, {display: "flex"});
+        tl.set(sidebar, {visibility: "visible"});
         tl.to(sidebar, {duration: 0.5, top: "auto", ease: "power1.out"});
-        sidebarDropdownContent.classList.remove("open");
     }
     else{
         tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
-        tl.set(sidebar, {display: "none"});
+        tl.set(sidebar, {visibility: "hidden"});
     }
 });
 
@@ -195,34 +166,47 @@ sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     if (sidebarDropdownContent.style.height !== "auto") {
         sidebarItemMenu.style.color = red;
         sidebarItemMenu.style.fill = red;
-        tl.set(sidebarDropdownContent, {display: "flex"});
-        tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "none"});
-        console.log(sidebarDropdownContent.style.height)
+        tl.set(sidebarDropdownContent, {visibility: "visible"});
+        tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "power1.out"});
     }
     else{
         sidebarItemMenu.style.color = gray;
         sidebarItemMenu.style.fill = gray;
-        tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "none"});
-        tl.set(sidebarDropdownContent, {display: "none"});
+        tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
+        tl.set(sidebarDropdownContent, {visibility: "hidden"});
     }
 });
 
-//if any of the dropdownmenu items is clicked the sidebar will close
-sidebarDropdownContentLink.forEach(item => {
-    item.addEventListener(eventToUseEnd, event => {
-        sidebar.classList.remove("open");
-        sidebarBtn.classList.remove("change");
-    })
+// if a dropdown item is clicked it will close the whole sidebar
+sidebarDropdownContent.addEventListener(eventToUseEnd, event => {
+    sidebarBtn.classList.toggle("change")
+    tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
+    tl.set(sidebarDropdownContent, { visibility: "hidden",});
+    tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
+    tl.set(sidebar, { visibility: "hidden" });
 });
 
-// If sidebar is open and you click outside the sidebare it will close
+
 document.body.addEventListener(eventToUseStart, event => {
-    if (!sidebar.contains(event.target) && !sidebarBtn.contains(event.target)) {
-        sidebarBtn.classList.remove("change");
-        sidebarBtn.classList.remove("change");
-        sidebarDropdownContent.classList.remove("open")
-        tl.to(sidebar, {duration: 0.5, top: sidebarTopValue, ease: "power1.out"});
-        tl.to(sidebar, {duration: 0, visibility: "hidden"});
+    const isSidebarOpen = sidebarBtn.classList.contains("change");
+    const isSidebarVisible = sidebar.style.visibility === "visible";
+    const isDropdownVisible = sidebarDropdownContent.style.visibility === "visible";
+
+    // If sidebar is open and you click outside the sidebar and the dropdown content
+    if (isSidebarOpen && !sidebar.contains(event.target) && !sidebarBtn.contains(event.target) && !sidebarDropdownContent.contains(event.target)) {
+        // If both sidebar and dropdown content are open
+        if (isSidebarVisible && isDropdownVisible) {
+            sidebarBtn.classList.remove("change");
+            tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
+            tl.set(sidebarDropdownContent, { visibility: "hidden",});
+            tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
+            tl.set(sidebar, { visibility: "hidden" });
+        }
+        // If only sidebar is open
+        else if (isSidebarVisible) {
+            sidebarBtn.classList.remove("change");
+            tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out" });
+            tl.set(sidebar, { visibility: "hidden" });
+        }
     }
 });
-

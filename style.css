@@ -65,12 +65,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
-.nav-bar-item-menu.pressed {
-    color: #b32e31;
-}
-.nav-bar-item.pressed {
-    color: #b32e31;
-}
 
 .sidebar{
     visibility: hidden;
@@ -650,7 +644,7 @@ transition: transform 0.15s;
         background-color: snow;
         position: fixed;
         margin-top: 80px;
-        display: none;
+        display: flex;
         flex-direction: column;
         overflow: hidden;
         width: 100vw;
@@ -677,15 +671,14 @@ transition: transform 0.15s;
     }
 
     .sidebar-dropdown-content {
-        visibility: visible;
-        display: none;
+        visibility: hidden;
+        display: flex;
         flex-direction: column;
         background-color: snow;
         text-align: left;
         overflow: hidden;
         width: 100vW;
-        height: auto;
-        transition: height 500ms ease; 
+        height: 0;
     }
     
     .sidebar-dropdown-content a {
