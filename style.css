@@ -640,7 +640,7 @@ transition: transform 0.15s;
     }
 
     .sidebar {
-        visibility: visible;
+        visibility: hidden;
         background-color: snow;
         position: fixed;
         margin-top: 80px;
