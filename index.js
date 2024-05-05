@@ -6,6 +6,7 @@ const sidebarItem = document.querySelectorAll(".sidebar-item");
 const navBarItemMenu = document.querySelector(".nav-bar-item-menu");
 const navBarItemMenuLink = document.querySelectorAll(".nav-bar-item-menu a");
 const dropdownContent = document.querySelector(".dropdown-content");
+const dropdownContentLink = document.querySelectorAll(".dropdown-content a");
 const red = "#b32e31";
 const gray = "#4e4d4d";
 
@@ -17,6 +18,18 @@ const sidebarDropdownContent = document.querySelector(".sidebar-dropdown-content
 const sidebarDropdownContentLink = document.querySelectorAll(".sidebar-dropdown-content a");
 const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
 const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
+
+let isTouchscreen;
+
+// JavaScript to detect touch devices
+if ('ontouchstart' in window || navigator.maxTouchPoints) {
+    document.documentElement.classList.add("touch-device");
+    isTouchscreen = true;
+}
+else {
+    document.documentElement.classList.add("not-touch-device");
+    isTouchscreen = false;
+}
 
 // Variuable to check for browser support for event types
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
@@ -94,6 +107,8 @@ function openSidebar(){
 }
 
 function closeSidebar() {
+    sidebarItemMenu.style.color = gray;
+    sidebarItemMenu.style.fill = gray;
     sidebarBtn.classList.remove("change")
     sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
@@ -115,62 +130,62 @@ function closeSidebarDropdown() {
 }
 
 menuText.addEventListener("mouseenter", event => {
+    console.log("mouseenter")
+    menuText.style.color = red;
+    menuArrow.style.fill = red;
     dropdownContent.classList.add("open");
     menuArrow.classList.add("rotate");
 });
 
 navBarItemMenu.addEventListener("mouseleave", event => {
+    console.log("mouseleave")
+    menuText.style.color = gray;
+    menuArrow.style.fill = gray;
     dropdownContent.classList.remove("open");
     menuText.classList.remove("open");
     menuArrow.classList.remove("rotate");
 });
 
 // desktop dropdown menu
-menuText.addEventListener("click", event => {
-    dropdownContent.classList.toggle("open");
-    menuText.classList.toggle("open");
-    menuArrow.classList.toggle("rotate");
+menuText.addEventListener(eventToUseEnd, event => {
+    console.log("clicked")
+    if (dropdownContent.classList.contains("open")) {
+        menuText.style.color = gray;
+        menuArrow.style.fill = gray;
+        menuArrow.classList.remove("open");
+        menuText.classList.remove("open");
+        menuArrow.classList.remove("rotate");
+        dropdownContent.classList.remove("open");
+    }
+    else {
+        menuText.style.color = red;
+        menuArrow.style.fill = red;
+        dropdownContent.classList.add("open");
+        menuText.classList.add("open");
+        menuArrow.classList.add("rotate");
+    }
 });
 
-// Settings for touch devices
+// if its a touchscreen it will close desktop drop down when you click an item
+if (isTouchscreen) {
+    dropdownContentLink.forEach(item => {
+        item.addEventListener(eventToUseEnd, event => {
+            menuText.style.color = gray;
+            menuArrow.style.fill = gray;
+            menuArrow.classList.remove("open");
+            menuText.classList.remove("open");
+            menuArrow.classList.remove("rotate");
+            dropdownContent.classList.remove("open");
+        })
+    })
+}
 
-// when clicking an item it will pulse red color
-navBarItem.forEach(item => {
-    item.addEventListener(eventToUseStart, event => {
-        item.style.color = (red);
-    });
-});
-navBarItem.forEach(item => {
-    item.addEventListener(eventToUseEnd, event => {
-        item.style.color = (gray);
-    });
-});
-
-// when clicking an item it will pulse red color
+//if a sidebar item is clicked the sidebare will close
 sidebarItem.forEach(item => {
-    item.addEventListener(eventToUseStart, event => {
-        item.style.color = (red);
-    });
-});
-sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
-        item.style.color = (gray);
         closeSidebar();
     });
 });
-
-// when clicking an item it will pulse red color
-navBarItemMenuLink.forEach(item => {
-    item.addEventListener(eventToUseStart, event => {
-        item.style.color = (red);
-    });
-});
-navBarItemMenuLink.forEach(item => {
-    item.addEventListener(eventToUseEnd, event => {
-        item.style.color = (gray);
-    });
-});
-
 
 //opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
@@ -179,18 +194,16 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
 
 //Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
-    const color = sidebarItemMenu.style.color;
-    console.log(color)
     if (sidebarDropdownContent.style.height !== "auto") {
         console.log("color red")
-        sidebarItemMenu.style.color = (red);
-        sidebarItemMenu.style.fill = (red);
+        sidebarItemMenu.style.color = red;
+        sidebarItemMenu.style.fill = red;
         openSidebarDropdown();
     }
     else{
         console.log("Gray")
-        sidebarItemMenu.style.color = (gray);
-        sidebarItemMenu.style.fill = (gray);
+        sidebarItemMenu.style.color = gray;
+        sidebarItemMenu.style.fill = gray;
         closeSidebarDropdown();
     }
 });
