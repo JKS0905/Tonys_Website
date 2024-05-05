@@ -200,6 +200,7 @@ transition: transform 0.15s;
     font-size: bold;
     text-align: center;
     position: relative;
+    z-index: 20;
 }
 
 .main-logo  {
@@ -645,6 +646,7 @@ transition: transform 0.15s;
         position: fixed;
         margin-top: 80px;
         display: flex;
+        z-index: 40;
         flex-direction: column;
         overflow: hidden;
         width: 100vw;

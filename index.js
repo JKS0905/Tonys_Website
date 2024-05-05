@@ -95,6 +95,7 @@ function openSidebar(){
 
 function closeSidebar() {
     sidebarBtn.classList.remove("change")
+    sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out" });
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
     tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
@@ -176,16 +177,20 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
 });
 
-//Opens the menu dropdown menu
+//Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
+    const color = sidebarItemMenu.style.color;
+    console.log(color)
     if (sidebarDropdownContent.style.height !== "auto") {
-        sidebarItemMenu.style.color = red;
-        sidebarItemMenu.style.fill = red;
+        console.log("color red")
+        sidebarItemMenu.style.color = (red);
+        sidebarItemMenu.style.fill = (red);
         openSidebarDropdown();
     }
     else{
-        sidebarItemMenu.style.color = gray;
-        sidebarItemMenu.style.fill = gray;
+        console.log("Gray")
+        sidebarItemMenu.style.color = (gray);
+        sidebarItemMenu.style.fill = (gray);
         closeSidebarDropdown();
     }
 });
