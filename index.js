@@ -23,6 +23,7 @@ const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 let offset = 70; // Adjust offset here for scroll
 
 let isTouchscreen;
+let isScrollToSection = false;
 
 // JavaScript to detect touch devices
 if ('ontouchstart' in window || navigator.maxTouchPoints) {
@@ -68,35 +69,6 @@ function getComputedPropertyValue(element, property) {
         return elementValue;
     }
 }
-
-// Variabels related to this function
-const header = document.querySelector('.header-main');
-let lastScrollPosition = window.pageYOffset;
-const deadZoneThreshold = 20; // Adjust the threshold as needed
-
-function handleScroll() {
-  const currentScrollPosition = window.pageYOffset;
-  const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
-
-  // Check if the scroll difference is greater than the dead zone threshold
-  if (scrollDifference > deadZoneThreshold) {
-    if (currentScrollPosition > lastScrollPosition) {
-      gsap.to(header, { duration: 0.2, top: -100, ease: "none" });
-    } else {
-      gsap.to(header, { duration: 0.2, top: 0, ease: "none" });
-    }
-    lastScrollPosition = currentScrollPosition;
-  }
-}
-
-// Add scroll event listener only if screen width is less than or equal to 750px
-if (window.matchMedia("(max-width: 750px)").matches) {
-    window.addEventListener('scroll', handleScroll);
-
-    // Offset for the ScrollTo function
-    offset = 0;
-}
-
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
 
@@ -116,21 +88,68 @@ document.addEventListener("DOMContentLoaded", event => {
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
         link.addEventListener(eventToUseEnd, event => {
+            console.log("scrollAAAAAA", isScrollToSection)
             event.preventDefault();
             scrollToTarget(link);
-            console.log(offset)
         })
     }
+// Scrolls to the target on screen
+function scrollToTarget(link) {
+    isScrollToSection = true;
+    const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
+    const targetElement = document.getElementById(targetId);
+    const scrollPosition = targetElement.offsetTop - offset;
+    console.log("current", window.pageYOffset)
+    console.log("target", scrollPosition);
+    window.scrollTo(0, scrollPosition)
 
-    // Scrolls to the target on screen
-    function scrollToTarget(link) {
-        const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
-        const scrollPosition = document.getElementById(targetId).offsetTop - offset;
-        window.scrollTo(0, scrollPosition);
-    }
+    window.addEventListener("scroll", event =>{
+        if (window.pageYOffset === scrollPosition) {
+            isScrollToSection = false;
+            
+        };
+        console.log("Compleate")
+    
+    })
+
+
+
+    //setTimeout(() => {
+    //    isScrollToSection = false
+    //}, 1000);
+
+
+}
+
 });
 
-function openSidebar(){
+// Variabels related to this function
+const header = document.querySelector('.header-main');
+let lastScrollPosition = window.pageYOffset;
+const deadZoneThreshold = 20; // Adjust the threshold as needed
+
+function handleScroll() {
+  const currentScrollPosition = window.pageYOffset;
+  const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
+
+  // Check if the scroll difference is greater than the dead zone threshold
+  // if you scroll down close header and if you scroll up open header
+  if (!isScrollToSection && scrollDifference > deadZoneThreshold) {
+    console.log("handle Scroll")
+    currentScrollPosition > lastScrollPosition ? closeHeader() : openHeader();
+    lastScrollPosition = currentScrollPosition;
+  }
+}
+
+function openHeader() {
+    gsap.to(header, {duration: 0.2, top: 0, ease: "none" });
+}
+
+function closeHeader() {
+    gsap.to(header, {duration: 0.2, top: -100, ease: "none" });
+}
+
+function openSidebar() {
     sidebarBtn.classList.add("change");
     tl.set(sidebar, {visibility: "visible"});
     tl.to(sidebar, {duration: 0.5, top: "auto", ease: "power1.out"});
@@ -157,6 +176,14 @@ function closeSidebarDropdown() {
     sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
+}
+
+// Add scroll event listener only if screen width is less than or equal to 750px
+if (window.matchMedia("(max-width: 750px)").matches) {
+    window.addEventListener('scroll', handleScroll);
+
+    // Offset for the ScrollTo function
+    offset = 0;
 }
 
 menuText.addEventListener("mouseenter", event => {

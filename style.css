@@ -275,7 +275,6 @@ transition: transform 0.15s;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    animation: loadAnimation 1s ease;
 }
 
 .img-box-description {
@@ -341,8 +340,6 @@ transition: transform 0.15s;
     justify-content: center;
     padding: 15px;
     padding-top: 60px;
-    animation: loadAnimation_right ease 1s;
-
 }
 
 .location-box-left {
@@ -782,35 +779,8 @@ transition: transform 0.15s;
         height: auto;
     }
 }
-
 /* ↑ when screen gets smaler f. eks mobile ↑ */
 
-/* ↓ Code for Animation ↓ */
-
-
-@keyframes loadAnimation {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-
-@keyframes loadAnimation_right {
-    0% {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0px);
-    }
-}
-
-/* ↑ Code for Animation ↑ */
 
 /* ↓ Imported Fonts ↓ */
 
