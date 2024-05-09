@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", event => {
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
         link.addEventListener(eventToUseEnd, event => {
-            console.log("scrollAAAAAA", isScrollToSection)
             event.preventDefault();
             scrollToTarget(link);
         })
@@ -102,14 +101,12 @@ function scrollToTarget(link) {
     const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
     const targetElement = document.getElementById(targetId);
     const scrollPosition = targetElement.offsetTop - offset;
-    console.log("current", window.pageYOffset);
-    console.log("target", scrollPosition);
     window.scrollTo(0, scrollPosition);
 
+    //prevents the header to close when ScrollTo is activated
     function scrollListener(event) {
         if (window.pageYOffset === scrollPosition) {
             isScrollToSection = false;
-            console.log("Complete");
             setTimeout(() => { window.removeEventListener("scroll", scrollListener); }, 100);
         }
     }
@@ -128,7 +125,6 @@ function handleScroll() {
   // Check if the scroll difference is greater than the dead zone threshold
   // if you scroll down close header and if you scroll up open header
   if (!isScrollToSection && scrollDifference > deadZoneThreshold) {
-    console.log("handle Scroll")
     currentScrollPosition > lastScrollPosition ? closeHeader() : openHeader();
     lastScrollPosition = currentScrollPosition;
   }
