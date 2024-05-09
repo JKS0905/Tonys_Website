@@ -35,6 +35,9 @@ else {
     isTouchscreen = false;
 }
 
+// Add scroll event listener only if screen width is less than or equal to 750px
+window.matchMedia("(max-width: 750px)").matches ? window.addEventListener('scroll', handleScroll) : null;
+
 // Variuable to check for browser support for event types
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
 const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart" : "click";
@@ -99,29 +102,19 @@ function scrollToTarget(link) {
     const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
     const targetElement = document.getElementById(targetId);
     const scrollPosition = targetElement.offsetTop - offset;
-    console.log("current", window.pageYOffset)
+    console.log("current", window.pageYOffset);
     console.log("target", scrollPosition);
-    window.scrollTo(0, scrollPosition)
+    window.scrollTo(0, scrollPosition);
 
-    window.addEventListener("scroll", event =>{
+    function scrollListener(event) {
         if (window.pageYOffset === scrollPosition) {
             isScrollToSection = false;
-            
-        };
-        console.log("Compleate")
-    
-    })
-
-
-
-    //setTimeout(() => {
-    //    isScrollToSection = false
-    //}, 1000);
-
-
-}
-
-});
+            console.log("Complete");
+            setTimeout(() => { window.removeEventListener("scroll", scrollListener); }, 100);
+        }
+    }
+    window.addEventListener("scroll", scrollListener);
+}});
 
 // Variabels related to this function
 const header = document.querySelector('.header-main');
@@ -141,13 +134,9 @@ function handleScroll() {
   }
 }
 
-function openHeader() {
-    gsap.to(header, {duration: 0.2, top: 0, ease: "none" });
-}
+function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "none" }); }
 
-function closeHeader() {
-    gsap.to(header, {duration: 0.2, top: -100, ease: "none" });
-}
+function closeHeader() { gsap.to(header, {duration: 0.2, top: -100, ease: "none" }); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
@@ -176,14 +165,6 @@ function closeSidebarDropdown() {
     sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
-}
-
-// Add scroll event listener only if screen width is less than or equal to 750px
-if (window.matchMedia("(max-width: 750px)").matches) {
-    window.addEventListener('scroll', handleScroll);
-
-    // Offset for the ScrollTo function
-    offset = 0;
 }
 
 menuText.addEventListener("mouseenter", event => {
