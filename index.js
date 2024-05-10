@@ -129,12 +129,7 @@ function handleScroll() {
 
   // Check if the scroll difference is greater than the dead zone threshold
   // if you scroll down close header and if you scroll up open header
-  if (isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
-    console.log("if")
-    currentScrollPosition > lastScrollPosition ? setTimeout(closeHeader, 500) : openHeader();
-    lastScrollPosition = currentScrollPosition;
-  }
-  else if (!isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
+  if (!isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
     console.log("else if")
     currentScrollPosition > lastScrollPosition ? closeHeader() : openHeader();
     lastScrollPosition = currentScrollPosition;
