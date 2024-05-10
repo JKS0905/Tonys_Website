@@ -1,4 +1,5 @@
 // Nav bar dropdown menu events
+const test = document.querySelector(".order-button");
 const menuText = document.querySelector(".menu-text-arrow");
 const menuArrow = document.querySelector(".menu-text-arrow svg");
 const navBarItem = document.querySelectorAll(".nav-bar-item");
@@ -66,14 +67,7 @@ function getComputedPropertyValue(element, property) {
         console.error(`Invalid or missing CSS property: ${property}`);
         return;
     }
-
-    // Check if the value contains any numbers
-    const containNumbers = /\d/.test(elementValue);
-
-    // If the value contains numbers, return the numeric value
-    if (containNumbers) {
-        return parseFloat(elementValue);
-    } else {
+    else {
         return elementValue;
     }
 }
@@ -130,7 +124,6 @@ function handleScroll() {
   // Check if the scroll difference is greater than the dead zone threshold
   // if you scroll down close header and if you scroll up open header
   if (!isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
-    console.log("else if")
     currentScrollPosition > lastScrollPosition ? closeHeader() : openHeader();
     lastScrollPosition = currentScrollPosition;
   }
@@ -153,7 +146,7 @@ function closeSidebar() {
     sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, { duration: 0.5, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
-    tl.to(sidebar, { duration: 0.5, top: sidebarTopValue, ease: "power1.out"}, "-=0.5");
+    tl.to(sidebar, { duration: 0.5, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.5");
     tl.set(sidebar, { visibility: "hidden" });
 }
 
@@ -260,10 +253,17 @@ document.body.addEventListener(eventToUseStart, event => {
         // If both sidebar and dropdown content are open
         if (isSidebarVisible && isDropdownVisible) {
             closeSidebar();
+
+            //Makes sure the header closes if you scroll and dont click it
+            setTimeout(() => {isSidebarOpen = false}, 750)
+            
         }
         // If only sidebar is open
         else if (isSidebarVisible) {
             closeSidebar();
+
+            //Makes sure the header closes if you scroll and dont click it
+            setTimeout(() => {isSidebarOpen = false}, 750)
         }
     }
 });
