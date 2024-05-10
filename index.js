@@ -23,7 +23,12 @@ const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 let offset = 70; // Adjust offset here for scroll
 
 let isTouchscreen;
+
 let isScrollToSection = false;
+
+let isSidebarOpen;
+let isSidebarVisible;
+let isDropdownVisible;
 
 // JavaScript to detect touch devices
 if ('ontouchstart' in window || navigator.maxTouchPoints) {
@@ -46,7 +51,7 @@ const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart
 const tl = gsap.timeline();
 
 // gets CSS element
-const sidebarTopValue = getComputedPropertyValue(sidebar, "top")
+const sidebarTopValue = getComputedPropertyValue(sidebar, "top");
 
 // get CSS value from a class
 function getComputedPropertyValue(element, property) {
@@ -124,15 +129,21 @@ function handleScroll() {
 
   // Check if the scroll difference is greater than the dead zone threshold
   // if you scroll down close header and if you scroll up open header
-  if (!isScrollToSection && scrollDifference > deadZoneThreshold) {
+  if (isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
+    console.log("if")
+    currentScrollPosition > lastScrollPosition ? setTimeout(closeHeader, 500) : openHeader();
+    lastScrollPosition = currentScrollPosition;
+  }
+  else if (!isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
+    console.log("else if")
     currentScrollPosition > lastScrollPosition ? closeHeader() : openHeader();
     lastScrollPosition = currentScrollPosition;
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "none" }); }
+function openHeader() { gsap.to(header, {duration: 0.15, top: 0, ease: "none" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.2, top: -100, ease: "none" }); }
+function closeHeader() { gsap.to(header, {duration: 0.15, top: -100, ease: "none" }); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
@@ -243,10 +254,11 @@ sidebarDropdownContent.addEventListener(eventToUseEnd, event => {
 });
 
 
+
 document.body.addEventListener(eventToUseStart, event => {
-    const isSidebarOpen = sidebarBtn.classList.contains("change");
-    const isSidebarVisible = sidebar.style.visibility === "visible";
-    const isDropdownVisible = sidebarDropdownContent.style.visibility === "visible";
+    isSidebarOpen = sidebarBtn.classList.contains("change");
+    isSidebarVisible = sidebar.style.visibility === "visible";
+    isDropdownVisible = sidebarDropdownContent.style.visibility === "visible";
 
     // If sidebar is open and you click outside the sidebar and the dropdown content
     if (isSidebarOpen && !sidebar.contains(event.target) && !sidebarBtn.contains(event.target) && !sidebarDropdownContent.contains(event.target)) {
