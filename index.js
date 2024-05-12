@@ -124,7 +124,8 @@ function handleScroll() {
 
   // Check if the scroll difference is greater than the dead zone threshold
   // if you scroll down close header and if you scroll up open header
-  if (currentScrollPosition >= 0 && !isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
+  if (currentScrollPosition < 0) {null}
+  else if (!isSidebarOpen && !isScrollToSection && scrollDifference > deadZoneThreshold) {
     currentScrollPosition > lastScrollPosition ? closeHeader() : openHeader();
     lastScrollPosition = currentScrollPosition;
   }
