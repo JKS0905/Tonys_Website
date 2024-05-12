@@ -8,7 +8,7 @@ html {
 }
 
 body {
-    background: rgb(211, 164, 164);
+    background: snow;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ body {
 
 /* ↓ Code for the nav-bar on top of website ↓ */
 .test {
-    background-color: white ;
+    background-color: rgb(216, 190, 190) ;
     height: 200px;
     display: flex;
     justify-content: center;
