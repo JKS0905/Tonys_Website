@@ -120,6 +120,7 @@ const deadZoneThreshold = 20; // Adjust the threshold as needed
 function handleScroll() {
   const currentScrollPosition = window.pageYOffset;
   const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
+  console.log("scroll position: ", currentScrollPosition)
 
   // Check if the scroll difference is greater than the dead zone threshold
   // if you scroll down close header and if you scroll up open header
