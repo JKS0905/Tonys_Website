@@ -1,5 +1,5 @@
 // Nav bar dropdown menu events
-const test = document.querySelector(".order-button");
+const test = document.querySelector(".test");
 const menuText = document.querySelector(".menu-text-arrow");
 const menuArrow = document.querySelector(".menu-text-arrow svg");
 const navBarItem = document.querySelectorAll(".nav-bar-item");
@@ -120,7 +120,7 @@ const deadZoneThreshold = 20; // Adjust the threshold as needed
 function handleScroll() {
   const currentScrollPosition = window.pageYOffset;
   const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
-  console.log("scroll position: ", currentScrollPosition)
+  test.textContent = currentScrollPosition;
 
   // Check if the scroll difference is greater than the dead zone threshold
   // if you scroll down close header and if you scroll up open header
