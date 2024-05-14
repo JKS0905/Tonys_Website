@@ -132,9 +132,9 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.25, top: 0, ease: "none" }); }
+function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "none" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.25, top: -100, ease: "none" }); }
+function closeHeader() { gsap.to(header, {duration: 0.2, top: -100, ease: "none" }); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
