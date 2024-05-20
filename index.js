@@ -73,13 +73,6 @@ function getComputedPropertyValue(element, property) {
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
 
-    //const img = document.querySelector('.logo-overlay img');
-    //if (img) {
-    //    img.style.maxHeight = "75px";
-    //    img.style.maxWidth = "75px";
-    //}
-
-
     // Select menu links
     const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
     const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
@@ -139,9 +132,9 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.15, top: 0, ease: "power1.out" }); }
+function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.15, top: -85, ease: "power1.out" }); }
+function closeHeader() { gsap.to(header, {duration: 0.2, top: -85, ease: "power1.out" }); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
