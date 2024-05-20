@@ -28,7 +28,7 @@ body {
     flex-direction: row;
     align-items: center;
     z-index: 100;
-    box-shadow: 0 6px 6px -6px #adadad86;
+    box-shadow: 0 6px 6px -6px #58585886;
 }
 
 .nav-box {
@@ -197,7 +197,27 @@ transition: transform 0.15s;
 
 .small-logo {
     height: 75px;
+    width: 75px; /* Ensure the container is a square */
     margin: 20px;
+    overflow: hidden; /* Prevent overflow if the image is larger than the container */
+    display: flex; /* Center the content */
+    align-items: center; /* Center the content vertically */
+    justify-content: center; /* Center the content horizontally */
+}
+
+.logo-overlay {
+    width: 100%; /* Make sure the overlay takes the full width */
+    height: 100%; /* Make sure the overlay takes the full height */
+    display: flex; /* Center the content */
+    align-items: center; /* Center the content vertically */
+    justify-content: center; /* Center the content horizontally */
+}
+
+.logo-overlay img {
+    max-height: 100%; /* Scale the image to fit the height of the container */
+    max-width: 100%;  /* Scale the image to fit the width of the container */
+    object-fit: contain; /* Ensure the image fits within the container without distortion */
+    display: block; /* Remove any inline-block space below the image */
 }
 
 .menu-header {
