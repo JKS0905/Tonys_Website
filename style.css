@@ -198,12 +198,11 @@ transition: transform 0.15s;
 .small-logo {
     height: 75px;
     width: 75px; /* Ensure the container is a square */
-    margin: 10px;
+    margin: 20px;
     overflow: hidden; /* Prevent overflow if the image is larger than the container */
     display: flex; /* Center the content */
     align-items: center; /* Center the content vertically */
     justify-content: center; /* Center the content horizontally */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
 .logo-overlay {
@@ -212,16 +211,16 @@ transition: transform 0.15s;
     display: flex; /* Center the content */
     align-items: center; /* Center the content vertically */
     justify-content: center; /* Center the content horizontally */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
 .logo-overlay img {
-    max-height: 100%; /* Scale the image to fit the height of the container */
-    max-width: 100%;  /* Scale the image to fit the width of the container */
-    object-fit: contain; /* Ensure the image fits within the container without distortion */
+    height: auto; /* Maintain aspect ratio */
+    width: auto;  /* Maintain aspect ratio */
+    max-height: 75px; /* Ensure the image does not exceed the container height */
+    max-width: 75px;  /* Ensure the image does not exceed the container width */
     display: block; /* Remove any inline-block space below the image */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
+
 
 
 .menu-header {
