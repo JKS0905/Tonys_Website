@@ -197,21 +197,12 @@ transition: transform 0.15s;
 
 .small-logo {
     height: 80px;
-    width: 88px; /* Ensure the container is a square */
+    width: 88px;
     margin: 15px;
-    overflow: hidden; /* Prevent overflow if the image is larger than the container */
-    display: flex; /* Center the content */
-    align-items: center; /* Center the content vertically */
-    justify-content: center; /* Center the content horizontally */
-}
-
-.logo-overlay {
-    width: 100%; /* Make sure the overlay takes the full width */
-    height: 100%; /* Make sure the overlay takes the full height */
-    display: flex; /* Center the content */
-    align-items: center; /* Center the content vertically */
-    justify-content: center; /* Center the content horizontally */
-    background-color: aqua;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo-overlay img {
@@ -219,8 +210,6 @@ transition: transform 0.15s;
     width: 100%;
     object-fit: contain;
 }
-
-
 
 .menu-header {
     color: rgb(78, 77, 77);
