@@ -73,6 +73,13 @@ function getComputedPropertyValue(element, property) {
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
 
+    const img = document.querySelector('.logo-overlay img');
+    if (img) {
+        img.style.maxHeight = "75px";
+        img.style.maxWidth = "75px";
+    }
+
+
     // Select menu links
     const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
     const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
