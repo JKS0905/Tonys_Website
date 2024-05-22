@@ -695,8 +695,8 @@ transition: transform 0.15s;
         background-color: snow;
         text-align: left;
         overflow: hidden;
-        width: 100vW;
         height: 0;
+        font-size: large;
     }
     
     .sidebar-dropdown-content a {

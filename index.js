@@ -154,12 +154,16 @@ function closeSidebar() {
 }
 
 function openSidebarDropdown() {
+    sidebarItemMenu.style.color = red;
+    sidebarItemMenu.style.fill = red;
     sidebarMenuArrow.classList.add("rotate");
     tl.set(sidebarDropdownContent, {visibility: "visible"});
     tl.to(sidebarDropdownContent, {duration: 0.5, height: "auto", ease: "power1.out"});
 }
 
 function closeSidebarDropdown() {
+    sidebarItemMenu.style.color = gray;
+    sidebarItemMenu.style.fill = gray;
     sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, {duration: 0.5, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
@@ -227,24 +231,11 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
 
 //Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
-    if (sidebarDropdownContent.style.height !== "auto") {
-        sidebarItemMenu.style.color = red;
-        sidebarItemMenu.style.fill = red;
-        openSidebarDropdown();
-    }
-    else{
-        sidebarItemMenu.style.color = gray;
-        sidebarItemMenu.style.fill = gray;
-        closeSidebarDropdown();
-    }
+    sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : closeSidebarDropdown();
 });
 
 // if a dropdown item is clicked it will close the whole sidebar
-sidebarDropdownContent.addEventListener(eventToUseEnd, event => {
-    closeSidebar();
-});
-
-
+sidebarDropdownContent.addEventListener(eventToUseEnd, event => { closeSidebar(); });
 
 document.body.addEventListener(eventToUseStart, event => {
     isSidebarOpen = sidebarBtn.classList.contains("change");
