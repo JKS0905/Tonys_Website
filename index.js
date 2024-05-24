@@ -251,7 +251,7 @@ document.body.addEventListener(eventToUseStart, event => {
             closeSidebar();
 
             //Makes sure the header closes if you scroll and dont click it
-            setTimeout(() => {isSidebarOpen = false}, 750)
+            setTimeout(() => {isSidebarOpen = false}, 500)
             
         }
         // If only sidebar is open
@@ -259,7 +259,7 @@ document.body.addEventListener(eventToUseStart, event => {
             closeSidebar();
 
             //Makes sure the header closes if you scroll and dont click it
-            setTimeout(() => {isSidebarOpen = false}, 750)
+            setTimeout(() => {isSidebarOpen = false}, 500)
         }
     }
 });
