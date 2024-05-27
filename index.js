@@ -134,9 +134,9 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
+function openHeader() { gsap.to(header, {duration: 0.3, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.2, top: -85, ease: "power1.out"}); }
+function closeHeader() { gsap.to(header, {duration: 0.3, top: -85, ease: "power1.out"}); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
