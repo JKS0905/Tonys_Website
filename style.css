@@ -203,6 +203,7 @@ transition: transform 0.15s;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .logo-overlay img {

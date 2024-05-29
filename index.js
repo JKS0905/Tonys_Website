@@ -21,6 +21,11 @@ const sidebarDropdownContentLink = document.querySelectorAll(".sidebar-dropdown-
 const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
 const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
 
+// Constants for scrollToTop function
+const scrollToTop1 = document.getElementById("scrollToTop1");
+const scrollToTop2 = document.getElementById("scrollToTop2");
+const scrollToTop3 = document.getElementById("scrollToTop3");
+
 // Scroll behavior for menu items, ScrollTo function
 let offset = 70; // Adjust offset here for scroll
 
@@ -170,6 +175,12 @@ function closeSidebarDropdown() {
     tl.to(sidebarDropdownContent, {duration: 0.3, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
 }
+
+function scrollToTop() { window.scrollTo(0, 0); }
+
+scrollToTop1.addEventListener(eventToUseEnd, event => { scrollToTop(); })
+scrollToTop2.addEventListener(eventToUseEnd, event => { scrollToTop(); })
+scrollToTop3.addEventListener(eventToUseEnd, event => { scrollToTop(); })
 
 menuText.addEventListener("mouseenter", event => {
     menuText.style.color = red;
