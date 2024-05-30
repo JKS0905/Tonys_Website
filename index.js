@@ -89,16 +89,8 @@ document.addEventListener("DOMContentLoaded", event => {
         scrollToSection(link);
     });
 
-    sidebarMenuLinks.forEach(link => {
-        test(link)
-        scrollToSection(link);
-    });
+  
 
-    function test(link) {
-        link.addEventListener(eventToUseStart, event => {
-            event.preventDefault();
-        })
-    }
 
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
