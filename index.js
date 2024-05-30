@@ -86,11 +86,21 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Attach scrollToSection function to each link inside menu links
     mainMenuLinks.forEach(link => {
+        disableHref(link)
         scrollToSection(link);
     });
 
-  
+    sidebarMenuLinks.forEach(link => {
+        disableHref(link)
+        scrollToSection(link);
+    });
 
+    // Prevents the href to interfear while holding down on the link.
+    function disableHref(link) {
+        link.addEventListener(eventToUseStart, event => {
+            event.preventDefault();
+        })
+    }
 
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
