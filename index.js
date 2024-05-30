@@ -90,8 +90,15 @@ document.addEventListener("DOMContentLoaded", event => {
     });
 
     sidebarMenuLinks.forEach(link => {
+        test(link)
         scrollToSection(link);
     });
+
+    function test(link) {
+        link.addEventListener(eventToUseStart, event => {
+            event.preventDefault();
+        })
+    }
 
     // Diffrend Eventlisteners to trigger the scrollToTarget function
     function scrollToSection(link) {
@@ -139,9 +146,9 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.3, top: 0, ease: "power1.out" }); }
+function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.3, top: -85, ease: "power1.out"}); }
+function closeHeader() { gsap.to(header, {duration: 0.2, top: -85, ease: "power1.out"}); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
