@@ -148,9 +148,9 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
+function openHeader() { gsap.to(header, {duration: 0.25, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.2, top: -85, ease: "power1.out"}); }
+function closeHeader() { gsap.to(header, {duration: 0.25, top: -85, ease: "power1.out"}); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
@@ -187,8 +187,13 @@ function closeSidebarDropdown() {
 
 function scrollToTop() { window.scrollTo(0, 0); }
 
+scrollToTop1.addEventListener(eventToUseStart, event => { event.preventDefault; })
 scrollToTop1.addEventListener(eventToUseEnd, event => { scrollToTop(); })
+
+scrollToTop2.addEventListener(eventToUseStart, event => { event.preventDefault; })
 scrollToTop2.addEventListener(eventToUseEnd, event => { scrollToTop(); })
+
+scrollToTop3.addEventListener(eventToUseStart, event => { event.preventDefault; })
 scrollToTop3.addEventListener(eventToUseEnd, event => { scrollToTop(); })
 
 menuText.addEventListener("mouseenter", event => {
