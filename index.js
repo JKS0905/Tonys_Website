@@ -26,6 +26,29 @@ const scrollToTop1 = document.getElementById("scrollToTop1");
 const scrollToTop2 = document.getElementById("scrollToTop2");
 const scrollToTop3 = document.getElementById("scrollToTop3");
 
+// Constants for Gsap ScrollTrigger 
+//const mainLogo = document.querySelector("main-logo");
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.fromTo('.p-text', 
+  {
+    opacity: 0,
+    scale: 0.95
+  },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 0.3,
+    scrollTrigger: {
+      trigger: '.location-box', // Element that triggers the animation
+      start: "top center", // Start the animation when the element is in the center of the viewport
+      markers: true // Uncomment to see the start and end markers for debugging
+    }
+  }
+);
+
+
 // Scroll behavior for menu items, ScrollTo function
 let offset = 70; // Adjust offset here for scroll
 

@@ -288,6 +288,7 @@ transition: transform 0.15s;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
+    overflow: hidden;
 }
 
 .img-box-description {
@@ -353,6 +354,7 @@ transition: transform 0.15s;
     justify-content: center;
     padding: 15px;
     padding-top: 60px;
+    overflow: hidden;
 }
 
 .location-box-left {
