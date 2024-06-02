@@ -148,14 +148,14 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.15, top: 0, ease: "none" }); }
+function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.15, top: -85, ease: "none"}); }
+function closeHeader() { gsap.to(header, {duration: 0.2, top: -85, ease: "power1.out"}); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
     tl.set(sidebar, {visibility: "visible"});
-    tl.to(sidebar, {duration: 0.3, top: "auto", ease: "power1.out"});
+    tl.to(sidebar, {duration: 0.35, top: "auto", ease: "power1.out"});
 }
 
 function closeSidebar() {
@@ -163,9 +163,9 @@ function closeSidebar() {
     sidebarItemMenu.style.fill = gray;
     sidebarBtn.classList.remove("change")
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, { duration: 0.3, height: 0, ease: "power1.out"});
+    tl.to(sidebarDropdownContent, { duration: 0.35, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
-    tl.to(sidebar, { duration: 0.3, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.3");
+    tl.to(sidebar, { duration: 0.35, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.3");
     tl.set(sidebar, { visibility: "hidden" });
 }
 
@@ -174,14 +174,14 @@ function openSidebarDropdown() {
     sidebarItemMenu.style.fill = red;
     sidebarMenuArrow.classList.add("rotate");
     tl.set(sidebarDropdownContent, {visibility: "visible"});
-    tl.to(sidebarDropdownContent, {duration: 0.3, height: "auto", ease: "power1.out"});
+    tl.to(sidebarDropdownContent, {duration: 0.35, height: "auto", ease: "power1.out"});
 }
 
 function closeSidebarDropdown() {
     sidebarItemMenu.style.color = gray;
     sidebarItemMenu.style.fill = gray;
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, {duration: 0.3, height: 0, ease: "power1.out"});
+    tl.to(sidebarDropdownContent, {duration: 0.35, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
 }
 
