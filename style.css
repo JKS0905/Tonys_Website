@@ -30,7 +30,13 @@ body {
     align-items: center;
     z-index: 100;
     box-shadow: 0 6px 6px -6px #58585886;
+    transition: top 250ms;
 }
+
+.fixed-header-hidden {
+    top: -85px;
+}
+
 
 .nav-box {
     margin-right: auto;

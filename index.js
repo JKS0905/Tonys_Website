@@ -148,9 +148,13 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
+//function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.2, top: -81, ease: "power1.out"}); }
+//function closeHeader() { gsap.to(header, {duration: 0.2, top: -81, ease: "power1.out"}); }
+
+function openHeader() { header.classList.remove("fixed-header-hidden") }
+
+function closeHeader() { header.classList.add("fixed-header-hidden") }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
