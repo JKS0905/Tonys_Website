@@ -148,9 +148,9 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "power1.out" }); }
+function openHeader() { gsap.to(header, {duration: 0.2, height: 80, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.2, top: -85, ease: "power1.out"}); }
+function closeHeader() { gsap.to(header, {duration: 0.2, height: 0, ease: "power1.out"}); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
@@ -165,7 +165,7 @@ function closeSidebar() {
     sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, { duration: 0.35, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
-    tl.to(sidebar, { duration: 0.35, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.3");
+    tl.to(sidebar, { duration: 0.35, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.35");
     tl.set(sidebar, { visibility: "hidden" });
 }
 
