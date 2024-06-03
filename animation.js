@@ -23,6 +23,7 @@ pizzaItems.forEach(element => {
 
 const pText= document.querySelectorAll('.p-text');
 
+gsap.registerPlugin(ScrollTrigger);
 
 pText.forEach(element => {
     gsap.fromTo(element, 
