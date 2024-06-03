@@ -650,7 +650,16 @@ transition: transform 0.15s;
 }
 
 @media screen and (max-width: 750px) {
-    
+
+    .main-logo,
+    .order-button-2-link {
+        margin-top: -50px;
+    }
+
+    .p-text:nth-child(2) {
+        margin-top: 0;
+    }
+
     .order-button {
         display: none;
     }
