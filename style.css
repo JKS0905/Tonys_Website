@@ -282,7 +282,7 @@ transition: transform 0.15s;
     background-color: #e9bb8638;
     height: auto;
     width: auto;
-    padding-top: 135px;
+    padding-top: 50px;
     padding-bottom: 40px;
     display: flex;
     flex-direction: row;
@@ -651,9 +651,12 @@ transition: transform 0.15s;
 
 @media screen and (max-width: 750px) {
 
-    .main-logo,
-    .order-button-2-link {
+    .main-logo {
         margin-top: -50px;
+    }
+
+    .order-button-2-link {
+        margin-top: -30px;
     }
 
     .p-text:nth-child(2) {

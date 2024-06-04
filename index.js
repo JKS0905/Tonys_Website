@@ -1,5 +1,8 @@
 // Last update 24.05.24
 
+// Ensures the browser starts one the top when loading
+"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
+
 // Nav bar dropdown menu events
 const menuText = document.querySelector(".menu-text-arrow");
 const menuArrow = document.querySelector(".menu-text-arrow svg");
@@ -48,7 +51,7 @@ else {
 }
 
 // Add scroll event listener only if screen width is less than or equal to 750px
-window.matchMedia("(max-width: 750px)").matches ? window.addEventListener('scroll', handleScroll) : null;
+window.addEventListener('scroll', handleScroll);
 
 // Variuable to check for browser support for event types
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
