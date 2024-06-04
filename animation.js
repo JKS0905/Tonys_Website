@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", event => {
 
 
         tl.fromTo(mainLogo, { opacity: 0, scale: 0.8 }, { scale: 1, ease: "back.out(1.7)", delay: 0.3 });
-        tl.fromTo(logoDescription, { opacity: 0, y: 30 }, { ease: "power2.out"}, "-=0.1");
-        tl.fromTo(orderBtn, { opacity: 0, y: 30 },  { ease: "power2.out"}, "-=0.1");
-        tl.fromTo(img1, { opacity: 0, y: -300 },    { ease: "power2.out" }, "-=0.1");
-        tl.fromTo(img3, { opacity: 0, y: 300 },     { ease: "power2.out" }, "-=0.5");
-        tl.fromTo(img2, { opacity: 0, x: 100 },     { ease: "power2.out" }, "-=0.1");
-        tl.fromTo(img4, { opacity: 0, x: 100 },     { ease: "power2.out" }, "-=0.2");
+        tl.fromTo(logoDescription, { opacity: 0, y: 30 },   { ease: "power2.out"}, "-=0.1");
+        tl.fromTo(orderBtn, { opacity: 0, y: 30 },          { ease: "power2.out"}, "-=0.1");
+        tl.fromTo(img1, { opacity: 0, y: -700 },            { ease: "power2.out" }, "-=0.1");
+        tl.fromTo(img3, { opacity: 0, y: 700 },             { ease: "power2.out" }, "-=0.5");
+        tl.fromTo(img2, { opacity: 0, x: 600 },             { ease: "power2.out" }, "-=0.1");
+        tl.fromTo(img4, { opacity: 0, x: 600 },             { ease: "power2.out" }, "-=0.2");
         
    
 

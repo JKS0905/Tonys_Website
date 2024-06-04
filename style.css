@@ -652,7 +652,7 @@ transition: transform 0.15s;
 @media screen and (max-width: 750px) {
 
     .main-logo {
-        margin-top: -50px;
+        margin-top: 40px;
     }
 
     .order-button-2-link {
