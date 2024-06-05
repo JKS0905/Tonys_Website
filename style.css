@@ -296,7 +296,6 @@ transition: transform 0.15s;
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-items: center;
     text-align: center;
     align-items: center;
     margin: 100px 0 0 30px;
@@ -345,6 +344,17 @@ transition: transform 0.15s;
     box-shadow: 0 0 6px #888888;
 }
 
+
+.location-box-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: #e9bb8638;
+}
+
 .location-box {
     height: auto;
     width: auto;
@@ -352,8 +362,11 @@ transition: transform 0.15s;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    padding: 15px;
-    padding-top: 60px;
+    padding: 30px;
+    padding-top: 30px;
+    overflow: hidden;
+    background-color: snow;
+    position: relative; 
     overflow: hidden;
 }
 

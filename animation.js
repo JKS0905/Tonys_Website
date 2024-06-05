@@ -16,27 +16,77 @@ const img3 = document.querySelector(".img-box-img3");
 const img4 = document.querySelector(".img-box-img4");
 const logoDescription = document.getElementById("main-logo-description");
 
+// Variabels for location-box animations
+const locationTitle = document.querySelector(".h1-text");
+const locationDescription = document.getElementById("location-box-description");
+const locationimgRight = document.querySelector(".location-box-middle");
+const locationimgLeft = document.querySelector(".location-box-left");
+
+// Initial startpoint for location-box animation
+gsap.set(locationTitle, { opacity: 0, scale: 0.95 });
+gsap.set(locationDescription, { opacity: 0, scale: 0.95 });
+gsap.set(locationimgRight, { opacity: 0, x: -1100 });
+gsap.set(locationimgLeft, { opacity: 0, x: -600 });
+
+
 let mm = gsap.matchMedia();
+
 
 document.addEventListener("DOMContentLoaded", event => {
 
     mm.add("(min-width: 1850px)", () => { 
 
-        const tl = gsap.timeline({defaults: {duration: 0.5, opacity: 1, y: 0, x: 0}});
+        const tlMainPage = gsap.timeline({defaults: {duration: 0.7, opacity: 1, y: 0, x: 0}});
 
 
-        tl.fromTo(mainLogo, { opacity: 0, scale: 0.8 }, { scale: 1, ease: "back.out(1.7)", delay: 0.3 });
-        tl.fromTo(logoDescription, { opacity: 0, y: 30 },   { ease: "power2.out"}, "-=0.1");
-        tl.fromTo(orderBtn, { opacity: 0, y: 30 },          { ease: "power2.out"}, "-=0.1");
-        tl.fromTo(img1, { opacity: 0, y: -700 },            { ease: "power2.out" }, "-=0.1");
-        tl.fromTo(img3, { opacity: 0, y: 700 },             { ease: "power2.out" }, "-=0.5");
-        tl.fromTo(img2, { opacity: 0, x: 600 },             { ease: "power2.out" }, "-=0.1");
-        tl.fromTo(img4, { opacity: 0, x: 600 },             { ease: "power2.out" }, "-=0.2");
-        
-   
-
+        tlMainPage.fromTo(mainLogo, { opacity: 0, scale: 0.8 },        { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+        tlMainPage.fromTo(logoDescription, { opacity: 0, scale: 0.95}, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tlMainPage.fromTo(orderBtn, {opacity: 0, scale: 0.95 },        { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tlMainPage.fromTo(img1, { opacity: 0, y: -700 },               { ease: "power1.out", delay: 0 }, "-=1");
+        tlMainPage.fromTo(img3, { opacity: 0, y: 700 },                { ease: "power1.out", delay: 0 }, "-=1");
+        tlMainPage.fromTo(img2, { opacity: 0, x: 600 },                { ease: "power1.out", delay: 0 }, "-=1");
+        tlMainPage.fromTo(img4, { opacity: 0, x: 600 },                { ease: "power1.out", delay: 0 }, "-=0.8");
     })
 
+
+
+    function animateLocationBox() {
+        let tl = gsap.timeline();
+        tl.to(locationimgRight, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"});
+        tl.to(locationimgLeft, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"}, "-=0.2");
+        tl.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"},"-=0.6");
+        tl.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"},"-=0.4");
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    //Location box animation
+    gsap.to({}, {
+        scrollTrigger: {
+        trigger: ".location-box",
+        start: "35% center",
+        scrub: 1,
+        onEnter: () => {animateLocationBox();}
+        }
+    });
+
+    gsap.to(".location-box-slider", { 
+        duration: 1.2, 
+        x: 3000, ease: "power1.out", 
+
+        scrollTrigger: { 
+            trigger: ".img-main-box", 
+            start: "bottom 90%",
+        }});
+    
+
+
+
+
+
+
+
+// end of DOMloaded function
 });
 
 
@@ -46,71 +96,6 @@ document.addEventListener("DOMContentLoaded", event => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // ------------------------------------------------------------
-    //gsap.registerPlugin(ScrollTrigger);
-//
-    //pizzaItems.forEach(element => {
-    //    gsap.fromTo(element, 
-    //    {
-    //        opacity: 0,
-    //        y: 25
-    //    },
-    //    {
-    //        opacity: 1,
-    //        y: 0,
-    //        duration: 0.5,
-    //        scrollTrigger: {
-    //        trigger: element, // Element that triggers the animation
-    //        start: () => scrollTriggertStart, // Start the animation when the element is in the center of the viewport
-    //        markers: true // Uncomment to see the start and end markers for debugging
-    //        }
-    //    })});
-//
-//
-    //pText.forEach(element => {
-    //    gsap.fromTo(element, 
-    //    {
-    //        opacity: 0,
-    //        y: 25
-    //    },
-    //    {
-    //        opacity: 1,
-    //        y: 0,
-    //        duration: 0.5,
-    //        scrollTrigger: {
-    //        trigger: element, // Element that triggers the animation
-    //        start: () => scrollTriggertStart, // Start the animation when the element is in the center of the viewport
-    //        markers: true // Uncomment to see the start and end markers for debugging
-    //        }
-    //    });
-    //});
-//
     //const checkReadyState = setInterval(() => {
     //    if (document.readyState === "complete") {
     //        clearInterval(checkReadyState);
@@ -118,4 +103,4 @@ document.addEventListener("DOMContentLoaded", event => {
     //        ScrollTrigger.refresh();
     //    }
     //}, 100)
-//
+
