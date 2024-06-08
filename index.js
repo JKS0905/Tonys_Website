@@ -154,6 +154,9 @@ function openSidebar() {
     sidebarBtn.classList.add("change");
     tl.set(sidebar, {visibility: "visible"});
     tl.to(sidebar, {duration: 0.35, top: "auto", ease: "power1.out"});
+
+    console.log("Railway Test ---------------------------------------------------------------------------------------------------------------------------")
+    console.error("Railway Test ---------------------------------------------------------------------------------------------------------------------------")
 }
 
 function closeSidebar() {
