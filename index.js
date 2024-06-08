@@ -1,8 +1,5 @@
 // Last update 24.05.24
 
-// Ensures the browser starts one the top when loading
-"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
-
 // Nav bar dropdown menu events
 const menuText = document.querySelector(".menu-text-arrow");
 const menuArrow = document.querySelector(".menu-text-arrow svg");
@@ -57,8 +54,6 @@ window.addEventListener('scroll', handleScroll);
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
 const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart" : "click";
 
-// gsap timeline
-const tl = gsap.timeline();
 
 // gets CSS element
 const sidebarTopValue = getComputedPropertyValue(sidebar, "top");

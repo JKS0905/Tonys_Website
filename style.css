@@ -282,7 +282,7 @@ transition: transform 0.15s;
     background-color: #e9bb8638;
     height: auto;
     width: auto;
-    padding-top: 50px;
+    padding-top: 40px;
     padding-bottom: 40px;
     display: flex;
     flex-direction: row;
@@ -557,6 +557,7 @@ transition: transform 0.15s;
     .img-main-box {
         justify-content: center;
         justify-items: center;
+        padding-top: 10px;
     }
 
     .img-box-right {
@@ -665,7 +666,7 @@ transition: transform 0.15s;
 @media screen and (max-width: 750px) {
 
     .main-logo {
-        margin-top: 40px;
+        margin-top: 70px;
     }
 
     .order-button-2-link {
