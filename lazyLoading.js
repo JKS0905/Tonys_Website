@@ -1,5 +1,5 @@
 const observer = lozad('.lazy', {
-    threshold: 0.1, // Optional: Adjust the threshold as needed
+    threshold: -0.5, // Optional: Adjust the threshold as needed
     loaded: function(el) {
       el.classList.add('loaded'); // Optional: Apply a class when the image is loaded
     }
