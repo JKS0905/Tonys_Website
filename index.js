@@ -48,12 +48,11 @@ else {
 }
 
 // Add scroll event listener only if screen width is less than or equal to 750px
-window.addEventListener('scroll', handleScroll);
+window.addEventListener('scroll', handleScroll, { passive: true });
 
-// Variuable to check for browser support for event types
+// Variable to check for browser support for event types
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
 const eventToUseStart = "ontouchstart" in document.documentElement ? "touchstart" : "click";
-
 
 // gets CSS element
 const sidebarTopValue = getComputedPropertyValue(sidebar, "top");
@@ -75,6 +74,7 @@ function getComputedPropertyValue(element, property) {
         return elementValue;
     }
 }
+
 // Scroll behavior for menu items
 document.addEventListener("DOMContentLoaded", event => {
 
@@ -93,39 +93,41 @@ document.addEventListener("DOMContentLoaded", event => {
         scrollToSection(link);
     });
 
-    // Prevents the href to interfear while holding down on the link.
+    // Prevents the href to interfere while holding down on the link.
     function disableHref(link) {
         link.addEventListener(eventToUseStart, event => {
             event.preventDefault();
-        })
+        });
     }
 
-    // Diffrend Eventlisteners to trigger the scrollToTarget function
+    // Different Event listeners to trigger the scrollToTarget function
     function scrollToSection(link) {
         link.addEventListener(eventToUseEnd, event => {
             event.preventDefault();
             scrollToTarget(link);
-        })
+        });
     }
-// Scrolls to the target on screen
-function scrollToTarget(link) {
-    isScrollToSection = true;
-    const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
-    const targetElement = document.getElementById(targetId);
-    const scrollPosition = targetElement.offsetTop - offset;
-    window.scrollTo(0, scrollPosition);
 
-    //prevents the header to close when ScrollTo is activated
-    function scrollListener(event) {
-        if (window.pageYOffset === scrollPosition) {
-            isScrollToSection = false;
-            setTimeout(() => { window.removeEventListener("scroll", scrollListener); }, 100);
+    // Scrolls to the target on screen
+    function scrollToTarget(link) {
+        isScrollToSection = true;
+        const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
+        const targetElement = document.getElementById(targetId);
+        const scrollPosition = targetElement.offsetTop - offset;
+        window.scrollTo(0, scrollPosition);
+
+        // Prevents the header to close when ScrollTo is activated
+        function scrollListener(event) {
+            if (window.pageYOffset === scrollPosition) {
+                isScrollToSection = false;
+                setTimeout(() => { window.removeEventListener("scroll", scrollListener); }, 100);
+            }
         }
+        window.addEventListener("scroll", scrollListener, { passive: true });
     }
-    window.addEventListener("scroll", scrollListener);
-}});
+});
 
-// Variabels related to this function
+// Variables related to this function
 const header = document.querySelector('.header-main');
 let lastScrollPosition = window.pageYOffset;
 const deadZoneThreshold = 20; // Adjust the threshold as needed
@@ -134,7 +136,7 @@ function handleScroll() {
   const currentScrollPosition = window.pageYOffset;
   const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
 
-  // if you scroll to negative value do noting
+  // if you scroll to negative value do nothing
   if (currentScrollPosition < 0) {
     return;
   }
@@ -188,14 +190,14 @@ function closeSidebarDropdown() {
 
 function scrollToTop() { window.scrollTo(0, 0); }
 
-scrollToTop1.addEventListener(eventToUseStart, event => { event.preventDefault; })
-scrollToTop1.addEventListener(eventToUseEnd, event => { scrollToTop(); })
+scrollToTop1.addEventListener(eventToUseStart, event => { event.preventDefault(); });
+scrollToTop1.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
 
-scrollToTop2.addEventListener(eventToUseStart, event => { event.preventDefault; })
-scrollToTop2.addEventListener(eventToUseEnd, event => { scrollToTop(); })
+scrollToTop2.addEventListener(eventToUseStart, event => { event.preventDefault(); });
+scrollToTop2.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
 
-scrollToTop3.addEventListener(eventToUseStart, event => { event.preventDefault; })
-scrollToTop3.addEventListener(eventToUseEnd, event => { scrollToTop(); })
+scrollToTop3.addEventListener(eventToUseStart, event => { event.preventDefault(); });
+scrollToTop3.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
 
 menuText.addEventListener("mouseenter", event => {
     menuText.style.color = red;
@@ -231,7 +233,7 @@ menuText.addEventListener(eventToUseEnd, event => {
     }
 });
 
-// if its a touchscreen it will close desktop drop down when you click an item
+// if it's a touchscreen it will close desktop drop down when you click an item
 if (isTouchscreen) {
     dropdownContentLink.forEach(item => {
         item.addEventListener(eventToUseEnd, event => {
@@ -241,29 +243,29 @@ if (isTouchscreen) {
             menuText.classList.remove("open");
             menuArrow.classList.remove("rotate");
             dropdownContent.classList.remove("open");
-        })
-    })
+        }, { passive: true });
+    });
 }
 
-//if a sidebar item is clicked the sidebare will close
+// if a sidebar item is clicked the sidebar will close
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
         closeSidebar();
-    });
+    }, { passive: true });
 });
 
-//opens the sidebar
+// opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
 });
 
-//Opens the dropdown menu
+// Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : closeSidebarDropdown();
 });
 
 // if a dropdown item is clicked it will close the whole sidebar
-sidebarDropdownContent.addEventListener(eventToUseEnd, event => { closeSidebar(); });
+sidebarDropdownContent.addEventListener(eventToUseEnd, event => { closeSidebar(); }, { passive: true });
 
 document.body.addEventListener(eventToUseStart, event => {
     isSidebarOpen = sidebarBtn.classList.contains("change");
@@ -276,21 +278,15 @@ document.body.addEventListener(eventToUseStart, event => {
         if (isSidebarVisible && isDropdownVisible) {
             closeSidebar();
 
-            //Makes sure the header closes if you scroll and dont click it
-            setTimeout(() => {isSidebarOpen = false}, 500)
-            
+            // Makes sure the header closes if you scroll and don't click it
+            setTimeout(() => {isSidebarOpen = false}, 500);
         }
         // If only sidebar is open
         else if (isSidebarVisible) {
             closeSidebar();
 
-            //Makes sure the header closes if you scroll and dont click it
-            setTimeout(() => {isSidebarOpen = false}, 500)
+            // Makes sure the header closes if you scroll and don't click it
+            setTimeout(() => {isSidebarOpen = false}, 500);
         }
     }
-});
-
-
-
-
-
+}, { passive: true });
