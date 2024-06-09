@@ -774,7 +774,7 @@ transition: transform 0.15s;
     }
 
     .location-box {
-        padding: 0;
+        padding: 0 0 5px 0;
     }
 
     .location-box-left,
