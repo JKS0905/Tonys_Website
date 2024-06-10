@@ -849,3 +849,12 @@ transition: transform 0.15s;
 }
 
 /* ↑ Imported Fonts ↑ */
+
+.lazy,
+.lazyloading {
+	opacity: 0;
+}
+.lazyloaded {
+	opacity: 1;
+	transition: opacity 300ms;
+}
