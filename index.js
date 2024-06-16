@@ -148,17 +148,14 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.25, top: 0, ease: "power1.out" }); }
+function openHeader() { gsap.to(header, {duration: 0.2, top: 0, ease: "none" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.25, top: -81, ease: "power1.out"}); }
+function closeHeader() { gsap.to(header, {duration: 0.2, top: -85, ease: "none"}); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
     tl.set(sidebar, {visibility: "visible"});
     tl.to(sidebar, {duration: 0.35, top: "auto", ease: "power1.out"});
-
-    console.log("Railway Test ---------------------------------------------------------------------------------------------------------------------------")
-    console.error("Railway Test ---------------------------------------------------------------------------------------------------------------------------")
 }
 
 function closeSidebar() {
@@ -204,7 +201,7 @@ menuText.addEventListener("mouseenter", event => {
     menuArrow.style.fill = red;
     dropdownContent.classList.add("open");
     menuArrow.classList.add("rotate");
-});
+}, { passive: true });
 
 navBarItemMenu.addEventListener("mouseleave", event => {
     menuText.style.color = gray;
@@ -212,7 +209,7 @@ navBarItemMenu.addEventListener("mouseleave", event => {
     dropdownContent.classList.remove("open");
     menuText.classList.remove("open");
     menuArrow.classList.remove("rotate");
-});
+}, { passive: true });
 
 // desktop dropdown menu
 menuText.addEventListener(eventToUseEnd, event => {
@@ -231,7 +228,7 @@ menuText.addEventListener(eventToUseEnd, event => {
         menuText.classList.add("open");
         menuArrow.classList.add("rotate");
     }
-});
+}, { passive: true });
 
 // if it's a touchscreen it will close desktop drop down when you click an item
 if (isTouchscreen) {

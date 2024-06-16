@@ -33,6 +33,7 @@ else {
     gsap.set(locationimgRight, { opacity: 0, x: -1100 });
     gsap.set(locationimgLeft, { opacity: 0, x: -1100 });
 }
+
 gsap.set(locationTitle, { opacity: 0, scale: 0.95 });
 gsap.set(locationDescription, { opacity: 0, scale: 0.95 });
 
@@ -158,7 +159,7 @@ document.addEventListener("DOMContentLoaded", event => {
             {   
                 opacity: 1,
                 y: 0,
-                duration: 0.5,
+                duration: 0.3,
                 ease: "power1.out",
                 scrollTrigger: {
                 trigger: element,
