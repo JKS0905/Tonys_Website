@@ -150,7 +150,7 @@ function handleScroll() {
 
 function openHeader() { gsap.to(header, {duration: 0.25, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.25, top: -85, ease: "power1.in" }); }
+function closeHeader() { gsap.to(header, {duration: 0.25, top: -85, ease: "power1.out" }); }
 
 function openSidebar() {
     sidebarBtn.classList.add("change");
@@ -254,12 +254,12 @@ sidebarItem.forEach(item => {
 // opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
-});
+}, { passive: true });
 
 // Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : closeSidebarDropdown();
-});
+}, { passive: true });
 
 // if a dropdown item is clicked it will close the whole sidebar
 sidebarDropdownContent.addEventListener(eventToUseEnd, event => { closeSidebar(); }, { passive: true });
