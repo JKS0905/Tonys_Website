@@ -1,7 +1,7 @@
 // Last update 09.06.24
 
 // Ensures the browser starts one the top when loading
-"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
+//"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
 
 // Variabels for Main page
 const mainLogo = document.querySelector(".main-logo");
