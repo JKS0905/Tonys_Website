@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", event => {
             }
         ); 
     });
-}); // end of DOMContentLoaded
+}, { passive: true }); // end of DOMContentLoaded
 
 //Location box animation for desktop.
 function addScrollTriggerLocationBoxText() {

@@ -79,20 +79,26 @@ function getComputedPropertyValue(element, property) {
 document.addEventListener("DOMContentLoaded", event => {
 
     // Select menu links
+    const orderButtons = document.querySelectorAll(".order-btns")
     const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
     const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
 
     // Attach scrollToSection function to each link inside menu links
+    orderButtons.forEach(link => {
+        disableHref(link);
+        scrollToSection(link);
+    });
+
     mainMenuLinks.forEach(link => {
-        disableHref(link)
+        disableHref(link);
         scrollToSection(link);
     });
 
     sidebarMenuLinks.forEach(link => {
-        disableHref(link)
+        disableHref(link);
         scrollToSection(link);
     });
-
+    
     // Prevents the href to interfere while holding down on the link.
     function disableHref(link) {
         link.addEventListener(eventToUseStart, event => {
@@ -125,7 +131,7 @@ document.addEventListener("DOMContentLoaded", event => {
         }
         window.addEventListener("scroll", scrollListener, { passive: true });
     }
-});
+}, { passive: true });
 
 // Variables related to this function
 const header = document.querySelector('.header-main');

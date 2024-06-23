@@ -189,6 +189,8 @@ transition: transform 0.15s;
     border-radius: 30px;
     transition: all 0.3s ease;
     border: 3px solid #b32e31;
+    box-shadow:  2px 8px 20px -8px #b32e31;
+    margin-right: 10px;
 }
 
 .order-button:hover {
@@ -248,6 +250,7 @@ transition: transform 0.15s;
     border-radius: 35px;
     transition: all 0.3s ease;
     border: 3px solid #b32e31;
+    box-shadow:  2px 8px 20px -6px #b32e31;
 }
 
 .order-button-link {
@@ -554,7 +557,6 @@ transition: transform 0.15s;
 
 .order-box-main {
     width: 100%;
-    height: 800px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -571,11 +573,14 @@ transition: transform 0.15s;
     border-radius: 20px;
     overflow: hidden;
     margin-top: 20px;
-    margin: 20px 10px 20px 10px;
+    margin: 20px 15px 20px 15px;
     box-shadow: 0 0 6px #888888;
     cursor: pointer;
     text-decoration: none;
-    
+    transition: box-shadow 300ms ease;
+}
+.order-box:nth-child(2):hover {
+    box-shadow: 0 0 20px #888888;
 }
 .order-box-map-box {
     height: 300px;
@@ -593,9 +598,17 @@ transition: transform 0.15s;
     margin: 10px 30px 10px 30px;
     font-size: 20px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     font-family: sans-serif;
     align-items: center;
+    text-align: center;
     justify-content: center;
+}
+
+.wolt-fees {
+    color: #B32E31;
+    margin-left: 5px;
 }
 
 .order-box-phone {
@@ -613,19 +626,24 @@ transition: transform 0.15s;
     font-family: sans-serif;
     font-weight: bold;
     color: #B32E31;
+    text-decoration: none;
 }
 
 .order-box-map-box img {
     object-fit: contain;
     width: 100%;
     height: 100%;
-    scale: 0.8;
-
-
+    scale: 0.7;
 }
 
-
 /* ↑ Code for order section ↑ */
+
+.footer-main {
+    background-color:rgba(120, 212, 124, 0.267) ;
+    width: 100%;
+    height: 200px;
+    
+}
 
 /* ↓ when screen gets smaler f. eks mobile ↓ */
 
@@ -863,6 +881,10 @@ transition: transform 0.15s;
     .location-box-right {
         margin-top: 10px;
     }
+
+    .order-box:nth-child(2) {
+        margin-top: -40px;
+     }
 }
 
 
