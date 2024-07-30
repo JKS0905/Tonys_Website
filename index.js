@@ -85,17 +85,17 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Attach scrollToSection function to each link inside menu links
     orderButtons.forEach(link => {
-        disableHref(link);
+        //disableHref(link);
         scrollToSection(link);
     });
 
     mainMenuLinks.forEach(link => {
-        disableHref(link);
+        //disableHref(link);
         scrollToSection(link);
     });
 
     sidebarMenuLinks.forEach(link => {
-        disableHref(link);
+        //disableHref(link);
         scrollToSection(link);
     });
     
