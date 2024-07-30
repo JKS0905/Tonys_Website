@@ -575,13 +575,13 @@ transition: transform 0.15s;
     overflow: hidden;
     margin-top: 20px;
     margin: 20px 15px 20px 15px;
-    box-shadow: 0 0 6px #888888;
+    box-shadow: 0 0 8px hsl(0, 0%, 80%);
     cursor: pointer;
     text-decoration: none;
     transition: box-shadow 300ms ease;
 }
 .order-box:nth-child(2):hover {
-    box-shadow: 0 0 20px #888888;
+    box-shadow: 0 0 20px hsl(0, 0%, 70%);
 }
 .order-box-map-box {
     height: 300px;
