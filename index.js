@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", event => {
 // Variables related to this function
 const header = document.querySelector('.header-main');
 let lastScrollPosition = window.pageYOffset;
-const deadZoneThreshold = 20; // Adjust the threshold as needed
+const deadZoneThreshold = 50; // Adjust the threshold as needed
 
 function handleScroll() {
   const currentScrollPosition = window.pageYOffset;
