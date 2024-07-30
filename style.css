@@ -963,7 +963,3 @@ transition: transform 0.15s;
 	opacity: 1;
 	transition: opacity 300ms;
 }
-
-.disable-link {
-    pointer-events: none;
-}
