@@ -127,6 +127,12 @@ document.addEventListener("DOMContentLoaded", event => {
                 scrollToTarget(link, manualScrollPosition); 
             } 
         });
+
+        // Mouse event handling (for desktop)
+        link.addEventListener("click", event => {
+            event.preventDefault();
+            scrollToTarget(link, manualScrollPosition);
+        });
     }
 
     // Scrolls to the target on screen
