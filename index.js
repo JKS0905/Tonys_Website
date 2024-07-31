@@ -286,7 +286,7 @@ sidebarItemMenu.addEventListener(eventToUseEnd, event => {
 // if a dropdown item is clicked it will close the whole sidebar
 sidebarDropdownContent.addEventListener(eventToUseEnd, event => { closeSidebar(); }, { passive: true });
 
-document.body.addEventListener(eventToUseStart, event => {
+document.body.addEventListener(eventToUseEnd, event => {
     isSidebarOpen = sidebarBtn.classList.contains("change");
     isSidebarVisible = sidebar.style.visibility === "visible";
     isDropdownVisible = sidebarDropdownContent.style.visibility === "visible";
