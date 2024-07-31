@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", event => {
         });
     }
 
-    function attachScrollAndDisable(link) {
+    function attachScrollAndDisable(link, manualScrollPosition = null) {
         disableHref(link);
 
         let isScrolling = false;
@@ -124,28 +124,38 @@ document.addEventListener("DOMContentLoaded", event => {
         link.addEventListener("touchend", event => {
             if (!isScrolling) {
                 event.preventDefault(); 
-                scrollToTarget(link); 
+                scrollToTarget(link, manualScrollPosition); 
             } 
         });
     }
 
     // Scrolls to the target on screen
-    function scrollToTarget(link) {
-        isScrollToSection = true;
-        const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
-        const targetElement = document.getElementById(targetId);
-        const scrollPosition = targetElement.offsetTop - offset;
-        window.scrollTo(0, scrollPosition);
+    function scrollToTarget(link, manualScrollPosition = null) {
+        if (manualScrollPosition !== null) {
+            window.scrollTo(0, manualScrollPosition);
+        } else {
+            isScrollToSection = true;
+            const targetId = link.getAttribute("href").substring(1); // Get target ID from link's href attribute
+            const targetElement = document.getElementById(targetId);
+            const scrollPosition = targetElement.offsetTop - offset;
+            window.scrollTo(0, scrollPosition);
 
-        // Prevents the header from closing when ScrollTo is activated
-        function scrollListener(event) {
-            if (window.pageYOffset === scrollPosition) {
-                isScrollToSection = false;
-                setTimeout(() => { window.removeEventListener("scroll", scrollListener); }, 100);
+            // Prevents the header from closing when ScrollTo is activated
+            function scrollListener(event) {
+                if (window.pageYOffset === scrollPosition) {
+                    isScrollToSection = false;
+                    setTimeout(() => { window.removeEventListener("scroll", scrollListener); }, 100);
+                }
             }
+            window.addEventListener("scroll", scrollListener, { passive: true });
         }
-        window.addEventListener("scroll", scrollListener, { passive: true });
     }
+
+    // For elemnts with maual scroll position.
+    attachScrollAndDisable(scrollToTop1, 0);
+    attachScrollAndDisable(scrollToTop2, 0);
+    attachScrollAndDisable(scrollToTop3, 0);
+
 }, { passive: true });
 
 
@@ -207,16 +217,16 @@ function closeSidebarDropdown() {
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
 }
 
-function scrollToTop() { window.scrollTo(0, 0); }
+//function scrollToTop() { window.scrollTo(0, 0); }
 
-scrollToTop1.addEventListener(eventToUseStart, event => { event.preventDefault(); });
-scrollToTop1.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
-
-scrollToTop2.addEventListener(eventToUseStart, event => { event.preventDefault(); });
-scrollToTop2.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
-
-scrollToTop3.addEventListener(eventToUseStart, event => { event.preventDefault(); });
-scrollToTop3.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
+//scrollToTop1.addEventListener(eventToUseStart, event => { event.preventDefault(); });
+//scrollToTop1.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
+//
+//scrollToTop2.addEventListener(eventToUseStart, event => { event.preventDefault(); });
+//scrollToTop2.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
+//
+//scrollToTop3.addEventListener(eventToUseStart, event => { event.preventDefault(); });
+//scrollToTop3.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
 
 menuText.addEventListener("mouseenter", event => {
     menuText.style.color = red;
