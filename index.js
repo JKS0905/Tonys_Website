@@ -79,38 +79,53 @@ function getComputedPropertyValue(element, property) {
 document.addEventListener("DOMContentLoaded", event => {
 
     // Select menu links
-    const orderButtons = document.querySelectorAll(".order-btns")
+    const orderButtons = document.querySelectorAll(".order-btns");
     const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
     const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
 
-    // Attach scrollToSection function to each link inside menu links
+    // Attach attachScrollAndDisable function to each link inside menu links
     orderButtons.forEach(link => {
-        //disableHref(link);
-        scrollToSection(link);
+        attachScrollAndDisable(link);
     });
 
     mainMenuLinks.forEach(link => {
-        //disableHref(link);
-        scrollToSection(link);
+        attachScrollAndDisable(link);
     });
 
     sidebarMenuLinks.forEach(link => {
-        //disableHref(link);
-        scrollToSection(link);
+        attachScrollAndDisable(link);
     });
     
     // Prevents the href to interfere while holding down on the link.
     function disableHref(link) {
-        link.addEventListener(eventToUseStart, event => {
+        link.addEventListener("click", event => {
             event.preventDefault();
         });
     }
 
-    // Different Event listeners to trigger the scrollToTarget function
-    function scrollToSection(link) {
-        link.addEventListener(eventToUseEnd, event => {
-            event.preventDefault();
-            scrollToTarget(link);
+    function attachScrollAndDisable(link) {
+        disableHref(link);
+
+        let isScrolling = false;
+        let startY;
+
+        link.addEventListener("touchstart", event => {
+            startY = event.touches[0].clientY;
+            isScrolling = false;
+        });
+
+        link.addEventListener("touchmove", event => {
+            const moveY = event.touches[0].clientY;
+            if (Math.abs(moveY - startY) > 10) { // if moved more than 10 pixels vertically
+                isScrolling = true;
+            }
+        });
+
+        link.addEventListener("touchend", event => {
+            if (!isScrolling) {
+                event.preventDefault(); 
+                scrollToTarget(link); 
+            } 
         });
     }
 
@@ -122,7 +137,7 @@ document.addEventListener("DOMContentLoaded", event => {
         const scrollPosition = targetElement.offsetTop - offset;
         window.scrollTo(0, scrollPosition);
 
-        // Prevents the header to close when ScrollTo is activated
+        // Prevents the header from closing when ScrollTo is activated
         function scrollListener(event) {
             if (window.pageYOffset === scrollPosition) {
                 isScrollToSection = false;
@@ -132,6 +147,7 @@ document.addEventListener("DOMContentLoaded", event => {
         window.addEventListener("scroll", scrollListener, { passive: true });
     }
 }, { passive: true });
+
 
 // Variables related to this function
 const header = document.querySelector('.header-main');
