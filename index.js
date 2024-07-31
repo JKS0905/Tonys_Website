@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", event => {
     
     // Prevents the href to interfere while holding down on the link.
     function disableHref(link) {
-        link.addEventListener("click", event => {
+        link.addEventListener(eventToUseStart, event => {
             event.preventDefault();
         });
     }
