@@ -129,7 +129,9 @@ document.addEventListener("DOMContentLoaded", event => {
                 if (!isScrolling) {
                     event.preventDefault(); 
                     scrollToTarget(link, manualScrollPosition); 
-                } 
+                }
+                // Delay the reset of isScrolling to make sure it's done after touchend.
+                setTimeout(() => { isScrolling = false; }, 100);
             });
         } else {
             // Mouse event handling (for desktop)
