@@ -30,6 +30,8 @@ const scrollToTop3 = document.getElementById("scrollToTop3");
 let offset = 70; // Adjust offset here for scroll
 
 let isTouchscreen;
+
+// attachScrollAndDisable Function. Can not close the sidebar when touchmove.
 let isScrolling = false;
 
 let isScrollToSection = false;
@@ -109,7 +111,6 @@ document.addEventListener("DOMContentLoaded", event => {
 
         if (isTouchscreen) {
 
-            
             let startY;
 
             link.addEventListener("touchstart", event => {
