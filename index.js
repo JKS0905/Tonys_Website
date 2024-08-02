@@ -292,13 +292,9 @@ if (isTouchscreen) {
 // if a sidebar item is clicked the sidebar will close
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
-        const text = document.getElementById("main-logo-description");
-        text.textContent = `isScrolling: ${isScrolling}`;
-        if (!isScrolling) {
-            closeSidebar();
-        }
+        !isScrolling ? closeSidebar : null;
     });
-});
+}, { passive: true });
 
 // opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
