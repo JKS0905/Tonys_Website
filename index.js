@@ -292,19 +292,23 @@ if (isTouchscreen) {
 // if a sidebar item is clicked the sidebar will close
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
-        !isScrolling ? closeSidebar() : null;
+        const text = document.getElementById("main-logo-description");
+        text.textContent = `isScrolling: ${isScrolling}`;
+        if (!isScrolling) {
+            closeSidebar();
+        }
     });
 });
 
 // opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
-});
+}, { passive: true });
 
 // Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : !isScrolling ? closeSidebarDropdown() : null;
-});
+}, { passive: true });
 
 // if a dropdown item is clicked it will close the whole sidebar
 sidebarDropdownContent.addEventListener(eventToUseEnd, event => { !isScrolling ? closeSidebar() : null; }, { passive: true });
