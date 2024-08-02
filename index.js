@@ -304,10 +304,10 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
 // Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
     sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : !isScrolling ? closeSidebarDropdown() : null;
-}, { passive: true });
+});
 
 // if a dropdown item is clicked it will close the whole sidebar
-sidebarDropdownContent.addEventListener(eventToUseEnd, event => { !isScrolling ? closeSidebar() : null; }, { passive: true });
+sidebarDropdownContent.addEventListener(eventToUseEnd, event => { !isScrolling ? closeSidebar() : null; });
 
 document.body.addEventListener(eventToUseEnd, event => {
     isSidebarOpen = sidebarBtn.classList.contains("change");
