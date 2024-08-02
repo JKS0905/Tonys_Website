@@ -30,6 +30,7 @@ const scrollToTop3 = document.getElementById("scrollToTop3");
 let offset = 70; // Adjust offset here for scroll
 
 let isTouchscreen;
+let isScrolling = false;
 
 let isScrollToSection = false;
 
@@ -102,37 +103,40 @@ document.addEventListener("DOMContentLoaded", event => {
             event.preventDefault();
         });
     }
-
+    
     function attachScrollAndDisable(link, manualScrollPosition = null) {
         disableHref(link);
 
-        let isScrolling = false;
-        let startY;
+        if (isTouchscreen) {
 
-        link.addEventListener("touchstart", event => {
-            startY = event.touches[0].clientY;
-            isScrolling = false;
-        });
+            
+            let startY;
 
-        link.addEventListener("touchmove", event => {
-            const moveY = event.touches[0].clientY;
-            if (Math.abs(moveY - startY) > 10) { // if moved more than 10 pixels vertically
-                isScrolling = true;
-            }
-        });
+            link.addEventListener("touchstart", event => {
+                startY = event.touches[0].clientY;
+                isScrolling = false;
+            });
 
-        link.addEventListener("touchend", event => {
-            if (!isScrolling) {
-                event.preventDefault(); 
-                scrollToTarget(link, manualScrollPosition); 
-            } 
-        });
+            link.addEventListener("touchmove", event => {
+                const moveY = event.touches[0].clientY;
+                if (Math.abs(moveY - startY) > 20) { // if moved more than 20 pixels vertically
+                    isScrolling = true;
+                }
+            });
 
-        // Mouse event handling (for desktop)
-        link.addEventListener("click", event => {
-            event.preventDefault();
-            scrollToTarget(link, manualScrollPosition);
-        });
+            link.addEventListener("touchend", event => {
+                if (!isScrolling) {
+                    event.preventDefault(); 
+                    scrollToTarget(link, manualScrollPosition); 
+                } 
+            });
+        } else {
+            // Mouse event handling (for desktop)
+            link.addEventListener("click", event => {
+                event.preventDefault();
+                scrollToTarget(link, manualScrollPosition);
+            });
+        }
     }
 
     // Scrolls to the target on screen
@@ -285,7 +289,7 @@ if (isTouchscreen) {
 // if a sidebar item is clicked the sidebar will close
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
-        closeSidebar();
+        !isScrolling ? closeSidebar() : null;
     }, { passive: true });
 });
 
@@ -296,11 +300,11 @@ sidebarBtn.addEventListener(eventToUseEnd, event => {
 
 // Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
-    sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : closeSidebarDropdown();
+    sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : !isScrolling ? closeSidebarDropdown() : null;
 }, { passive: true });
 
 // if a dropdown item is clicked it will close the whole sidebar
-sidebarDropdownContent.addEventListener(eventToUseEnd, event => { closeSidebar(); }, { passive: true });
+sidebarDropdownContent.addEventListener(eventToUseEnd, event => { !isScrolling ? closeSidebar() : null; }, { passive: true });
 
 document.body.addEventListener(eventToUseEnd, event => {
     isSidebarOpen = sidebarBtn.classList.contains("change");
