@@ -324,3 +324,6 @@ document.body.addEventListener(eventToUseEnd, event => {
         }
     }
 }, { passive: true });
+
+
+openSidebar();

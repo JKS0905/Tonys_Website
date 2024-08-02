@@ -92,6 +92,11 @@ body {
     visibility: hidden;
 }
 
+.sidebar-item:nth-child(1) {
+    font-weight: bold;
+}
+
+
 .dropdown-content {
     margin-left: -10px;
     top: 85%;
@@ -228,7 +233,7 @@ transition: transform 0.15s;
 .menu-header {
     color: rgb(78, 77, 77);
     margin: 30px 0 -5px 0;
-    padding: 35px;
+    padding: 35px 0 35px 0;
     font-family: sans-serif;
     font-size: bold;
     text-align: center;
@@ -572,6 +577,7 @@ transition: transform 0.15s;
     gap: 40px;
     justify-content: center;
     text-decoration: none;
+    padding-bottom: 40px;
 }
 
 .order-box {
@@ -917,7 +923,7 @@ transition: transform 0.15s;
     }
 
     .order-box:nth-child(2) {
-        margin-top: -40px;
+        margin-top: 0;
      }
 }
 
