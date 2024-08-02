@@ -230,17 +230,6 @@ function closeSidebarDropdown() {
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
 }
 
-//function scrollToTop() { window.scrollTo(0, 0); }
-
-//scrollToTop1.addEventListener(eventToUseStart, event => { event.preventDefault(); });
-//scrollToTop1.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
-//
-//scrollToTop2.addEventListener(eventToUseStart, event => { event.preventDefault(); });
-//scrollToTop2.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
-//
-//scrollToTop3.addEventListener(eventToUseStart, event => { event.preventDefault(); });
-//scrollToTop3.addEventListener(eventToUseEnd, event => { scrollToTop(); }, { passive: true });
-
 menuText.addEventListener("mouseenter", event => {
     menuText.style.color = red;
     menuArrow.style.fill = red;
@@ -294,7 +283,7 @@ sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
         !isScrolling ? closeSidebar : null;
     });
-}, { passive: true });
+});
 
 // opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
