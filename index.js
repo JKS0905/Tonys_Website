@@ -293,13 +293,13 @@ if (isTouchscreen) {
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
         !isScrolling ? closeSidebar() : null;
-    }, { passive: true });
+    });
 });
 
 // opens the sidebar
 sidebarBtn.addEventListener(eventToUseEnd, event => {
     sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
-}, { passive: true });
+});
 
 // Opens the dropdown menu
 sidebarItemMenu.addEventListener(eventToUseEnd, event => {
@@ -307,7 +307,7 @@ sidebarItemMenu.addEventListener(eventToUseEnd, event => {
 });
 
 // if a dropdown item is clicked it will close the whole sidebar
-sidebarDropdownContent.addEventListener(eventToUseEnd, event => { !isScrolling ? closeSidebar() : null; });
+sidebarDropdownContent.addEventListener(eventToUseEnd, event => { !isScrolling ? closeSidebar() : null; }, { passive: true });
 
 document.body.addEventListener(eventToUseEnd, event => {
     isSidebarOpen = sidebarBtn.classList.contains("change");
