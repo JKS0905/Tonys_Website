@@ -22,23 +22,30 @@ const locationimages = [locationimgRight, locationimgLeft];
 
 let isMaxWidth1290;
 
+// Variabels Order-Box animation
+const orderBoxes = document.querySelectorAll(".order-box");
+const orderBox1 = orderBoxes[0];
+const orderBox2 = orderBoxes[1];
+
 // Initial startpoint for location-box animation
 if (window.matchMedia("(max-width: 1290px)").matches) {
     isMaxWidth1290 = true;
     gsap.set(locationimgLeft, { opacity: 0, scale: 0.95 });
     gsap.set(locationimgRight, { opacity: 0, scale: 0.95 });
+    gsap.set(orderBoxes, { opacity: 0, scale: 0.95 });
 }
 else {
     isMaxWidth1290 = false;
     gsap.set(locationimgRight, { opacity: 0, x: -1100 });
     gsap.set(locationimgLeft, { opacity: 0, x: -1100 });
+    gsap.set(orderBoxes, { opacity: 0, y: 500 });
 }
 
 gsap.set(locationTitle, { opacity: 0, scale: 0.95 });
 gsap.set(locationDescription, { opacity: 0, scale: 0.95 });
 
 
-// Pizza item animation
+// Variabels Pizza item animation
 const menuTitle = document.querySelectorAll(".menu-header");
 const pizzaItem = document.querySelectorAll(".pizza-item");
 
@@ -57,9 +64,10 @@ document.addEventListener("DOMContentLoaded", event => {
         tl.fromTo(img2, { opacity: 0, x: 600 },                { ease: "power1.out" }, "-=1");
         tl.fromTo(img4, { opacity: 0, x: 600 },                { ease: "power1.out" }, "-=0.8");
 
-        // Adds scrolltrigger to the location box
+        // Adds scrolltrigger to the location box and order box
         addScrollTriggerLocationBoxText();
         addScrollTriggerLocationBoxSlider();
+        addScrollTriggerOrderBoxes();
 
     }); // end of mediaquerry
 
@@ -72,9 +80,10 @@ document.addEventListener("DOMContentLoaded", event => {
         tl.fromTo(img3, { opacity: 0, x: 600 },                { duration:0.5, ease: "power1.out"  }, "-=0.6");
         tl.fromTo(img4, { opacity: 0, x: 600 },                { duration:0.5, ease: "power1.out"  }, "-=0.4");
 
-        // Adds scrolltrigger to the location box
+        // Adds scrolltrigger to the location box and order box
         addScrollTriggerLocationBoxText();
         addScrollTriggerLocationBoxSlider();
+        addScrollTriggerOrderBoxes();
 
     }); // end of mediaquerry
 
@@ -124,6 +133,20 @@ document.addEventListener("DOMContentLoaded", event => {
                     ease: "power1.out",
                     scrollTrigger: {
                         trigger: img,
+                        start: "top center"
+                    }
+                }
+            );
+        });
+           // Order-Box animation
+        orderBoxes.forEach(item => {
+            gsap.to(item, { 
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.5,
+                    ease: "power1.out",
+                    scrollTrigger: {
+                        trigger: item,
                         start: "top center"
                     }
                 }
@@ -202,4 +225,23 @@ function animateLocationBox() {
     tl.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"},"-=0.6");
     tl.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"},"-=0.4");
 }
+
+//Location box animation for desktop.
+function addScrollTriggerOrderBoxes() {
+    gsap.to({}, {
+        scrollTrigger: {
+        trigger: ".order-box-main",
+        start: "20% center",
+        markers: true,
+        onEnter: () => {animateOrderBoxes();} //function that runs the timeline animation
+        }
+    });
+}
+
+function animateOrderBoxes() {
+    tl.to(orderBox1, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"});
+    tl.to(orderBox2, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
+}
+
+
 

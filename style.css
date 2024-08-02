@@ -15,7 +15,15 @@ body {
     padding: 0;
 }
 
+.main-content-wrapper {
+    position: relative;
+    transition: filter 300ms ease-in-out;
+}
 
+.blurred {
+    filter: blur(5px);
+    
+}
 
 /* ↓ Code for the nav-bar on top of website ↓ */
 
@@ -656,7 +664,7 @@ transition: transform 0.15s;
 /* ↑ Code for order section ↑ */
 
 .footer-main {
-    background-color:rgba(120, 212, 124, 0.267) ;
+    background-color:#B32E31;
     width: 100%;
     height: 200px;
     
@@ -707,6 +715,15 @@ transition: transform 0.15s;
 
     .container {
         width: 950px;
+    }
+
+    .order-box-main {
+        gap: 0;
+    }
+
+    .order-box {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
 

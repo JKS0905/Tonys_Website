@@ -20,6 +20,7 @@ const sidebarDropdownContent = document.querySelector(".sidebar-dropdown-content
 const sidebarDropdownContentLink = document.querySelectorAll(".sidebar-dropdown-content a");
 const sidebarTextArrow = document.querySelector(".sidebar-text-arrow");
 const sidebarMenuArrow = document.querySelector(".sidebar-text-arrow svg");
+const mainContentWraper = document.querySelector(".main-content-wrapper");
 
 // Constants for scrollToTop function
 const scrollToTop1 = document.getElementById("scrollToTop1");
@@ -198,6 +199,7 @@ function openHeader() { gsap.to(header, {duration: 0.25, top: 0, ease: "power1.o
 function closeHeader() { gsap.to(header, {duration: 0.25, top: -85, ease: "power1.out" }); }
 
 function openSidebar() {
+    mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
     tl.set(sidebar, {visibility: "visible"});
     tl.to(sidebar, {duration: 0.35, top: "auto", ease: "power1.out"});
@@ -212,6 +214,7 @@ function closeSidebar() {
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
     tl.to(sidebar, { duration: 0.35, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.35");
     tl.set(sidebar, { visibility: "hidden" });
+    mainContentWraper.classList.remove("blurred");
 }
 
 function openSidebarDropdown() {
@@ -281,7 +284,7 @@ if (isTouchscreen) {
 // if a sidebar item is clicked the sidebar will close
 sidebarItem.forEach(item => {
     item.addEventListener(eventToUseEnd, event => {
-        !isScrolling ? closeSidebar : null;
+        !isScrolling ? closeSidebar() : null;
     });
 });
 
