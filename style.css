@@ -17,7 +17,7 @@ body {
 
 .main-content-wrapper {
     position: relative;
-    transition: filter 300ms ease-in-out;
+    transition: filter 200ms ease-in-out;
 }
 
 .blurred {
@@ -93,6 +93,7 @@ body {
 }
 
 .sidebar-item:nth-child(1) {
+    font-weight: bold;
     color: #b32e31;
 }
 
