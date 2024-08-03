@@ -582,6 +582,7 @@ transition: transform 0.15s;
 }
 
 .order-box {
+    background-color: white;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

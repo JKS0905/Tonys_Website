@@ -232,7 +232,6 @@ function addScrollTriggerOrderBoxes() {
         scrollTrigger: {
         trigger: ".order-box-main",
         start: "20% center",
-        markers: true,
         onEnter: () => {animateOrderBoxes();} //function that runs the timeline animation
         }
     });
