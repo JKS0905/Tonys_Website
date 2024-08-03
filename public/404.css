@@ -1,0 +1,104 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 10px;
+    background-color: snow;
+}
+
+.header-main { 
+    background-color: snow;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 6px 6px -6px #58585886;
+}
+
+.small-logo {
+    height: 80px;
+    width: 85px;
+    margin: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.logo-overlay img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: 400px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 0 8px hsl(0, 0%, 80%);
+    margin-top: 100px;
+}
+
+.text1 {
+    font-size: 3em;
+    color: #b32e31;
+    margin-top: -15px;
+}
+
+.text2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.home-button {
+    display: flex;
+    background-color: #b32e31;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 10px 30px;
+    border-radius: 30px;
+    transition: scale 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    border: 3px solid #b32e31;
+    box-shadow: 2px 8px 20px -8px #b32e31;
+    text-decoration: none;
+    margin-top: 30px;
+
+}
+
+.home-button:hover {
+    scale: 105%;
+    background-color: transparent;
+    color: rgb(78, 77, 77);
+}
+
+
+@media screen and (max-width: 650px) {
+
+    .text1 {
+        font-size: 2em;
+    }
+
+    
+    .text2 {
+        font-size: 1em;
+        margin: 0 10px 0 10px;
+    }
+    
+}
+
