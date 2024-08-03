@@ -17,7 +17,7 @@ body {
 
 .main-content-wrapper {
     position: relative;
-    transition: filter 200ms ease-in-out;
+    transition: filter 350ms ease-in-out;
 }
 
 .blurred {
