@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", event => {
         } else {
             // Mouse event handling (for desktop)
             link.addEventListener("click", event => {
+                offset = 15;
                 event.preventDefault();
                 scrollToTarget(link, manualScrollPosition);
             });
