@@ -578,7 +578,6 @@ transition: transform 0.15s;
     gap: 40px;
     justify-content: center;
     text-decoration: none;
-    padding-bottom: 40px;
 }
 
 .order-box {
@@ -660,7 +659,6 @@ transition: transform 0.15s;
     text-decoration: none;
 }
 
-
 .order-box-map-box img {
     object-fit: contain;
     width: 100%;
@@ -671,12 +669,78 @@ transition: transform 0.15s;
 
 /* ↑ Code for order section ↑ */
 
+/* ↓ Code for opening hours section ↓ */
+
+.opening-hours-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+    padding: 10px 10px 100px 10px;
+    
+}
+
+.opening-hours-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    height: 335px;
+    background-color: #e9bb8638;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.opening-hours-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px;
+}
+
+.opening-hours-list li {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid hsl(0, 0%, 0%, 0.3);
+}
+.opening-hours-list li:nth-child(1) {
+    margin-top: 0;
+}
+
+.opening-hours-list .day {
+    font-weight: bold;
+    color: hsl(0, 0%, 35%);
+}
+
+.opening-hours-list .hours {
+    color: hsl(0, 0%, 35%);;
+    font-weight: bold;
+    text-align: right;
+}
+
+.nb {
+    color: #B32E31;
+}
+
+.fb-link {
+    margin-top: -25px;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* ↑ Code for opening hours section ↑ */
+
+/* ↓ Code for footer section ↓ */
+
 .footer-main {
     background-color:#B32E31;
     width: 100%;
     height: 200px;
     
 }
+
+/* ↑ Code for footer section ↑ */
 
 /* ↓ when screen gets smaler f. eks mobile ↓ */
 

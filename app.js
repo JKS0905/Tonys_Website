@@ -1,7 +1,8 @@
+require('dotenv').config(); // Load environment variables from .env file
+
 const express = require('express');
 const path = require('path');
-
-require('dotenv').config(); // Load environment variables from .env file
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
@@ -14,7 +15,6 @@ app.use((req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

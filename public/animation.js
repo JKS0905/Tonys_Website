@@ -1,7 +1,7 @@
 // Last update 09.06.24
 
 // Ensures the browser starts one the top when loading
-"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
+//"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
 
 // Variabels for Main page
 const mainLogo = document.querySelector(".main-logo");
@@ -44,10 +44,21 @@ else {
 gsap.set(locationTitle, { opacity: 0, scale: 0.95 });
 gsap.set(locationDescription, { opacity: 0, scale: 0.95 });
 
-
 // Variabels Pizza item animation
 const menuTitle = document.querySelectorAll(".menu-header");
 const pizzaItem = document.querySelectorAll(".pizza-item");
+
+// Variabels for Opening Hours
+const openingHoursBox = document.querySelector(".opening-hours-box");
+const openingNb = document.querySelector(".nb");
+const openingHoursText = document.getElementById("opening-hours-text");
+const fbLink = document.querySelector(".fb-link");
+ 
+// Animation startpoint for Opening Hours
+gsap.set(openingHoursBox, {opacity: 0, scale: 0.95})
+gsap.set(openingNb, {opacity: 0, scale: 0.95})
+gsap.set(openingHoursText, {opacity: 0, scale: 0.95})
+gsap.set(fbLink, {opacity: 0, scale: 0.95})
 
 const mm = gsap.matchMedia();
 const tl = gsap.timeline({defaults: {duration: 0.7, opacity: 1, y: 0, x: 0}});
@@ -191,6 +202,15 @@ document.addEventListener("DOMContentLoaded", event => {
             }
         ); 
     });
+
+    gsap.to({}, {
+        scrollTrigger: {
+        trigger: ".opening-hours-box",
+        start: "50% center",
+        onEnter: () => {animateOpeningHours();}
+        }
+    });
+
 }, { passive: true }); // end of DOMContentLoaded
 
 //Location box animation for desktop.
@@ -242,5 +262,10 @@ function animateOrderBoxes() {
     tl.to(orderBox2, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
 }
 
-
+function animateOpeningHours() {
+    tl.to(openingHoursBox, { duration: 0.5, opacity: 1, scale: 1, ease: "power1.out"});
+    tl.to(openingNb, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.2");
+    tl.to(openingHoursText, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
+    tl.to(fbLink, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
+}
 
