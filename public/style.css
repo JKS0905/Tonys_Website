@@ -723,10 +723,13 @@ transition: transform 0.15s;
     color: #B32E31;
 }
 
-.fb-link {
-    margin-top: -25px;
-    text-decoration: none;
+#fb-link {
     text-align: center;
+    cursor: pointer;
+}
+
+#opening-hours-text {
+    margin-bottom: 30px;
 }
 
 /* ↑ Code for opening hours section ↑ */
@@ -951,6 +954,11 @@ transition: transform 0.15s;
     .sidebar-dropdown-content a:nth-child(6) {
         border-bottom: none;
     }
+
+    #fb-link {
+        margin-top: 0;
+    }
+    
 }
     
 

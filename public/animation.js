@@ -52,7 +52,7 @@ const pizzaItem = document.querySelectorAll(".pizza-item");
 const openingHoursBox = document.querySelector(".opening-hours-box");
 const openingNb = document.querySelector(".nb");
 const openingHoursText = document.getElementById("opening-hours-text");
-const fbLink = document.querySelector(".fb-link");
+const fbLink = document.getElementById("fb-link");
  
 // Animation startpoint for Opening Hours
 gsap.set(openingHoursBox, {opacity: 0, scale: 0.95})
