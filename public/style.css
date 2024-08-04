@@ -21,8 +21,7 @@ body {
 }
 
 .blurred {
-    filter: blur(5px);
-    
+    filter: blur(5px); /* Adjust blur amount as needed */
 }
 
 /* ↓ Code for the nav-bar on top of website ↓ */
@@ -906,7 +905,7 @@ transition: transform 0.15s;
         width: 100vw;
         box-shadow: 0 6px 6px -6px #adadad86;
         height: auto;
-        top: -270px;
+        top: -280px;
     }
 
     .sidebar-item, .sidebar-text-arrow {
