@@ -685,7 +685,7 @@ transition: transform 0.15s;
     flex-direction: column;
     width: 100%;
     max-width: 400px;
-    height: 335px;
+    height: 340px;
     background-color: #e9bb8638;
     border-radius: 20px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
@@ -906,7 +906,7 @@ transition: transform 0.15s;
         width: 100vw;
         box-shadow: 0 6px 6px -6px #adadad86;
         height: auto;
-        top: -220px;
+        top: -270px;
     }
 
     .sidebar-item, .sidebar-text-arrow {
