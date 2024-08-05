@@ -26,6 +26,7 @@ let isMaxWidth1290;
 const orderBoxes = document.querySelectorAll(".order-box");
 const orderBox1 = orderBoxes[0];
 const orderBox2 = orderBoxes[1];
+const orderBox3 = orderBoxes[2];
 
 // Initial startpoint for location-box animation
 if (window.matchMedia("(max-width: 1290px)").matches) {
@@ -260,6 +261,7 @@ function addScrollTriggerOrderBoxes() {
 function animateOrderBoxes() {
     tl.to(orderBox1, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"});
     tl.to(orderBox2, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
+    tl.to(orderBox3, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
 }
 
 function animateOpeningHours() {

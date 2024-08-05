@@ -27,7 +27,7 @@ body {
 /* ↓ Code for the nav-bar on top of website ↓ */
 
 .header-main { 
-    background-color: snow;
+    background-color: white;
     position: fixed;
     top: 0;
     left: 0;
@@ -222,6 +222,11 @@ transition: transform 0.15s;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: scale 300ms ease;
+}
+
+.small-logo:hover {
+    scale: 105%;
 }
 
 .logo-overlay img {
@@ -574,7 +579,6 @@ transition: transform 0.15s;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 40px;
     justify-content: center;
     text-decoration: none;
 }
@@ -588,22 +592,25 @@ transition: transform 0.15s;
     height: 500px;
     border-radius: 20px;
     overflow: hidden;
-    margin-top: 20px;
-    margin: 20px 15px 20px 15px;
+    margin: 15px;
     box-shadow: 0 0 8px hsl(0, 0%, 80%);
     cursor: pointer;
     text-decoration: none;
     transition: box-shadow 300ms ease;
 }
+.order-box:nth-child(1):hover,
 .order-box:nth-child(2):hover {
     box-shadow: 0 0 20px hsl(0, 0%, 70%);
 }
-.order-box-map-box {
+
+.order-box-map-box,
+.order-box-map-box-foodora {
     height: 300px;
     width: 100%;
     background-color: #68c0e2;
     text-decoration: none;
 }
+
 .order-box-map {
     width: 100%;
     height: 100%;
@@ -613,7 +620,7 @@ transition: transform 0.15s;
 .order-box-description {
     min-height: 100px;
     color: rgb(78, 77, 77);
-    margin: 10px 30px 10px 30px;
+    margin: 20px 30px 10px 30px;
     font-size: 20px;
     display: flex;
     flex-direction: row;
@@ -623,17 +630,19 @@ transition: transform 0.15s;
     text-align: center;
     justify-content: center;
     text-decoration: none;
+    display: block;
 }
 
 .wolt-fees {
     color: #B32E31;
-    margin-left: 5px;
+    margin: 5px 0 0 5px;
     text-decoration: none;
+    display: block;
 }
 
 .order-box-phone {
     min-height: 50px;
-    margin: 10px 30px 0 30px;
+    margin: 0 30px 0 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -665,6 +674,14 @@ transition: transform 0.15s;
     scale: 0.7;
     text-decoration: none;
 }
+.order-box-map-box-foodora img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+
 
 /* ↑ Code for order section ↑ */
 
@@ -684,7 +701,7 @@ transition: transform 0.15s;
     flex-direction: column;
     width: 100%;
     max-width: 400px;
-    height: 340px;
+    height: 325px;
     background-color: #e9bb8638;
     border-radius: 20px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
@@ -703,8 +720,13 @@ transition: transform 0.15s;
     padding-bottom: 5px;
     border-bottom: 1px solid hsl(0, 0%, 0%, 0.3);
 }
+
 .opening-hours-list li:nth-child(1) {
     margin-top: 0;
+}
+
+.opening-hours-list li:nth-child(7) {
+    border-bottom: none;
 }
 
 .opening-hours-list .day {
@@ -795,10 +817,6 @@ transition: transform 0.15s;
         gap: 0;
     }
 
-    .order-box {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -838,6 +856,10 @@ transition: transform 0.15s;
     .img-box-img3 img,
     .img-box-img4 img {
         margin: 30px 0 0 0;
+    }
+
+    .order-box-main {
+        flex-wrap: wrap-reverse;
     }
 }
 
@@ -995,8 +1017,8 @@ transition: transform 0.15s;
         margin-top: 10px;
     }
 
-    .order-box:nth-child(2) {
-        margin-top: 0;
+    .order-box {
+        margin-top: 5px;
      }
 }
 
