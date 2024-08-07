@@ -203,8 +203,8 @@ function openSidebar() {
     mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
     tl.set(sidebar, {visibility: "visible"});
-    setTimeout(() => {}, 500);
-    tl.to(sidebar, {duration: 0.25, top: "auto", ease: "power1.out"});
+    setTimeout(() => { tl.to(sidebar, {duration: 0.25, top: "auto", ease: "power1.out"});}, 2000);
+   
 }
 
 function closeSidebar() {
