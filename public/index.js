@@ -202,7 +202,7 @@ function closeHeader() { gsap.to(header, {duration: 0.25, top: -70, ease: "power
 function openSidebar() {
     mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
-    tl.set(sidebar, {visibility: "visible"});
+    //tl.set(sidebar, {visibility: "visible"});
     tl.to(sidebar, {duration: 0.9, top: "auto", ease: "power1.out"});
 }
 
@@ -214,7 +214,7 @@ function closeSidebar() {
     tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
     tl.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
-    tl.set(sidebar, { visibility: "hidden" });
+    //tl.set(sidebar, { visibility: "hidden" });
     mainContentWraper.classList.remove("blurred");
 }
 
