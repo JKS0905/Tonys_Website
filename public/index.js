@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", event => {
 // Variables related to this function
 const header = document.querySelector('.header-main');
 let lastScrollPosition = window.pageYOffset;
-const deadZoneThreshold = 50; // Adjust the threshold as needed
+const deadZoneThreshold = 30; // Adjust the threshold as needed
 
 function handleScroll() {
   const currentScrollPosition = window.pageYOffset;
@@ -197,13 +197,13 @@ function handleScroll() {
 
 function openHeader() { gsap.to(header, {duration: 0.25, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.25, top: -85, ease: "power1.out" }); }
+function closeHeader() { gsap.to(header, {duration: 0.25, top: -70, ease: "power1.out" }); }
 
 function openSidebar() {
     mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
     tl.set(sidebar, {visibility: "visible"});
-    tl.to(sidebar, {duration: 0.35, top: "auto", ease: "power1.out"});
+    tl.to(sidebar, {duration: 0.25, top: "auto", ease: "power1.out"});
 }
 
 function closeSidebar() {
@@ -211,9 +211,9 @@ function closeSidebar() {
     sidebarItemMenu.style.fill = gray;
     sidebarBtn.classList.remove("change")
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, { duration: 0.35, height: 0, ease: "power1.out"});
+    tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
-    tl.to(sidebar, { duration: 0.35, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.35");
+    tl.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
     tl.set(sidebar, { visibility: "hidden" });
     mainContentWraper.classList.remove("blurred");
 }
@@ -223,14 +223,14 @@ function openSidebarDropdown() {
     sidebarItemMenu.style.fill = red;
     sidebarMenuArrow.classList.add("rotate");
     tl.set(sidebarDropdownContent, {visibility: "visible"});
-    tl.to(sidebarDropdownContent, {duration: 0.35, height: "auto", ease: "power1.out"});
+    tl.to(sidebarDropdownContent, {duration: 0.25, height: "auto", ease: "power1.out"});
 }
 
 function closeSidebarDropdown() {
     sidebarItemMenu.style.color = gray;
     sidebarItemMenu.style.fill = gray;
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, {duration: 0.35, height: 0, ease: "power1.out"});
+    tl.to(sidebarDropdownContent, {duration: 0.25, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, {visibility: "hidden"});
 }
 
@@ -314,14 +314,14 @@ document.body.addEventListener(eventToUseEnd, event => {
             closeSidebar();
 
             // Makes sure the header closes if you scroll and don't click it
-            setTimeout(() => {isSidebarOpen = false}, 500);
+            setTimeout(() => {isSidebarOpen = false}, 300);
         }
         // If only sidebar is open
         else if (isSidebarVisible) {
             closeSidebar();
 
             // Makes sure the header closes if you scroll and don't click it
-            setTimeout(() => {isSidebarOpen = false}, 500);
+            setTimeout(() => {isSidebarOpen = false}, 300);
         }
     }
 }, { passive: true });

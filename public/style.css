@@ -17,7 +17,7 @@ body {
 
 .main-content-wrapper {
     position: relative;
-    transition: filter 350ms ease-in-out;
+    transition: filter 50ms ease-in-out;
 }
 
 .blurred {
@@ -32,7 +32,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 80px;
+    height: 65px;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -101,7 +101,7 @@ body {
     margin-left: -10px;
     top: 85%;
     display: block;
-    background-color: snow;
+    background-color: white;
     text-align: left;
     position: absolute;
     min-width: 160px;
@@ -111,7 +111,7 @@ body {
     pointer-events: none;
     opacity: 0;
     transform: translateY(-10px);
-    transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 }
 
 .dropdown-content.open {
@@ -214,8 +214,8 @@ transition: transform 0.15s;
 }
 
 .small-logo {
-    height: 80px;
-    width: 85px;
+    height: 60px;
+    width: 65px;
     margin: 15px;
     overflow: hidden;
     display: flex;
@@ -589,7 +589,7 @@ transition: transform 0.15s;
     flex-direction: column;
     flex-wrap: wrap;
     width: 600px;
-    height: 500px;
+    height: 450px;
     border-radius: 20px;
     overflow: hidden;
     margin: 15px;
@@ -620,7 +620,8 @@ transition: transform 0.15s;
 .order-box-description {
     min-height: 100px;
     color: rgb(78, 77, 77);
-    margin: 20px 30px 10px 30px;
+    height: 50px;
+    margin: 30px 10px 0 10px;
     font-size: 20px;
     display: flex;
     flex-direction: row;
@@ -633,16 +634,9 @@ transition: transform 0.15s;
     display: block;
 }
 
-.wolt-fees {
-    color: #B32E31;
-    margin: 5px 0 0 5px;
-    text-decoration: none;
-    display: block;
-}
-
 .order-box-phone {
-    min-height: 50px;
-    margin: 0 30px 0 30px;
+    height: 50px;
+    margin-top: -65px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -917,9 +911,9 @@ transition: transform 0.15s;
 
     .sidebar {
         visibility: hidden;
-        background-color: snow;
+        background-color: white;
         position: fixed;
-        margin-top: 80px;
+        margin-top: 65px;
         display: flex;
         z-index: 40;
         flex-direction: column;
@@ -951,7 +945,7 @@ transition: transform 0.15s;
         visibility: hidden;
         display: flex;
         flex-direction: column;
-        background-color: snow;
+        background-color: white;
         text-align: left;
         overflow: hidden;
         height: 0;
@@ -1020,6 +1014,10 @@ transition: transform 0.15s;
     .order-box {
         margin-top: 5px;
      }
+
+     .order-box-phone {
+        margin-top: -50px;
+    }
 }
 
 
