@@ -921,7 +921,7 @@ transition: transform 0.15s;
         width: 100vw;
         box-shadow: 0 6px 6px -6px #adadad86;
         height: auto;
-        top: -280px;
+        top: -300px;
     }
 
     .sidebar-item, .sidebar-text-arrow {
