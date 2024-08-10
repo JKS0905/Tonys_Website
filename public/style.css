@@ -18,12 +18,12 @@ body {
 
 .main-content-wrapper {
     position: relative;
-    transition: filter 50ms ease-in-out;
+    transition: filter 250ms ease-in-out;
 }
 
-.blurred {
+/* .blurred {
     filter: blur(5px);
-} 
+}  */
 
 /* ↓ Code for the nav-bar on top of website ↓ */
 

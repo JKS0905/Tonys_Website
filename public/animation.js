@@ -3,6 +3,8 @@
 // Ensures the browser starts one the top when loading
 //"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
 
+setTimeout(() => {null}, 300)
+
 // Variabels for Main page
 const mainLogo = document.querySelector(".main-logo");
 const orderBtn = document.querySelector(".order-button-2-link");
@@ -66,6 +68,9 @@ const tl = gsap.timeline({defaults: {duration: 0.7, opacity: 1, y: 0, x: 0}});
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", event => {
+
+    document.body.style.visibility = 'visible';
+    document.body.style.opacity = 1; // Fade in content
 
     mm.add("(min-width: 1850px)", () => { 
         tl.fromTo(mainLogo, { opacity: 0, scale: 0.8 },        { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
