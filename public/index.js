@@ -214,7 +214,7 @@ function closeSidebar() {
     tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { visibility: "hidden",});
     tl.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
-    tl.set(sidebar, { visibility: "hidden" });
+    //tl.set(sidebar, { visibility: "hidden" });
     mainContentWraper.classList.remove("blurred");
 }
 

@@ -87,9 +87,10 @@ body {
     color: #b32e31;
 }
 
-.sidebar{
-    visibility: hidden;
-}
+/* .sidebar{
+    visibility: visible;
+    opacity: 1;
+} */
 
 .sidebar-item:nth-child(1) {
     font-weight: bold;
