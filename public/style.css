@@ -94,7 +94,8 @@ body {
     color: #b32e31;
 }
 
-.sidebar{
+.sidebar,
+.sidebar-dropdown-content {
     opacity: 0;
 }
 
@@ -306,6 +307,13 @@ transition: transform 0.15s;
 .h1-text {
     color: rgb(78, 77, 77);
     text-align: center;
+}
+.img-mian-margin {
+    background-color: #e9bb8638;;
+    width: 100vW;
+    height: 75px;
+    margin-top: -80px;
+    
 }
 
 .img-main-box {
