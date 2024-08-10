@@ -3,17 +3,23 @@
 © Copyright John Kenneth Steinnes 2024-->   
 
  logo text farge    #f3a33c      */
+
+ :root {
+    --initial-opacity: 0;
+    --final-opacity: 1;
+    --initial-scale: 0.8;
+    --final-scale: 1;
+}
   
 html, body {
  scroll-behavior: smooth;
 }
 
 body {
+    background-color: snow;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: snow; /* Your header's background color */
-    padding-top: env(safe-area-inset-top);
 }
 
 .main-content-wrapper {
