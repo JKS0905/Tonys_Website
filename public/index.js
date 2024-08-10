@@ -202,7 +202,7 @@ function closeHeader() { gsap.to(header, { duration: 0.25, opacity: 0, top: -70,
 function openSidebar() {
     mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
-    tl.set(sidebar, { opacity: 1 });
+    //tl.set(sidebar, { opacity: 1 });
     tl.to(sidebar, { duration: 0.25, top: "auto", ease: "power1.out" });
 }
 
@@ -214,7 +214,7 @@ function closeSidebar() {
     tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { opacity: 0 });
     tl.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
-    tl.set(sidebar, { opacity: 0 });
+    //tl.set(sidebar, { opacity: 0 });
     mainContentWraper.classList.remove("blurred");
 }
 

@@ -910,7 +910,7 @@ transition: transform 0.15s;
     }
 
     .sidebar {
-        opacity: 0;
+        opacity: 1;
         background-color: white;
         position: fixed;
         margin-top: 65px;
@@ -921,7 +921,7 @@ transition: transform 0.15s;
         width: 100vw;
         box-shadow: 0 6px 6px -6px #adadad86;
         height: auto;
-        top: -300px;
+        top: -350px;
     }
 
     .sidebar-item, .sidebar-text-arrow {
