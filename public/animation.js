@@ -29,21 +29,7 @@ const orderBox2 = orderBoxes[1];
 const orderBox3 = orderBoxes[2];
 
 // Initial startpoint for location-box animation
-if (window.matchMedia("(max-width: 1290px)").matches) {
-    isMaxWidth1290 = true;
-    gsap.set(locationimgLeft, { opacity: 0, scale: 0.95 });
-    gsap.set(locationimgRight, { opacity: 0, scale: 0.95 });
-    gsap.set(orderBoxes, { opacity: 0, scale: 0.95 });
-}
-else {
-    isMaxWidth1290 = false;
-    gsap.set(locationimgRight, { opacity: 0, x: -1100 });
-    gsap.set(locationimgLeft, { opacity: 0, x: -1100 });
-    gsap.set(orderBoxes, { opacity: 0, y: 500 });
-}
-
-gsap.set(locationTitle, { opacity: 0, scale: 0.95 });
-gsap.set(locationDescription, { opacity: 0, scale: 0.95 });
+window.matchMedia("(max-width: 1290px)").matches ? isMaxWidth1290 = true : isMaxWidth1290 = false;
 
 // Variabels Pizza item animation
 const menuTitle = document.querySelectorAll(".menu-header");
@@ -55,12 +41,6 @@ const openingNb = document.querySelector(".nb");
 const openingHoursText = document.getElementById("opening-hours-text");
 const fbLink = document.getElementById("fb-link");
  
-// Animation startpoint for Opening Hours
-gsap.set(openingHoursBox, {opacity: 0, scale: 0.95})
-gsap.set(openingNb, {opacity: 0, scale: 0.95})
-gsap.set(openingHoursText, {opacity: 0, scale: 0.95})
-gsap.set(fbLink, {opacity: 0, scale: 0.95})
-
 const mm = gsap.matchMedia();
 const tl = gsap.timeline({defaults: {duration: 0.7, opacity: 1, y: 0, x: 0}});
 gsap.registerPlugin(ScrollTrigger);
@@ -68,13 +48,13 @@ gsap.registerPlugin(ScrollTrigger);
 document.addEventListener("DOMContentLoaded", event => {
 
     mm.add("(min-width: 1850px)", () => { 
-        tl.fromTo(mainLogo, { opacity: 0, scale: 0.8 },        { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-        tl.fromTo(logoDescription, { opacity: 0, scale: 0.95}, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.fromTo(orderBtn, {opacity: 0, scale: 0.95 },        { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.fromTo(img1, { opacity: 0, y: -700 },               { ease: "power1.out" }, "-=1");
-        tl.fromTo(img3, { opacity: 0, y: 700 },                { ease: "power1.out" }, "-=1");
-        tl.fromTo(img2, { opacity: 0, x: 600 },                { ease: "power1.out" }, "-=1");
-        tl.fromTo(img4, { opacity: 0, x: 600 },                { ease: "power1.out" }, "-=0.8");
+        tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+        tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tl.to(img1, { ease: "power1.out" }, "-=1");
+        tl.to(img3, { ease: "power1.out" }, "-=1");
+        tl.to(img2, { ease: "power1.out" }, "-=1");
+        tl.to(img4, { ease: "power1.out" }, "-=0.8");
 
         // Adds scrolltrigger to the location box and order box
         addScrollTriggerLocationBoxText();
@@ -84,13 +64,13 @@ document.addEventListener("DOMContentLoaded", event => {
     }); // end of mediaquerry
 
     mm.add("(min-width: 1300px) and (max-width: 1849px)", () => {  
-        tl.fromTo(mainLogo, { opacity: 0, scale: 0.8 },        { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-        tl.fromTo(logoDescription, { opacity: 0, scale: 0.95}, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.fromTo(orderBtn, {opacity: 0, scale: 0.95 },        { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.fromTo(img1, { opacity: 0, x: 600 },                { duration:0.5, ease: "power1.out" }, "-=1");
-        tl.fromTo(img2, { opacity: 0, x: 600 },                { duration:0.5, ease: "power1.out"  }, "-=0.8");
-        tl.fromTo(img3, { opacity: 0, x: 600 },                { duration:0.5, ease: "power1.out"  }, "-=0.6");
-        tl.fromTo(img4, { opacity: 0, x: 600 },                { duration:0.5, ease: "power1.out"  }, "-=0.4");
+        tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+        tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tl.to(img1, { duration:0.5, ease: "power1.out" }, "-=1");
+        tl.to(img2, { duration:0.5, ease: "power1.out"  }, "-=0.8");
+        tl.to(img3, { duration:0.5, ease: "power1.out"  }, "-=0.6");
+        tl.to(img4, { duration:0.5, ease: "power1.out"  }, "-=0.4");
 
         // Adds scrolltrigger to the location box and order box
         addScrollTriggerLocationBoxText();
@@ -100,17 +80,13 @@ document.addEventListener("DOMContentLoaded", event => {
     }); // end of mediaquerry
 
     mm.add("(max-width: 1290px)", () => {
-        tl.fromTo(mainLogo, { opacity: 0, scale: 0.8 },        { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-        tl.fromTo(logoDescription, { opacity: 0, scale: 0.95}, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.fromTo(orderBtn, {opacity: 0, scale: 0.95 },        { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+        tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
 
         //Main page images
         mainPageImages.forEach(img => {
-                gsap.fromTo(img, {
-                    opacity: 0,
-                    scale: 0.95
-                },
-                {   
+                gsap.to(img, {   
                     opacity: 1,
                     scale: 1,
                     duration: 0.5,
@@ -169,36 +145,28 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Menu title animation
     menuTitle.forEach(element => {
-        gsap.fromTo(element, {
-                opacity: 0,
-                scale: 0.95
-            },
-            {   
+        gsap.to(element, {   
                 opacity: 1,
                 scale: 1,
                 duration: 0.5,
                 ease: "power1.out",
                 scrollTrigger: {
                     trigger: element,
-                    start: "top 80%",
+                    start: "top 75%",
                 }
             }
         );
     });
     
     pizzaItem.forEach(element => {
-        gsap.fromTo(element, {
-                opacity: 0,
-                y: 25
-            },
-            {   
+        gsap.to(element, {   
                 opacity: 1,
                 y: 0,
                 duration: 0.5,
                 ease: "power1.out",
                 scrollTrigger: {
                 trigger: element,
-                start: "top 80%",
+                start: "top 75%",
                 }
             }
         ); 

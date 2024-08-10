@@ -197,7 +197,7 @@ function handleScroll() {
 
 function openHeader() { gsap.to(header, { duration: 0.25, opacity: 1, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, { duration: 0.25, opacity: 0, top: -70, ease: "power1.out" }); }
+function closeHeader() { gsap.to(header, { duration: 0.25, opacity: 0, top: -60, ease: "power1.out" }); }
 
 function openSidebar() {
     mainContentWraper.classList.add("blurred");
@@ -325,3 +325,5 @@ document.body.addEventListener(eventToUseEnd, event => {
         }
     }
 }, { passive: true });
+
+openSidebar();

@@ -7,7 +7,7 @@
  :root {
     --initial-opacity: 0;
     --final-opacity: 1;
-    --initial-scale: 0.8;
+    --initial-scale: 0.95;
     --final-scale: 1;
 }
   
@@ -39,7 +39,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 65px;
+    height: 60px;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -221,8 +221,8 @@ transition: transform 0.15s;
 }
 
 .small-logo {
-    height: 60px;
-    width: 65px;
+    height: 50px;
+    width: 55px;
     margin: 15px;
     overflow: hidden;
     display: flex;
@@ -920,7 +920,7 @@ transition: transform 0.15s;
         opacity: 0;
         background-color: white;
         position: fixed;
-        margin-top: 65px;
+        margin-top: 60px;
         display: flex;
         z-index: 40;
         flex-direction: column;
@@ -1096,3 +1096,123 @@ transition: transform 0.15s;
 	opacity: 1;
 	transition: opacity 300ms;
 }
+
+
+/* ↓ Initial states for animation.js ↓ */
+
+.main-logo,
+.order-button-2-link,
+.img-box-img1,
+.img-box-img2,
+.img-box-img3,
+.img-box-img4,
+#main-logo-description, 
+
+.h1-text,
+#location-box-description,
+.location-box-middle,
+.location-box-left,
+
+.menu-header,
+.pizza-item,
+
+.order-box,
+
+.opening-hours-box,
+.nb,
+#opening-hours-text,
+#fb-link
+{
+    opacity: var(--initial-opacity);
+}
+
+.order-button-2-link,
+.main-logo-description,
+.menu-header,
+
+.pizza-item,
+.opening-hours-box,
+
+.order-box,
+
+.nb,
+#opening-hours-text,
+#fb-link
+{
+    transform: scale(var(--initial-scale));
+}
+
+
+@media screen and (min-width: 1850px) {
+    .img-box-img1 {
+        transform: translateY(-700px);
+    }
+    .img-box-img2 {
+        transform: translateX(600px);
+    }
+    .img-box-img3 {
+        transform: translateY(700px);
+    }
+    .img-box-img4 {
+        transform: translateX(600px);
+    }
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1849px) {
+    .main-logo {
+        transform: scale(0.8);
+    }
+    .order-button-2-link {
+        transform: scale(var(--initial-scale));
+    }
+    .img-box-img1 {
+        transform: translateX(600px);
+    }
+    .img-box-img2 {
+        transform: translateX(600px);
+    }
+    .img-box-img3 {
+        transform: translateX(600px);
+    }
+    .img-box-img4 {
+        transform: translateX(600px);
+    }
+    .main-logo-description {
+        transform: scale(var(--initial-scale));
+    }
+}
+@media screen and (max-width: 1290px) {
+    .img-box-img1,
+    .img-box-img2,
+    .img-box-img3,
+    .img-box-img4,
+    .h1-text,
+    .location-box-description,
+    .location-box-middle,
+    .location-box-left
+    {
+        transform: scale(var(--initial-scale));
+    }
+    .order-box {
+        transform: translateY(none);
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .order-box {
+        transform: translateY(600px);
+    }
+    .location-box-left,
+    .location-box-middle {
+        transform: translateX(-1100px);
+    }
+}
+
+
+.main-logo {
+    transform: scale(0.8);
+}
+.pizza-item {
+    transform: translateY(25px);
+}
+
