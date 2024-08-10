@@ -203,7 +203,7 @@ function openSidebar() {
     mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
     tl.set(sidebar, { opacity: 1 });
-    tl.to(sidebar, { duration: 0.3, top: "auto", ease: "power1.out" });
+    tl.to(sidebar, { duration: 0.25, top: "auto", ease: "power1.out" });
 }
 
 function closeSidebar() {
@@ -211,9 +211,9 @@ function closeSidebar() {
     sidebarItemMenu.style.fill = gray;
     sidebarBtn.classList.remove("change")
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, { duration: 0.3, height: 0, ease: "power1.out"});
+    tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
     tl.set(sidebarDropdownContent, { opacity: 0 });
-    tl.to(sidebar, { duration: 0.3, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.3");
+    tl.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
     tl.set(sidebar, { opacity: 0 });
     mainContentWraper.classList.remove("blurred");
 }
@@ -223,14 +223,14 @@ function openSidebarDropdown() {
     sidebarItemMenu.style.fill = red;
     sidebarMenuArrow.classList.add("rotate");
     tl.set(sidebarDropdownContent, { opacity: 1 });
-    tl.to(sidebarDropdownContent, {duration: 0.3, height: "auto", ease: "power1.out"});
+    tl.to(sidebarDropdownContent, {duration: 0.25, height: "auto", ease: "power1.out"});
 }
 
 function closeSidebarDropdown() {
     sidebarItemMenu.style.color = gray;
     sidebarItemMenu.style.fill = gray;
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, { duration: 0.3, height: 0, ease: "power1.out" });
+    tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out" });
     tl.set(sidebarDropdownContent, { opacity: 0 });
 }
 
