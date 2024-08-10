@@ -28,7 +28,7 @@ const scrollToTop2 = document.getElementById("scrollToTop2");
 const scrollToTop3 = document.getElementById("scrollToTop3");
 
 // Scroll behavior for menu items, ScrollTo function
-let offset = 70; // Adjust offset here for scroll
+let offset = 50; // Adjust offset here for scroll
 
 let isTouchscreen;
 
@@ -83,12 +83,12 @@ function getComputedPropertyValue(element, property) {
 document.addEventListener("DOMContentLoaded", event => {
 
     // Select menu links
-    const orderButtons = document.querySelectorAll(".order-btns");
+    const scrollToLinks = document.querySelectorAll(".scrollTo");
     const mainMenuLinks = document.querySelectorAll(".dropdown-content a");
     const sidebarMenuLinks = document.querySelectorAll(".sidebar-dropdown-content a");
 
     // Attach attachScrollAndDisable function to each link inside menu links
-    orderButtons.forEach(link => {
+    scrollToLinks.forEach(link => {
         attachScrollAndDisable(link);
     });
 
@@ -99,7 +99,12 @@ document.addEventListener("DOMContentLoaded", event => {
     sidebarMenuLinks.forEach(link => {
         attachScrollAndDisable(link);
     });
-    
+
+    // For elemnts with maual scroll position.
+    attachScrollAndDisable(scrollToTop1, 0);
+    attachScrollAndDisable(scrollToTop2, 0);
+    attachScrollAndDisable(scrollToTop3, 0);
+
     // Prevents the href to interfere while holding down on the link.
     function disableHref(link) {
         link.addEventListener(eventToUseStart, event => {
@@ -137,7 +142,7 @@ document.addEventListener("DOMContentLoaded", event => {
         } else {
             // Mouse event handling (for desktop)
             link.addEventListener("click", event => {
-                offset = 15;
+                offset = -15;
                 event.preventDefault();
                 scrollToTarget(link, manualScrollPosition);
             });
@@ -154,6 +159,7 @@ document.addEventListener("DOMContentLoaded", event => {
             const targetElement = document.getElementById(targetId);
             const scrollPosition = targetElement.offsetTop - offset;
             window.scrollTo(0, scrollPosition);
+            console.log(offset, scrollPosition)
 
             // Prevents the header from closing when ScrollTo is activated
             function scrollListener(event) {
@@ -165,12 +171,6 @@ document.addEventListener("DOMContentLoaded", event => {
             window.addEventListener("scroll", scrollListener, { passive: true });
         }
     }
-
-    // For elemnts with maual scroll position.
-    attachScrollAndDisable(scrollToTop1, 0);
-    attachScrollAndDisable(scrollToTop2, 0);
-    attachScrollAndDisable(scrollToTop3, 0);
-
 }, { passive: true });
 
 
