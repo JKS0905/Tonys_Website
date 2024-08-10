@@ -45,140 +45,143 @@ const mm = gsap.matchMedia();
 const tl = gsap.timeline({defaults: {duration: 0.7, opacity: 1, y: 0, x: 0}});
 gsap.registerPlugin(ScrollTrigger);
 
+
 document.addEventListener("DOMContentLoaded", event => {
+    window.onload = () => {
 
-    mm.add("(min-width: 1850px)", () => { 
-        tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-        tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.to(img1, { ease: "power1.out" }, "-=1");
-        tl.to(img3, { ease: "power1.out" }, "-=1");
-        tl.to(img2, { ease: "power1.out" }, "-=1");
-        tl.to(img4, { ease: "power1.out" }, "-=0.8");
+        mm.add("(min-width: 1850px)", () => { 
+            tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+            tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tl.to(img1, { ease: "power1.out" }, "-=1");
+            tl.to(img3, { ease: "power1.out" }, "-=1");
+            tl.to(img2, { ease: "power1.out" }, "-=1");
+            tl.to(img4, { ease: "power1.out" }, "-=0.8");
 
-        // Adds scrolltrigger to the location box and order box
-        addScrollTriggerLocationBoxText();
-        addScrollTriggerLocationBoxSlider();
-        addScrollTriggerOrderBoxes();
+            // Adds scrolltrigger to the location box and order box
+            addScrollTriggerLocationBoxText();
+            addScrollTriggerLocationBoxSlider();
+            addScrollTriggerOrderBoxes();
 
-    }); // end of mediaquerry
+        }); // end of mediaquerry
 
-    mm.add("(min-width: 1300px) and (max-width: 1849px)", () => {  
-        tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-        tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.to(img1, { duration:0.5, ease: "power1.out" }, "-=1");
-        tl.to(img2, { duration:0.5, ease: "power1.out"  }, "-=0.8");
-        tl.to(img3, { duration:0.5, ease: "power1.out"  }, "-=0.6");
-        tl.to(img4, { duration:0.5, ease: "power1.out"  }, "-=0.4");
+        mm.add("(min-width: 1300px) and (max-width: 1849px)", () => {  
+            tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+            tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tl.to(img1, { duration:0.5, ease: "power1.out" }, "-=1");
+            tl.to(img2, { duration:0.5, ease: "power1.out"  }, "-=0.8");
+            tl.to(img3, { duration:0.5, ease: "power1.out"  }, "-=0.6");
+            tl.to(img4, { duration:0.5, ease: "power1.out"  }, "-=0.4");
 
-        // Adds scrolltrigger to the location box and order box
-        addScrollTriggerLocationBoxText();
-        addScrollTriggerLocationBoxSlider();
-        addScrollTriggerOrderBoxes();
+            // Adds scrolltrigger to the location box and order box
+            addScrollTriggerLocationBoxText();
+            addScrollTriggerLocationBoxSlider();
+            addScrollTriggerOrderBoxes();
 
-    }); // end of mediaquerry
+        }); // end of mediaquerry
 
-    mm.add("(max-width: 1290px)", () => {
-        tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-        tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-        tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+        mm.add("(max-width: 1290px)", () => {
+            tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+            tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
 
-        //Main page images
-        mainPageImages.forEach(img => {
-                gsap.to(img, {   
+            //Main page images
+            mainPageImages.forEach(img => {
+                    gsap.to(img, {   
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power1.out",
+                        scrollTrigger: {
+                        trigger: img,
+                        start: "top center"
+                    }
+                    }
+                ); 
+            });
+
+            addScrollTriggerLocationBoxSlider();
+
+            //Location box animation for Mobile
+            const tlScrollTrigger = gsap.timeline({
+                scrollTrigger: {
+                trigger: locationDescription,
+                start: "top center",
+                }
+            });
+        
+            tlScrollTrigger.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"});
+            tlScrollTrigger.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
+
+            // Location images animation
+            locationimages.forEach(img => {
+                gsap.to(img, { 
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power1.out",
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top center"
+                        }
+                    }
+                );
+            });
+            // Order-Box animation
+            orderBoxes.forEach(item => {
+                gsap.to(item, { 
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power1.out",
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top center"
+                        }
+                    }
+                );
+            });
+
+        }); // end of mediaquerry
+
+        // Menu title animation
+        menuTitle.forEach(element => {
+            gsap.to(element, {   
                     opacity: 1,
                     scale: 1,
                     duration: 0.5,
                     ease: "power1.out",
                     scrollTrigger: {
-                    trigger: img,
-                    start: "top center"
+                        trigger: element,
+                        start: "top 75%",
+                    }
                 }
+            );
+        });
+        
+        pizzaItem.forEach(element => {
+            gsap.to(element, {   
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power1.out",
+                    scrollTrigger: {
+                    trigger: element,
+                    start: "top 75%",
+                    }
                 }
             ); 
         });
 
-        addScrollTriggerLocationBoxSlider();
-
-        //Location box animation for Mobile
-        const tlScrollTrigger = gsap.timeline({
+        gsap.to({}, {
             scrollTrigger: {
-            trigger: locationDescription,
-            start: "top center",
+            trigger: ".opening-hours-box",
+            start: "50% center",
+            onEnter: () => {animateOpeningHours();}
             }
         });
-    
-        tlScrollTrigger.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"});
-        tlScrollTrigger.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
-
-           // Location images animation
-        locationimages.forEach(img => {
-            gsap.to(img, { 
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.5,
-                    ease: "power1.out",
-                    scrollTrigger: {
-                        trigger: img,
-                        start: "top center"
-                    }
-                }
-            );
-        });
-           // Order-Box animation
-        orderBoxes.forEach(item => {
-            gsap.to(item, { 
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.5,
-                    ease: "power1.out",
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top center"
-                    }
-                }
-            );
-        });
-
-    }); // end of mediaquerry
-
-    // Menu title animation
-    menuTitle.forEach(element => {
-        gsap.to(element, {   
-                opacity: 1,
-                scale: 1,
-                duration: 0.5,
-                ease: "power1.out",
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 75%",
-                }
-            }
-        );
-    });
-    
-    pizzaItem.forEach(element => {
-        gsap.to(element, {   
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                ease: "power1.out",
-                scrollTrigger: {
-                trigger: element,
-                start: "top 75%",
-                }
-            }
-        ); 
-    });
-
-    gsap.to({}, {
-        scrollTrigger: {
-        trigger: ".opening-hours-box",
-        start: "50% center",
-        onEnter: () => {animateOpeningHours();}
-        }
-    });
+    }
 
 }, { passive: true }); // end of DOMContentLoaded
 
