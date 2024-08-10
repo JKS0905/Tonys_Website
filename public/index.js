@@ -195,15 +195,15 @@ function handleScroll() {
   }
 }
 
-function openHeader() { gsap.to(header, {duration: 0.25, top: 0, ease: "power1.out" }); }
+function openHeader() { gsap.to(header, { duration: 0.25, opacity: 1, top: 0, ease: "power1.out" }); }
 
-function closeHeader() { gsap.to(header, {duration: 0.25, top: -70, ease: "power1.out" }); }
+function closeHeader() { gsap.to(header, { duration: 0.25, opacity: 0, top: -70, ease: "power1.out" }); }
 
 function openSidebar() {
     mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
-    tl.set(sidebar, {visibility: "visible"});
-    tl.to(sidebar, {duration: 0.25, top: "auto", ease: "power1.out"});
+    tl.set(sidebar, { opacity: 1 });
+    tl.to(sidebar, { duration: 0.25, top: "auto", ease: "power1.out" });
 }
 
 function closeSidebar() {
@@ -212,9 +212,9 @@ function closeSidebar() {
     sidebarBtn.classList.remove("change")
     sidebarMenuArrow.classList.remove("rotate");
     tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
-    tl.set(sidebarDropdownContent, { visibility: "hidden",});
+    tl.set(sidebarDropdownContent, { opacity: 0 });
     tl.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
-    //tl.set(sidebar, { visibility: "hidden" });
+    tl.set(sidebar, { opacity: 0 });
     mainContentWraper.classList.remove("blurred");
 }
 
@@ -222,7 +222,7 @@ function openSidebarDropdown() {
     sidebarItemMenu.style.color = red;
     sidebarItemMenu.style.fill = red;
     sidebarMenuArrow.classList.add("rotate");
-    tl.set(sidebarDropdownContent, {visibility: "visible"});
+    tl.set(sidebarDropdownContent, { opacity: 1 });
     tl.to(sidebarDropdownContent, {duration: 0.25, height: "auto", ease: "power1.out"});
 }
 
@@ -230,8 +230,8 @@ function closeSidebarDropdown() {
     sidebarItemMenu.style.color = gray;
     sidebarItemMenu.style.fill = gray;
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, {duration: 0.25, height: 0, ease: "power1.out"});
-    tl.set(sidebarDropdownContent, {visibility: "hidden"});
+    tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out" });
+    tl.set(sidebarDropdownContent, { opacity: 0 });
 }
 
 menuText.addEventListener("mouseenter", event => {
@@ -304,8 +304,8 @@ sidebarDropdownContent.addEventListener(eventToUseEnd, event => { !isScrolling ?
 
 document.body.addEventListener(eventToUseEnd, event => {
     isSidebarOpen = sidebarBtn.classList.contains("change");
-    isSidebarVisible = sidebar.style.visibility === "visible";
-    isDropdownVisible = sidebarDropdownContent.style.visibility === "visible";
+    isSidebarVisible = sidebar.style.opacity == 1;
+    isDropdownVisible = sidebarDropdownContent.style.opacity == 1;
 
     // If sidebar is open and you click outside the sidebar and the dropdown content
     if (isSidebarOpen && !sidebar.contains(event.target) && !sidebarBtn.contains(event.target) && !sidebarDropdownContent.contains(event.target)) {

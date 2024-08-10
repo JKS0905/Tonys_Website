@@ -87,10 +87,9 @@ body {
     color: #b32e31;
 }
 
-/* .sidebar{
-    visibility: visible;
-    opacity: 1;
-} */
+.sidebar{
+    opacity: 0;
+}
 
 .sidebar-item:nth-child(1) {
     font-weight: bold;
@@ -185,7 +184,7 @@ transition: transform 0.15s;
 }
   
 .change .middleLine {
-    visibility: hidden;
+    opacity: 0;
 }
 
 .change .bottomLine {
@@ -911,7 +910,7 @@ transition: transform 0.15s;
     }
 
     .sidebar {
-        visibility: hidden;
+        opacity: 0;
         background-color: white;
         position: fixed;
         margin-top: 65px;
@@ -943,7 +942,7 @@ transition: transform 0.15s;
     }
 
     .sidebar-dropdown-content {
-        visibility: hidden;
+        opacity: 0;
         display: flex;
         flex-direction: column;
         background-color: white;
