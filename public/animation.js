@@ -182,7 +182,6 @@ document.addEventListener("DOMContentLoaded", event => {
             }
         });
     }
-
 }, { passive: true }); // end of DOMContentLoaded
 
 //Location box animation for desktop.
