@@ -37,6 +37,11 @@ const header = document.querySelector('.header-main');
 let lastScrollPosition = window.pageYOffset;
 const deadZoneThreshold = 30; // Adjust the threshold as needed
 
+// Variabels for sidebar button aimation.
+const topLine = document.querySelector(".topLine");
+const middleLine = document.querySelector(".middleLine");
+const bottomLine = document.querySelector(".bottomLine");
+
 // Scroll behavior for menu items, ScrollTo function
 let offset = 50; // Adjust offset here for scroll
 
