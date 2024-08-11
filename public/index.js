@@ -189,7 +189,7 @@ window.addEventListener("DOMContentLoaded", event => {
 function disableHref(link) {
     link.addEventListener(eventToUseStart, event => {
         event.preventDefault();
-    });
+    }, { passive: false });
 }
 
 function attachScrollAndDisable(link, manualScrollPosition = null) {
@@ -202,14 +202,14 @@ function attachScrollAndDisable(link, manualScrollPosition = null) {
         link.addEventListener("touchstart", event => {
             startY = event.touches[0].clientY;
             isScrolling = false;
-        });
+        }, { passive: true });
 
         link.addEventListener("touchmove", event => {
             const moveY = event.touches[0].clientY;
             if (Math.abs(moveY - startY) > 20) { // if moved more than 20 pixels vertically
                 isScrolling = true;
             }
-        });
+        }), { passive: true };
 
         link.addEventListener("touchend", event => {
             if (!isScrolling) {
@@ -218,14 +218,14 @@ function attachScrollAndDisable(link, manualScrollPosition = null) {
             }
             // Delay the reset of isScrolling to make sure it's done after touchend.
             setTimeout(() => { isScrolling = false; }, 100);
-        });
+        }, { passive: false });
     } else {
         // Mouse event handling (for desktop)
         link.addEventListener("click", event => {
             offset = -15;
             event.preventDefault();
             scrollToTarget(link, manualScrollPosition);
-        });
+        }, { passive: false });
     }
 }
 
@@ -240,7 +240,6 @@ function scrollToTarget(link, manualScrollPosition = null) {
         const targetElement = document.getElementById(targetId);
         const scrollPosition = targetElement.offsetTop - offset;
         window.scrollTo(0, scrollPosition);
-        console.log(offset, scrollPosition)
 
         // Prevents the header from closing when ScrollTo is activated
         function scrollListener(event) {
