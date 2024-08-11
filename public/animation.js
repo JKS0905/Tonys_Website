@@ -47,7 +47,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 document.addEventListener("DOMContentLoaded", event => {
-    window.onLoad = () => {
+    window.onload = () => {
 
         mm.add("(min-width: 1850px)", () => { 
             tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
