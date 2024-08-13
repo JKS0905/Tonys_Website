@@ -818,7 +818,7 @@ transition: transform 0.15s;
 }
 .credit {
     height: 50px;
-    width: 100%;
+    width: 80%;
     font-size: 14px;
     font-weight: bold;
     color: rgb(78, 77, 77);
