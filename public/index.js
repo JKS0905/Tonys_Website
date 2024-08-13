@@ -227,7 +227,6 @@ function attachScrollAndDisable(link, manualScrollPosition = null) {
     } else {
         // Mouse event handling (for desktop)
         link.addEventListener("click", event => {
-            offset = -15;
             event.preventDefault();
             scrollToTarget(link, manualScrollPosition);
         }, { passive: false });
