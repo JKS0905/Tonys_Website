@@ -1,4 +1,4 @@
-// Last update 24.05.24
+// Last update 14.08.24
 
 // Nav bar dropdown menu events
 const menuText = document.querySelector(".menu-text-arrow");
@@ -55,6 +55,8 @@ let isScrollToSection = false;
 let isSidebarOpen;
 let isSidebarVisible;
 let isDropdownVisible;
+
+const tl = gsap.timeline();
 
 // Variable to check for browser support for event types
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";

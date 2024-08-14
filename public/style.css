@@ -22,10 +22,6 @@ body {
     padding: 0;
 }
 
-.main-content-wrapper {
-    position: relative;
-    transition: filter 250ms ease-in-out;
-}
 
 /* .blurred {
     filter: blur(5px);
@@ -44,8 +40,16 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     z-index: 100;
     box-shadow: 0 6px 6px -6px #58585886;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1900px;
 }
 
 .nav-box {
@@ -234,7 +238,7 @@ transition: transform 0.15s;
 }
 
 .small-logo:hover {
-    scale: 105%;
+    scale: 110%;
 }
 
 .logo-overlay img {
@@ -340,7 +344,7 @@ transition: transform 0.15s;
 }
 
 .img-box-right {
-    width: 1200px;
+    width: 1100px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -451,26 +455,29 @@ transition: transform 0.15s;
 }
 
 .container {
-    width: 1430px;
-    justify-content: flex-start;
+    width: 1880px;
+    height: 20;
+    justify-content: start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;  
     overflow: hidden;
+    padding: 0 10px 0 10px;
 }
 
 .pizza-item {
     background: #e9bb8638;
     color: gray;
     display: flex;
-    width: 450px;
+    width: 600px;
     height: 125px;
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
     box-shadow: 0 6px 6px -6px #adadad86;
     align-items: center;
+    transform: scale(1.8);
 }
 
 .pizza-title {
@@ -774,6 +781,7 @@ transition: transform 0.15s;
     align-items: center;
 }
 .footer {
+    max-width: 1900px;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -830,6 +838,12 @@ transition: transform 0.15s;
 
 /* ↓ when screen gets smaler f. eks mobile ↓ */
 
+@media screen and (max-width: 1920px) {
+    .container {
+        width: 1250px;
+    }
+}
+
 @media screen and (max-width: 1820px) {
 
     .img-main-box {
@@ -871,10 +885,6 @@ transition: transform 0.15s;
 
 @media screen and (max-width: 1500px) {
 
-    .container {
-        width: 950px;
-    }
-
     .order-box-main {
         gap: 0;
     }
@@ -890,6 +900,9 @@ transition: transform 0.15s;
 }
 
 @media screen and (max-width: 1290px) {
+.container {
+    width: 600px;
+}
 
     .order-button-2 {
         width: 400px;
@@ -935,6 +948,10 @@ transition: transform 0.15s;
     .location-box-middle {
         margin: 0;
         margin-top: 30px;
+    }
+
+    .container {
+        width: 500px;
     }
 
 }

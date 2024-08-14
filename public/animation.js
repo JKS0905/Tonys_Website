@@ -1,7 +1,4 @@
-// Last update 09.06.24
-
-// Ensures the browser starts one the top when loading
-//"scrollRestoration" in history ? history.scrollRestoration = "manual": null;
+// Last update 14.08.24
 
 // Variabels for Main page
 const mainLogo = document.querySelector(".main-logo");
@@ -232,8 +229,8 @@ function addScrollTriggerOrderBoxes() {
 function animateOrderBoxes() {
     const tlOrderBoxes = gsap.timeline();
     tlOrderBoxes.to(orderBox1, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"});
-    tlOrderBoxes.to(orderBox2, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
-    tlOrderBoxes.to(orderBox3, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
+    tlOrderBoxes.to(orderBox2, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.3");
+    tlOrderBoxes.to(orderBox3, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.3");
 }
 
 function animateOpeningHours() {
