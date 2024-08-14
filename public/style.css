@@ -596,6 +596,7 @@ transition: transform 0.15s;
     flex-wrap: wrap;
     justify-content: center;
     text-decoration: none;
+    overflow: hidden;
 }
 
 .order-box {
@@ -1262,7 +1263,7 @@ transition: transform 0.15s;
 
 @media screen and (min-width: 1300px) {
     .order-box {
-        transform: translateY(600px);
+        transform: translateY(450px);
     }
     .location-box-left,
     .location-box-middle {

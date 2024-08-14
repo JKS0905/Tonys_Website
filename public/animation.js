@@ -42,7 +42,7 @@ const openingHoursText = document.getElementById("opening-hours-text");
 const fbLink = document.getElementById("fb-link");
  
 const mm = gsap.matchMedia();
-const tl = gsap.timeline({defaults: {duration: 0.7, opacity: 1, y: 0, x: 0}});
+const tlMain = gsap.timeline({defaults: {duration: 0.7, opacity: 1, y: 0, x: 0}});
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -50,13 +50,13 @@ document.addEventListener("DOMContentLoaded", event => {
     window.onload = () => {
 
         mm.add("(min-width: 1850px)", () => { 
-            tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-            tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-            tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-            tl.to(img1, { ease: "power1.out" }, "-=1");
-            tl.to(img3, { ease: "power1.out" }, "-=1");
-            tl.to(img2, { ease: "power1.out" }, "-=1");
-            tl.to(img4, { ease: "power1.out" }, "-=0.8");
+            tlMain.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+            tlMain.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tlMain.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tlMain.to(img1, { ease: "power1.out" }, "-=1");
+            tlMain.to(img3, { ease: "power1.out" }, "-=1");
+            tlMain.to(img2, { ease: "power1.out" }, "-=1");
+            tlMain.to(img4, { ease: "power1.out" }, "-=0.8");
 
             // Adds scrolltrigger to the location box and order box
             addScrollTriggerLocationBoxText();
@@ -66,13 +66,13 @@ document.addEventListener("DOMContentLoaded", event => {
         }); // end of mediaquerry
 
         mm.add("(min-width: 1300px) and (max-width: 1849px)", () => {  
-            tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-            tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-            tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-            tl.to(img1, { duration:0.5, ease: "power1.out" }, "-=1");
-            tl.to(img2, { duration:0.5, ease: "power1.out"  }, "-=0.8");
-            tl.to(img3, { duration:0.5, ease: "power1.out"  }, "-=0.6");
-            tl.to(img4, { duration:0.5, ease: "power1.out"  }, "-=0.4");
+            tlMain.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+            tlMain.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tlMain.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tlMain.to(img1, { duration:0.5, ease: "power1.out" }, "-=1");
+            tlMain.to(img2, { duration:0.5, ease: "power1.out"  }, "-=0.8");
+            tlMain.to(img3, { duration:0.5, ease: "power1.out"  }, "-=0.6");
+            tlMain.to(img4, { duration:0.5, ease: "power1.out"  }, "-=0.4");
 
             // Adds scrolltrigger to the location box and order box
             addScrollTriggerLocationBoxText();
@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", event => {
         }); // end of mediaquerry
 
         mm.add("(max-width: 1290px)", () => {
-            tl.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
-            tl.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
-            tl.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tlMain.to(mainLogo, { duration: 0.3, scale: 1, ease: "back.out(1.7)", delay: 0.5 });
+            tlMain.to(logoDescription, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
+            tlMain.to(orderBtn, { duration: 0.3, scale: 1, ease: "power1.out"}, "-=0.1");
 
             //Main page images
             mainPageImages.forEach(img => {
@@ -211,10 +211,11 @@ function addScrollTriggerLocationBoxSlider() {
 }
 
 function animateLocationBox() {
-    tl.to(locationimgRight, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"});
-    tl.to(locationimgLeft, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"}, "-=0.2");
-    tl.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"},"-=0.6");
-    tl.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"},"-=0.4");
+    const tlLocationBox = gsap.timeline();
+    tlLocationBox.to(locationimgRight, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"});
+    tlLocationBox.to(locationimgLeft, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"}, "-=0.2");
+    tlLocationBox.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"},"-=0.6");
+    tlLocationBox.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"},"-=0.4");
 }
 
 //Location box animation for desktop.
@@ -229,15 +230,17 @@ function addScrollTriggerOrderBoxes() {
 }
 
 function animateOrderBoxes() {
-    tl.to(orderBox1, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"});
-    tl.to(orderBox2, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
-    tl.to(orderBox3, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
+    const tlOrderBoxes = gsap.timeline();
+    tlOrderBoxes.to(orderBox1, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"});
+    tlOrderBoxes.to(orderBox2, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
+    tlOrderBoxes.to(orderBox3, { duration: 0.5, opacity: 1, y: 0, ease: "power1.out"}, "-=0.2");
 }
 
 function animateOpeningHours() {
-    tl.to(openingHoursBox, { duration: 0.5, opacity: 1, scale: 1, ease: "power1.out"});
-    tl.to(openingNb, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.2");
-    tl.to(openingHoursText, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
-    tl.to(fbLink, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
+    const tlOpeningHours = gsap.timeline();
+    tlOpeningHours.to(openingHoursBox, { duration: 0.5, opacity: 1, scale: 1, ease: "power1.out"});
+    tlOpeningHours.to(openingNb, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.2");
+    tlOpeningHours.to(openingHoursText, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
+    tlOpeningHours.to(fbLink, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
 }
 
