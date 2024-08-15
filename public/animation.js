@@ -178,6 +178,13 @@ document.addEventListener("DOMContentLoaded", event => {
             onEnter: () => {animateOpeningHours();}
             }
         });
+        gsap.to({}, {
+            scrollTrigger: {
+            trigger: ".footer credit",
+            start: "bottom bottom",
+            onEnter: () => {animateOpeningHours();}
+            }
+        });
     }
 }, { passive: true }); // end of DOMContentLoaded
 
@@ -193,8 +200,6 @@ function addScrollTriggerLocationBoxText() {
 }
 
 function addScrollTriggerLocationBoxSlider() {
-   
-
     gsap.to({}, {
         scrollTrigger: {
             trigger: ".img-main-box", 
@@ -211,12 +216,18 @@ function locationBoxSlider() {
     tlSlider.set(".location-box-slider", { opacity: 0 }); 
 }
 
+let openingHoursAnimated = false;
+
 function animateLocationBox() {
+    if (openingHoursAnimated) return;
+    openingHoursAnimated = true;
+
     const tlLocationBox = gsap.timeline();
     tlLocationBox.to(locationimgRight, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"});
     tlLocationBox.to(locationimgLeft, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"}, "-=0.2");
     tlLocationBox.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"},"-=0.6");
     tlLocationBox.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"},"-=0.4");
+    console.log("function")
 }
 
 //Location box animation for desktop.
