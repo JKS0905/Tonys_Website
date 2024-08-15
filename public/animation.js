@@ -193,18 +193,19 @@ function addScrollTriggerLocationBoxText() {
 }
 
 function addScrollTriggerLocationBoxSlider() {
-    let xWidth;
-    isMaxWidth1290 ? xWidth = 1300 : xWidth = 3000;
+    let xWidth = window.innerWidth + 200;
 
-    gsap.to(".location-box-slider", { 
-        duration: 1.2, 
-        x: xWidth, ease: "power1.out", 
-
+    const tl = gsap.timeline({
         scrollTrigger: { 
             trigger: ".img-main-box", 
-            start: "bottom 90%"
+            start: "bottom 90%",
+            invalidateOnRefresh: true,
+            once: true 
         }
-    }); 
+    });
+
+    tl.to(".location-box-slider", { duration: 1.2, x: xWidth, ease: "power1.out" }); 
+    tl.set(".location-box-slider", { opacity: 0 }); 
 }
 
 function animateLocationBox() {
