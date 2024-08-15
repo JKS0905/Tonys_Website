@@ -18,7 +18,7 @@ const locationimgLeft = document.querySelector(".location-box-left");
 const locationimages = [locationimgRight, locationimgLeft];
 
 let isMaxWidth1290;
-
+const tlSlider = gsap.timeline();
 // Variabels Order-Box animation
 const orderBoxes = document.querySelectorAll(".order-box");
 const orderBox1 = orderBoxes[0];
@@ -193,19 +193,22 @@ function addScrollTriggerLocationBoxText() {
 }
 
 function addScrollTriggerLocationBoxSlider() {
-    let xWidth = window.innerWidth + 200;
+   
 
-    const tl = gsap.timeline({
-        scrollTrigger: { 
+    gsap.to({}, {
+        scrollTrigger: {
             trigger: ".img-main-box", 
             start: "bottom 90%",
-            invalidateOnRefresh: true,
-            once: true 
+            onEnter: () => {locationBoxSlider();}
         }
-    });
+    })
+}
 
-    tl.to(".location-box-slider", { duration: 1.2, x: xWidth, ease: "power1.out" }); 
-    tl.set(".location-box-slider", { opacity: 0 }); 
+function locationBoxSlider() {
+    
+    let xWidth = window.innerWidth + 200;
+    tlSlider.to(".location-box-slider", { duration: 1.2, x: xWidth, ease: "power1.out" }); 
+    tlSlider.set(".location-box-slider", { opacity: 0 }); 
 }
 
 function animateLocationBox() {
