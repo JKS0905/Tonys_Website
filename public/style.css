@@ -844,8 +844,8 @@ transition: transform 0.15s;
     }
 }
 
-@media screen and (max-width: 1820px) {
-
+@media screen and (max-width: 1880px) {
+    
     .img-main-box {
         justify-content: center;
         justify-items: center;
@@ -872,6 +872,10 @@ transition: transform 0.15s;
     .img-box-img4 img {
     margin:  30px 0 0 30px;
     }
+
+}
+
+@media screen and (max-width: 1820px) {
 
     .location-box {
         flex-wrap: wrap-reverse;
