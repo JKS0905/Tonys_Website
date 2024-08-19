@@ -31,6 +31,7 @@ window.matchMedia("(max-width: 1290px)").matches ? isMaxWidth1290 = true : isMax
 // Variabels Pizza item animation
 const menuTitle = document.querySelectorAll(".menu-header");
 const pizzaItem = document.querySelectorAll(".pizza-item");
+const pastaDescription = document.querySelector(".pasta-description");
 
 // Variabels for Opening Hours
 const openingHoursBox = document.querySelector(".opening-hours-box");
@@ -171,6 +172,18 @@ document.addEventListener("DOMContentLoaded", event => {
             ); 
         });
 
+        gsap.to(pastaDescription, {   
+            opacity: 1,
+            scale: 1,
+            duration: 0.5,
+            ease: "power1.out",
+            scrollTrigger: {
+                trigger: pastaDescription,
+                start: "top 75%",
+                markers: true
+            }
+        });
+
         gsap.to({}, {
             scrollTrigger: {
             trigger: ".opening-hours-box",
@@ -178,9 +191,10 @@ document.addEventListener("DOMContentLoaded", event => {
             onEnter: () => {animateOpeningHours();}
             }
         });
+
         gsap.to({}, {
             scrollTrigger: {
-            trigger: ".footer credit",
+            trigger: ".footer",
             start: "bottom bottom",
             onEnter: () => {animateOpeningHours();}
             }

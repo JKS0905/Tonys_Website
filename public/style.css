@@ -312,6 +312,23 @@ transition: transform 0.15s;
     color: rgb(78, 77, 77);
     text-align: center;
 }
+
+.pasta-description-container {
+    background-color: #68bfe233;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -20px;
+    pad: 0 10px 0 10px;
+}
+.pasta-description {
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
 .img-mian-margin {
     background-color: #e9bb8638;
     display: block;
@@ -1207,7 +1224,10 @@ transition: transform 0.15s;
 .opening-hours-box,
 .nb,
 #opening-hours-text,
-#fb-link
+#fb-link,
+
+.pasta-description
+
 {
     opacity: var(--initial-opacity);
 }
@@ -1224,7 +1244,10 @@ transition: transform 0.15s;
 
 .nb,
 #opening-hours-text,
-#fb-link
+#fb-link,
+
+.pasta-description
+
 {
     transform: scale(var(--initial-scale));
 }
