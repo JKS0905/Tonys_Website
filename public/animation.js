@@ -180,7 +180,6 @@ document.addEventListener("DOMContentLoaded", event => {
             scrollTrigger: {
                 trigger: pastaDescription,
                 start: "top 75%",
-                markers: true
             }
         });
 
