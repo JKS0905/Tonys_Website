@@ -1,4 +1,4 @@
-// Last update 14.08.24
+// Last update 20.08.24
 
 // Nav bar dropdown menu events
 const menuText = document.querySelector(".menu-text-arrow");
@@ -55,8 +55,6 @@ let isScrollToSection = false;
 let isSidebarOpen;
 let isSidebarVisible;
 let isDropdownVisible;
-
-const tl = gsap.timeline();
 
 // Variable to check for browser support for event types
 const eventToUseEnd = "ontouchend" in document.documentElement ? "touchend" : "click";
@@ -294,37 +292,44 @@ function openHeader() { gsap.to(header, { duration: 0.25, opacity: 1, top: 0, ea
 
 function closeHeader() { gsap.to(header, { duration: 0.25, opacity: 0, top: -60, ease: "power1.out" }); }
 
+const tlSidebar = gsap.timeline();
+const tlDropdown = gsap.timeline();
+
 function openSidebar() {
+    tlSidebar.clear();
     mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
-    tl.set(sidebar, { opacity: 1 });
-    tl.to(sidebar, { duration: 0.25, top: "auto", ease: "power1.out" });
+    tlSidebar.set(sidebar, { opacity: 1 });
+    tlSidebar.to(sidebar, { duration: 0.25, top: "auto", ease: "power1.out" });
 }
 
 function closeSidebar() {
+    tlSidebar.clear();
     sidebarItemMenu.style.color = gray;
     sidebarItemMenu.style.fill = gray;
     sidebarBtn.classList.remove("change")
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
-    tl.set(sidebarDropdownContent, { opacity: 0 });
-    tl.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
-    tl.set(sidebar, { opacity: 0 });
+    tlSidebar.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
+    tlSidebar.set(sidebarDropdownContent, { opacity: 0 });
+    tlSidebar.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
+    tlSidebar.set(sidebar, { opacity: 0 });
     mainContentWraper.classList.remove("blurred");
 }
 
 function openSidebarDropdown() {
+    tlDropdown.clear();
     sidebarItemMenu.style.color = red;
     sidebarItemMenu.style.fill = red;
     sidebarMenuArrow.classList.add("rotate");
-    tl.set(sidebarDropdownContent, { opacity: 1 });
-    tl.to(sidebarDropdownContent, {duration: 0.25, height: "auto", ease: "power1.out"});
+    tlDropdown.set(sidebarDropdownContent, { opacity: 1 });
+    tlDropdown.to(sidebarDropdownContent, {duration: 0.25, height: "auto", ease: "power1.out"});
 }
 
 function closeSidebarDropdown() {
+    tlDropdown.clear();
     sidebarItemMenu.style.color = gray;
     sidebarItemMenu.style.fill = gray;
     sidebarMenuArrow.classList.remove("rotate");
-    tl.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out" });
-    tl.set(sidebarDropdownContent, { opacity: 0 });
+    tlDropdown.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out" });
+    tlDropdown.set(sidebarDropdownContent, { opacity: 0 });
 }

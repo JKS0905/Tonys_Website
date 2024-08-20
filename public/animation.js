@@ -1,4 +1,4 @@
-// Last update 14.08.24
+// Last update 20.08.24
 
 // Variabels for Main page
 const mainLogo = document.querySelector(".main-logo");
@@ -17,16 +17,11 @@ const locationimgRight = document.querySelector(".location-box-middle");
 const locationimgLeft = document.querySelector(".location-box-left");
 const locationimages = [locationimgRight, locationimgLeft];
 
-let isMaxWidth1290;
-const tlSlider = gsap.timeline();
 // Variabels Order-Box animation
 const orderBoxes = document.querySelectorAll(".order-box");
 const orderBox1 = orderBoxes[0];
 const orderBox2 = orderBoxes[1];
 const orderBox3 = orderBoxes[2];
-
-// Initial startpoint for location-box animation
-window.matchMedia("(max-width: 1290px)").matches ? isMaxWidth1290 = true : isMaxWidth1290 = false;
 
 // Variabels Pizza item animation
 const menuTitle = document.querySelectorAll(".menu-header");
@@ -223,8 +218,8 @@ function addScrollTriggerLocationBoxSlider() {
 }
 
 function locationBoxSlider() {
-    
     let xWidth = window.innerWidth + 200;
+    const tlSlider = gsap.timeline();
     tlSlider.to(".location-box-slider", { duration: 1.2, x: xWidth, ease: "power1.out" }); 
     tlSlider.set(".location-box-slider", { opacity: 0 }); 
 }
@@ -232,10 +227,8 @@ function locationBoxSlider() {
 let openingHoursAnimated = false;
 
 function animateLocationBox() {
-    if (openingHoursAnimated) return;
-    openingHoursAnimated = true;
-
     const tlLocationBox = gsap.timeline();
+
     tlLocationBox.to(locationimgRight, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"});
     tlLocationBox.to(locationimgLeft, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"}, "-=0.2");
     tlLocationBox.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"},"-=0.6");
@@ -263,6 +256,10 @@ function animateOrderBoxes() {
 
 function animateOpeningHours() {
     const tlOpeningHours = gsap.timeline();
+
+    if (openingHoursAnimated) return;
+    openingHoursAnimated = true;
+    
     tlOpeningHours.to(openingHoursBox, { duration: 0.5, opacity: 1, scale: 1, ease: "power1.out"});
     tlOpeningHours.to(openingNb, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.2");
     tlOpeningHours.to(openingHoursText, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"}, "-=0.1");
