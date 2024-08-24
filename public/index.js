@@ -1,4 +1,4 @@
-// Last update 20.08.24
+// Last update 24.08.24
 
 // Nav bar dropdown menu events
 const menuText = document.querySelector(".menu-text-arrow");
