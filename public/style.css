@@ -789,6 +789,18 @@ transition: transform 0.15s;
 
 /* ↑ Code for opening hours section ↑ */
 
+.contact-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    background-color: #B32E31;
+
+}
+
+
+
 /* ↓ Code for footer section ↓ */
 
 .footer-main {

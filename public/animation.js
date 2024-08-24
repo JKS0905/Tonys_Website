@@ -233,7 +233,6 @@ function animateLocationBox() {
     tlLocationBox.to(locationimgLeft, { duration: 0.5, opacity: 1, x: 0, ease: "power1.out"}, "-=0.2");
     tlLocationBox.to(locationTitle, { duration: 0.3,  opacity: 1, scale: 1, ease: "power1.out"},"-=0.6");
     tlLocationBox.to(locationDescription, { duration: 0.3, opacity: 1, scale: 1, ease: "power1.out"},"-=0.4");
-    console.log("function")
 }
 
 //Location box animation for desktop.

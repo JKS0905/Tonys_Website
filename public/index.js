@@ -188,6 +188,44 @@ window.addEventListener("DOMContentLoaded", event => {
             }
         }
     }, { passive: true });
+
+    const form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch("/send-email", {
+            method: "POST",
+            body: new URLSearchParams(formData),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        })
+        .then(res => {
+            return res.text(); // Parse the response as text
+        })
+        .then(data => {
+            formDisplayMessage(data);
+        })
+        .catch(error => {
+            console.error('Error sending email:', error);
+        });
+    });
+
+    function formDisplayMessage(data) {
+        if (data === "Email sendt successfully!") {
+            console.log("Meldingen ble sendt! Du vil få svar inne 1-2 virkedager.")
+        }
+        if (data === "Email service is not active") {
+            console.log("Kontakskjema tjenesten er IKKE aktiv.")
+        }
+        console.log("Noe gikk galt ta kontakt med Tony's for hjelp.")
+    }
+
+
+
 }, { passive: true }) // End of DOMContentLoaded
 
 // Prevents the href to interfere while holding down on the link.
@@ -333,3 +371,4 @@ function closeSidebarDropdown() {
     tlDropdown.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out" });
     tlDropdown.set(sidebarDropdownContent, { opacity: 0 });
 }
+
