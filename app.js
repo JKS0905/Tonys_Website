@@ -2,6 +2,7 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const express = require('express');
 const nodeMailer = require("nodemailer");
+const bodyParser = require('body-parser');
 const path = require('path');
 
 // ENV Vaiabels
@@ -23,7 +24,9 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-function sendEmail() {
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post("/send-email", (req, res) => {
   // SMTP credentials
   let transporter = nodeMailer.createTransport({
     host: TRANSPORTER_HOST,
@@ -50,10 +53,8 @@ function sendEmail() {
     }
     console.log(`Message sent: %s, ${info.messageId}`);
     console.log(`Preview URL: %s, ${nodeMailer.getTestMessageUrl(info)}`);
-  }
-)}
-
-
+  })
+});
 
 // Start the server
 app.listen(SERVER_PORT, () => {
