@@ -189,10 +189,27 @@ window.addEventListener("DOMContentLoaded", event => {
         }
     }, { passive: true });
 
+
+
+
+
+
+
+
+
+
+
+
     const form = document.getElementById("contactForm");
 
     form.addEventListener("submit", event => {
         event.preventDefault();
+        submitButton = document.querySelector(".form-button");
+        loader = document.querySelector(".loader");
+        formResponse = document.querySelector(".form-response-container")
+
+        submitButton.style.display = "none";
+        loader.style.display = "block";
 
         const formData = new FormData(form);
 
@@ -215,15 +232,35 @@ window.addEventListener("DOMContentLoaded", event => {
     });
 
     function formDisplayMessage(data) {
-        if (data === "Email sendt successfully!") {
-            console.log("Meldingen ble sendt! Du vil få svar inne 1-2 virkedager.")
+        console.log(data)
+        if (data === "Email sent successfully!") {
+            loader.style.display = "none";
+            formResponse.style.display = "flex"
+            formResponse.style.backgroundColor = "#00cc0040"
+            formResponse.style.border = "2px solid #00cc00";
+            formResponse.textContent = "Meldingen ble sendt! Du vil få svar innen 1-2 virkedager.";
+            console.log("Meldingen ble sendt! Du vil få svar innen 1-2 virkedager.")
         }
         else if (data === "Email service is not active") {
-            console.log("Kontakskjema tjenesten er IKKE aktiv.")
+            loader.style.display = "none";
+            formResponse.style.display = "flex"
+            formResponse.style.backgroundColor = "#ff000066"
+            formResponse.style.border = "2px solid #ff0000";
+            formResponse.textContent = "Kontakskjema tjenesten er IKKE aktiv.";
+            console.log("Kontakskjema tjenesten er IKKE aktiv, kontakt Tony's for hjelp.")
         } else {
+            loader.style.display = "none";
+            formResponse.style.display = "flex"
+            formResponse.style.backgroundColor = "#ff000066"
+            formResponse.style.border = "2px solid #ff0000";
+            formResponse.textContent = "Noe gikk galt ta kontakt med Tony's for hjelp.";
             console.log("Noe gikk galt ta kontakt med Tony's for hjelp.")
         }
     }
+
+
+
+
 
 
 

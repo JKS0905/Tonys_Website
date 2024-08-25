@@ -726,7 +726,7 @@ transition: transform 0.15s;
     flex-direction: column;
     align-items: center;
     height: auto;
-    padding: 10px 10px 50px 10px;
+    padding: 10px;
     
 }
 
@@ -821,11 +821,11 @@ transition: transform 0.15s;
 
 .form-input,
 textarea {
-    padding: 10px;
+    padding: 10px 20px;
     color: rgb(78, 77, 77);
-    font-size: 20px;
+    font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
-    border-radius: 10px;
+    border-radius: 25px;
     border: solid 1px hsl(0, 0%, 80%);
     transition: border 300ms ease;
     outline: none;
@@ -834,6 +834,7 @@ textarea {
 .form-input:nth-child(8),
 textarea {
     height: 100px;
+    border-radius: 15px;
 }
 .form-input:hover {
     border: solid 1px #b32e31;
@@ -848,6 +849,7 @@ textarea:-webkit-autofill {
 }
 
 .form-button {
+    display: block;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -855,7 +857,7 @@ textarea:-webkit-autofill {
     background-color: #b32e31;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 25px;
     cursor: pointer;
     box-shadow:  2px 8px 20px -6px #b32e31;
     border: 3px solid #b32e31;
@@ -867,6 +869,61 @@ textarea:-webkit-autofill {
     color: rgb(78, 77, 77);
     scale: 105%;
 }
+.form-button:active {
+    color: #b32e31;
+    scale: 100%;
+    transition: 50ms ease;
+}
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+    display: none;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: 
+        radial-gradient(farthest-side, #b32e31 94%, #0000) top/8px 8px no-repeat,
+        conic-gradient(#0000 30%, #b32e31);
+
+    /* Standard mask property */
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+    
+    /* Webkit mask property for Safari and older Chrome versions */
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+
+    animation: l13 1s infinite linear;
+}
+
+@keyframes l13 { 
+    100% { transform: rotate(1turn); }
+}
+
+.form-response-container {
+    display: none;
+    justify-content: center;
+    background-color: none;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.form-response-container span {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: hsl(0, 0%, 25%);
+    text-align: center;
+    font-weight: bold;
+    word-wrap: break-word; /* Ensures long words break to the next line */
+    overflow-wrap: break-word; /* CSS3 property for breaking long words */
+    word-break: break-word; /* Legacy support for breaking long words */
+
+}
+
+
+
+
 
 /* ↓ Code for footer section ↓ */
 

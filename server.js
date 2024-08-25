@@ -1,10 +1,10 @@
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
-const app = express();
+const server = express();
 const nodeMailer = require("nodemailer");
 const bodyParser = require('body-parser');
 const path = require('path');
-const isEmailServiceActive = false;
+const isEmailServiceActive = true;
 
 
 // ENV Vaiabels
@@ -16,19 +16,15 @@ const TRANSPORTER_PASSWORD = process.env.TRANSPORTER_PASSWORD;
 const SENDER_EMAIL = process.env.SENDER_EMAIL;
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+server.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/test", (req, res) => {
-  res.send("Test route is working");
-});
-
-app.post("/send-email", (req, res) => {
+server.post("/send-email", (req, res) => {
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
   }
-  
+
   const { name, email, message } = req.body;
 
   // SMTP credentials
@@ -57,18 +53,20 @@ app.post("/send-email", (req, res) => {
       return res.status(500).send(`Error sending email`);
       
     }
-    res.status(200).send(`Email sendt successfully!`);
+    setTimeout(() => {
+      res.status(200).send(`Email sent successfully!`);
+      console.log("Email sent")
+    }, 3000);
   })
 });
 
 // Custom 404 page
-app.use((req, res) => {
+server.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-
 // Start the server
-app.listen(SERVER_PORT, () => {
+server.listen(SERVER_PORT, () => {
   console.log(`Server is running on http://localhost:${SERVER_PORT}`);
 });
 
