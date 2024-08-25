@@ -227,7 +227,7 @@ window.addEventListener("DOMContentLoaded", event => {
         // Set up a timeout to abort the request if it takes too long
         const fetchTimer = setTimeout(() => {
             controller.abort(); // Abort the request
-        }, 3000);
+        }, 10 * 1000);
     
         fetch("/send-email", {
             method: "POST",
