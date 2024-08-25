@@ -204,7 +204,7 @@ window.addEventListener("DOMContentLoaded", event => {
             }
         })
         .then(res => {
-            return res.text(); // Parse the response as text
+            return res.text();
         })
         .then(data => {
             formDisplayMessage(data);
@@ -218,10 +218,11 @@ window.addEventListener("DOMContentLoaded", event => {
         if (data === "Email sendt successfully!") {
             console.log("Meldingen ble sendt! Du vil få svar inne 1-2 virkedager.")
         }
-        if (data === "Email service is not active") {
+        else if (data === "Email service is not active") {
             console.log("Kontakskjema tjenesten er IKKE aktiv.")
+        } else {
+            console.log("Noe gikk galt ta kontakt med Tony's for hjelp.")
         }
-        console.log("Noe gikk galt ta kontakt med Tony's for hjelp.")
     }
 
 
