@@ -21,6 +21,15 @@ server.use(express.static(path.join(__dirname, 'public')));
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.post("/send-email", (req, res) => {
+
+  let requestAborted = false;
+
+  req.on('aborted', () => {
+    console.log('Request aborted by the client.');
+    requestAborted = true;
+  });
+
+
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
   }
@@ -51,13 +60,11 @@ server.post("/send-email", (req, res) => {
     if (error) {
       console.log(`Error sending email: ${error}`)
       return res.status(500).send(`Error sending email`);
-      
     }
     setTimeout(() => {
       res.status(200).send(`Email sent successfully!`);
-      console.log("Email sent")
-    }, 3000);
-  })
+    },0)
+  });
 });
 
 // Custom 404 page
@@ -69,4 +76,3 @@ server.use((req, res) => {
 server.listen(SERVER_PORT, () => {
   console.log(`Server is running on http://localhost:${SERVER_PORT}`);
 });
-

@@ -42,6 +42,12 @@ const topLine = document.querySelector(".topLine");
 const middleLine = document.querySelector(".middleLine");
 const bottomLine = document.querySelector(".bottomLine");
 
+// Variabels for FORM.
+const loader = document.querySelector(".loader");
+const form = document.getElementById("contactForm");
+const submitButton = document.querySelector(".form-button");
+const formResponse = document.querySelector(".form-response-container");
+
 // Scroll behavior for menu items, ScrollTo function
 let offset = 50; // Adjust offset here for scroll
 
@@ -199,65 +205,86 @@ window.addEventListener("DOMContentLoaded", event => {
 
 
 
-
-    const form = document.getElementById("contactForm");
+   
 
     form.addEventListener("submit", event => {
         event.preventDefault();
-        submitButton = document.querySelector(".form-button");
-        loader = document.querySelector(".loader");
-        formResponse = document.querySelector(".form-response-container")
-
+    
+        const submitButton = document.querySelector(".form-button");
+        const loader = document.querySelector(".loader");
+        const formResponse = document.querySelector(".form-response-container");
+    
+        // Hide the submit button and show the loader
         submitButton.style.display = "none";
         loader.style.display = "block";
-
+    
         const formData = new FormData(form);
-
+    
+        // Create an AbortController instance
+        const controller = new AbortController();
+        const { signal } = controller; // Destructure signal from controller
+    
+        // Set up a timeout to abort the request if it takes too long
+        const fetchTimer = setTimeout(() => {
+            controller.abort(); // Abort the request
+        }, 3000);
+    
         fetch("/send-email", {
             method: "POST",
             body: new URLSearchParams(formData),
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-            }
+            },
+            signal // Pass the signal to fetch
         })
         .then(res => {
+            clearTimeout(fetchTimer);
+            const statusCode = res.status;
+            formDisplayMessage(statusCode);
             return res.text();
         })
-        .then(data => {
-            formDisplayMessage(data);
-        })
         .catch(error => {
-            console.error('Error sending email:', error);
+            clearTimeout(fetchTimer); // Clear the timeout on error
+            if (error.name === 'AbortError') {
+                console.error('Request was aborted.');
+                loader.style.display = "none";
+                formResponse.style.display = "flex";
+                formResponse.style.backgroundColor = "#ff000066";
+                formResponse.style.border = "2px solid #ff0000";
+                formResponse.textContent = "Det tok for lang tid. Last inn siden på nytt og prøv igjen.";
+            } else {
+                loader.style.display = "none";
+                console.error('Error sending email:', error);
+                formResponse.style.display = "flex";
+                formResponse.style.backgroundColor = "#ff000066";
+                formResponse.style.border = "2px solid #ff0000";
+                formResponse.textContent = "Noe gikk galt, ta kontakt med Tony's for hjelp.";
+            }
         });
     });
+    
+    function formDisplayMessage(statusCode) {
+        const formResponse = document.querySelector(".form-response-container");
+        const loader = document.querySelector(".loader");
 
-    function formDisplayMessage(data) {
-        console.log(data)
-        if (data === "Email sent successfully!") {
-            loader.style.display = "none";
-            formResponse.style.display = "flex"
-            formResponse.style.backgroundColor = "#00cc0040"
+        loader.style.display = "none";
+        formResponse.style.display = "flex";
+
+        if (statusCode === 200) {
+            formResponse.style.backgroundColor = "#00cc0040";
             formResponse.style.border = "2px solid #00cc00";
             formResponse.textContent = "Meldingen ble sendt! Du vil få svar innen 1-2 virkedager.";
-            console.log("Meldingen ble sendt! Du vil få svar innen 1-2 virkedager.")
-        }
-        else if (data === "Email service is not active") {
-            loader.style.display = "none";
-            formResponse.style.display = "flex"
-            formResponse.style.backgroundColor = "#ff000066"
+        } else if (statusCode === 503) {
+            formResponse.style.backgroundColor = "#ff000066";
             formResponse.style.border = "2px solid #ff0000";
             formResponse.textContent = "Kontakskjema tjenesten er IKKE aktiv.";
-            console.log("Kontakskjema tjenesten er IKKE aktiv, kontakt Tony's for hjelp.")
         } else {
-            loader.style.display = "none";
-            formResponse.style.display = "flex"
-            formResponse.style.backgroundColor = "#ff000066"
+            formResponse.style.backgroundColor = "#ff000066";
             formResponse.style.border = "2px solid #ff0000";
-            formResponse.textContent = "Noe gikk galt ta kontakt med Tony's for hjelp.";
-            console.log("Noe gikk galt ta kontakt med Tony's for hjelp.")
+            formResponse.textContent = "Noe gikk galt, ta kontakt med Tony's for hjelp.";
         }
     }
-
+    
 
 
 
