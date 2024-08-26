@@ -27,8 +27,8 @@ server.post("/send-email", (req, res) => {
     return res.status(503).send(`Email service is not active`);
   }
 
-  //const clientIP = req.header["'x-forwarded-for"] || req.connection.remoteAddress;
-  //console.error(`Client IP: ${clientIP}`);
+  const clientIP = req.header["'x-forwarded-for"] || req.connection.remoteAddress;
+  console.error(`Client IP: ${clientIP}`);
 
   const { name, email, message } = req.body;
 
