@@ -201,18 +201,8 @@ window.addEventListener("DOMContentLoaded", event => {
 
 
 
-
-
-
-
-   
-
     form.addEventListener("submit", event => {
         event.preventDefault();
-    
-        const submitButton = document.querySelector(".form-button");
-        const loader = document.querySelector(".loader");
-        const formResponse = document.querySelector(".form-response-container");
     
         // Hide the submit button and show the loader
         submitButton.style.display = "none";
@@ -240,56 +230,42 @@ window.addEventListener("DOMContentLoaded", event => {
         .then(res => {
             clearTimeout(fetchTimer);
             const statusCode = res.status;
-            formDisplayMessage(statusCode);
-            return res.text();
+            switch (statusCode) {
+                case 200: formSuccessMessage("Meldingen ble sendt! Du vil få svar innen 1-2 virkedager."); break;
+                case 503: formErrorMessage("Kontakskjema tjenesten er IKKE aktiv, kontakt Tony's for hjelp."); break;
+                case 500: formErrorMessage("Noe gikk galt, ta kontakt med Tony's for hjelp."); break;
+                default: formErrorMessage("Noe gikk galt, ta kontakt med Tony's for hjelp."); break;
+            }
+            return;
         })
         .catch(error => {
             clearTimeout(fetchTimer); // Clear the timeout on error
             if (error.name === 'AbortError') {
                 console.error('Request was aborted.');
-                loader.style.display = "none";
-                formResponse.style.display = "flex";
-                formResponse.style.backgroundColor = "#ff000066";
-                formResponse.style.border = "2px solid #ff0000";
-                formResponse.textContent = "Det tok for lang tid. Last inn siden på nytt og prøv igjen.";
+                formErrorMessage("Det tok for lang tid. Last inn siden på nytt og prøv igjen.");
+
             } else {
-                loader.style.display = "none";
                 console.error('Error sending email:', error);
-                formResponse.style.display = "flex";
-                formResponse.style.backgroundColor = "#ff000066";
-                formResponse.style.border = "2px solid #ff0000";
-                formResponse.textContent = "Noe gikk galt, ta kontakt med Tony's for hjelp.";
+                formErrorMessage("Noe gikk galt, ta kontakt med Tony's for hjelp.");
             }
         });
     });
-    
-    function formDisplayMessage(statusCode) {
-        const formResponse = document.querySelector(".form-response-container");
-        const loader = document.querySelector(".loader");
 
+    function formSuccessMessage(message) {
         loader.style.display = "none";
         formResponse.style.display = "flex";
-
-        if (statusCode === 200) {
-            formResponse.style.backgroundColor = "#00cc0040";
-            formResponse.style.border = "2px solid #00cc00";
-            formResponse.textContent = "Meldingen ble sendt! Du vil få svar innen 1-2 virkedager.";
-        } else if (statusCode === 503) {
-            formResponse.style.backgroundColor = "#ff000066";
-            formResponse.style.border = "2px solid #ff0000";
-            formResponse.textContent = "Kontakskjema tjenesten er IKKE aktiv.";
-        } else {
-            formResponse.style.backgroundColor = "#ff000066";
-            formResponse.style.border = "2px solid #ff0000";
-            formResponse.textContent = "Noe gikk galt, ta kontakt med Tony's for hjelp.";
-        }
+        formResponse.style.backgroundColor = "#00cc0040";
+        formResponse.style.border = "2px solid #00cc00";
+        formResponse.textContent = message;
     }
-    
 
-
-
-
-
+    function formErrorMessage(message) {
+        loader.style.display = "none";
+        formResponse.style.display = "flex";
+        formResponse.style.backgroundColor = "#ff000066";
+        formResponse.style.border = "2px solid #ff0000";
+        formResponse.textContent = message;
+    }
 
 }, { passive: true }) // End of DOMContentLoaded
 

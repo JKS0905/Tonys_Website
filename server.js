@@ -14,6 +14,7 @@ const TRANSPORTER_HOST = process.env.TRANSPORTER_HOST;
 const TRANSPORTER_USER = process.env.TRANSPORTER_USER;
 const TRANSPORTER_PASSWORD = process.env.TRANSPORTER_PASSWORD;
 const SENDER_EMAIL = process.env.SENDER_EMAIL;
+const RECIVING_EMAIL = process.env.RECIVING_EMAIL;
 
 // Serve static files from the 'public' directory
 server.use(express.static(path.join(__dirname, 'public')));
@@ -21,18 +22,13 @@ server.use(express.static(path.join(__dirname, 'public')));
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.post("/send-email", (req, res) => {
-
-  let requestAborted = false;
-
-  req.on('aborted', () => {
-    console.log('Request aborted by the client.');
-    requestAborted = true;
-  });
-
-
+  
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
   }
+
+  const clientIP = req.header["'x-forwarded-for"] || req.connection.remoteAddress;
+  console.log(`Client IP: ${clientIP}`);
 
   const { name, email, message } = req.body;
 
@@ -50,7 +46,7 @@ server.post("/send-email", (req, res) => {
   // Sender and Reciver information
   let mailOptions = ({
     from: `My Website <${SENDER_EMAIL}>`,
-    to: email,
+    to: RECIVING_EMAIL,
     subject: `New message from: ${name}`,
     text: message
   });
@@ -61,11 +57,11 @@ server.post("/send-email", (req, res) => {
       console.log(`Error sending email: ${error}`)
       return res.status(500).send(`Error sending email`);
     }
-    setTimeout(() => {
       res.status(200).send(`Email sent successfully!`);
-    },0)
   });
 });
+
+server.post("/cancel-send-email")
 
 // Custom 404 page
 server.use((req, res) => {
