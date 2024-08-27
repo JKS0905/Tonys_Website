@@ -4,7 +4,15 @@ const server = express();
 const nodeMailer = require("nodemailer");
 const bodyParser = require('body-parser');
 const path = require('path');
+const rateLimit = require("express-rate-limit");
 const isEmailServiceActive = true;
+
+const rateLimitMiddleware = rateLimit({
+  windowMs: 120 * 1000,
+  max: 2,
+  message: "You have exceeded your 5 requests in 24 hours limit!",
+  header: true,
+});
 
 
 // ENV Vaiabels
@@ -21,7 +29,7 @@ server.use(express.static(path.join(__dirname, 'public')));
 
 server.use(bodyParser.urlencoded({ extended: true }));
 
-server.post("/send-email", (req, res) => {
+server.post("/send-email", rateLimitMiddleware, (req, res) => {
   
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
@@ -54,14 +62,12 @@ server.post("/send-email", (req, res) => {
   // Send the email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(`Error sending email: ${error}`)
+      console.error(`Error sending email: ${error}`)
       return res.status(500).send(`Error sending email`);
     }
       res.status(200).send(`Email sent successfully!`);
   });
 });
-
-server.post("/cancel-send-email")
 
 // Custom 404 page
 server.use((req, res) => {

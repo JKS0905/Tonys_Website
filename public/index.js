@@ -232,6 +232,7 @@ window.addEventListener("DOMContentLoaded", event => {
             const statusCode = res.status;
             switch (statusCode) {
                 case 200: formSuccessMessage("Meldingen ble sendt! Du vil få svar innen 1-2 virkedager."); break;
+                case 429: formErrorMessage("Du har sent for mange meldinger. Prøv igjen senere eller ta kontakt med Tony's."); break;
                 case 503: formErrorMessage("Kontakskjema tjenesten er IKKE aktiv, kontakt Tony's for hjelp."); break;
                 case 500: formErrorMessage("Noe gikk galt, ta kontakt med Tony's for hjelp."); break;
                 default: formErrorMessage("Noe gikk galt, ta kontakt med Tony's for hjelp."); break;
