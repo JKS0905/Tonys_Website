@@ -14,24 +14,25 @@ const SERVER_PORT = process.env.SERVER_PORT;
 
 // Rate Limiting Middleware
 const rateLimitMiddleware = rateLimit({
-  windowMs: 120 * 1000,
-  max: 10,
+  windowMs: 60 * 60 * 20 * 1000,
+  max: 5,
   message: "You have exceeded your 10 requests in 2 minutes limit!",
   header: true,
 });
 
 // Serve static files from the 'public' directory
 server.use(express.static(path.join(__dirname, 'public')));
+
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.post("/send-email", rateLimitMiddleware, async (req, res) => {
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
   }
-  const { name, email } = req.body;
+  const { name, email, message } = req.body;
 
   // Send Email function from module
-  const result = await sendEmail({ name, email });
+  const result = await sendEmail({ name, email, message });
 
   if (result.success) {
     res.status(200).send(`Email sent successfully!`);

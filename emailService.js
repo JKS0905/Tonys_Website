@@ -2,7 +2,6 @@ const nodeMailer = require("nodemailer");
 const juice = require('juice');
 const fs = require('fs').promises;
 const path = require('path');
-const { get } = require("http");
 
 // Load environment variables
 const {
@@ -16,10 +15,11 @@ const {
 
 async function getEmailTemplate(data) {
   try {
-    const html = await fs.readFile(path.join(__dirname, "templates", "email-template.html"), "utf8");
+    const html = await fs.readFile(path.join(__dirname, "templates", "emailTemplate.html"), "utf8");
     return html
       .replace(/{{text}}/g, data.text || "")
-      .replace(/{{text2}}/g, data.text2 || "");
+      .replace(/{{text2}}/g, data.text2 || "")
+      .replace(/{{text3}}/g, data.text3 || "");
   } catch (error) {
     console.error(`Error reading HTML template: ${error}`);
     throw error;
@@ -27,10 +27,14 @@ async function getEmailTemplate(data) {
 }
 
 // Sends the email
-async function sendEmail({ name, email }) {
+async function sendEmail({ name, email, message }) {
   try {
     // Prepare dynamic content
-    const htmlData = { text: name, text2: email };
+    const htmlData = { 
+        text: name, 
+        text2: email,
+        text3: message
+     };
 
     // Fetch and render email template
     const renderedHtml = await getEmailTemplate(htmlData);
