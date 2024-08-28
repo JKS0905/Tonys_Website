@@ -47,6 +47,7 @@ const loader = document.querySelector(".loader");
 const form = document.getElementById("contactForm");
 const submitButton = document.querySelector(".form-button");
 const formResponse = document.querySelector(".form-response-container");
+const formInputFields = document.querySelectorAll(".form-input");
 
 // Scroll behavior for menu items, ScrollTo function
 let offset = 50; // Adjust offset here for scroll
@@ -203,7 +204,7 @@ window.addEventListener("DOMContentLoaded", event => {
 
     form.addEventListener("submit", event => {
         event.preventDefault();
-    
+
         // Hide the submit button and show the loader
         submitButton.style.display = "none";
         loader.style.display = "block";
@@ -250,6 +251,9 @@ window.addEventListener("DOMContentLoaded", event => {
                 formErrorMessage("Noe gikk galt, ta kontakt med Tony's for hjelp.");
             }
         });
+
+         // Set the input fields to empty string.
+         formInputFields.forEach(field => { field.value = ""; });
     });
 
     function formSuccessMessage(message) {

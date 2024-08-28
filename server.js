@@ -24,15 +24,20 @@ const rateLimitMiddleware = rateLimit({
 server.use(express.static(path.join(__dirname, 'public')));
 
 server.use(bodyParser.urlencoded({ extended: true }));
+server.set("trust proxy", true);
 
 server.post("/send-email", rateLimitMiddleware, async (req, res) => {
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
   }
-  const { name, email, message } = req.body;
+
+  const clientIP = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.connection.remoteAddress;
+  console.log(`Client IP: ${clientIP}`);
+
+  const { name, email, title, message } = req.body;
 
   // Send Email function from module
-  const result = await sendEmail({ name, email, message });
+  const result = await sendEmail({ name, email, title, message });
 
   if (result.success) {
     res.status(200).send(`Email sent successfully!`);

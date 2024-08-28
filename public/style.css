@@ -831,7 +831,7 @@ textarea {
     outline: none;
     background-color: white;
 }
-.form-input:nth-child(8),
+.form-input:nth-child(9),
 textarea {
     height: 100px;
     border-radius: 15px;

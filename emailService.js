@@ -13,13 +13,13 @@ const {
   RECIVING_EMAIL,
 } = process.env;
 
-async function getEmailTemplate(data) {
+async function getEmailTemplate(htmlData) {
   try {
     const html = await fs.readFile(path.join(__dirname, "templates", "emailTemplate.html"), "utf8");
     return html
-      .replace(/{{text}}/g, data.text || "")
-      .replace(/{{text2}}/g, data.text2 || "")
-      .replace(/{{text3}}/g, data.text3 || "");
+      .replace(/{{text}}/g, htmlData.text || "")
+      .replace(/{{text2}}/g, htmlData.text2 || "")
+      .replace(/{{text3}}/g, htmlData.text3 || "");
   } catch (error) {
     console.error(`Error reading HTML template: ${error}`);
     throw error;
