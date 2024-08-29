@@ -20,7 +20,7 @@ const rateLimitMiddleware = rateLimit({
   max: 5,
   message: "You have exceeded your 10 requests in 2 minutes limit!",
   keyGenerator: (req) => {
-    return req.headers['cf-connecting-ip'] || req.ip;  // Use Cloudflare header first, fallback to req.ip
+    return req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
   },
   header: true,
 });
@@ -35,8 +35,12 @@ server.post("/send-email", rateLimitMiddleware, async (req, res) => {
     return res.status(503).send(`Email service is not active`);
   }
 
-  const clientIP = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.connection.remoteAddress;
+  console.log('Headers:', req.headers);
+  const clientIP = req.headers['cf-connecting-ip'] || req.ip;
   console.log(`Client IP: ${clientIP}`);
+
+  //const clientIP = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.connection.remoteAddress;
+  //console.log(`Client IP: ${clientIP}`);
 
   const { name, email, title, message } = req.body;
 
