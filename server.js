@@ -19,6 +19,9 @@ const rateLimitMiddleware = rateLimit({
   windowMs: 60 * 60 * 20 * 1000,
   max: 5,
   message: "You have exceeded your 10 requests in 2 minutes limit!",
+  keyGenerator: (req) => {
+    return req.headers['cf-connecting-ip'] || req.ip;  // Use Cloudflare header first, fallback to req.ip
+  },
   header: true,
 });
 
