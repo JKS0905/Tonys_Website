@@ -28,7 +28,7 @@ async function getEmailTemplate(htmlData) {
       .replace(/{{dateTime}}/g, htmlData.dateTime || "")
       .replace(/{{title}}/g, htmlData.title || "")
       .replace(/{{message}}/g, htmlData.message || "")
-      .replace(/{{clientIP}}/g, htmlData.clientIP || "")
+      .replace(/{{clientIP}}/g, htmlData.clientIP || "Kunne ikke vises")
       .replace(/{{name}}/g, htmlData.name || "")
       .replace(/{{email}}/g, htmlData.email || "");
   } catch (error) {

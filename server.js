@@ -36,7 +36,6 @@ server.post("/send-email", rateLimitMiddleware, async (req, res) => {
   }
 
   const clientIP = req.headers["cf-connecting-ip"];
-  console.log(`Client IP: ${clientIP}`);
 
   const { title, message, name, email } = req.body;
 
