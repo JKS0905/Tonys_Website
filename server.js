@@ -34,9 +34,8 @@ server.post("/send-email", rateLimitMiddleware, async (req, res) => {
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
   }
-
-  console.log('Headers:', req.headers);
-  const clientIP = req.headers['cf-connecting-ip'] || req.ip;
+  
+  const clientIP = req.headers["cf-connecting-ip"];
   console.log(`Client IP: ${clientIP}`);
 
   //const clientIP = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.connection.remoteAddress;
