@@ -13,13 +13,24 @@ const {
   RECIVING_EMAIL,
 } = process.env;
 
+const currenDateTime = () => {
+  const currentDate = new Date();
+  const formattedDate = `${String(currentDate.getDate()).padStart(2, '0')}.${String(currentDate.getMonth() + 1).padStart(2, '0')}.${String(currentDate.getFullYear()).slice(-2)} -`;
+  const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}`;
+  const dateTimeString = `${formattedDate} ${formattedTime}`;
+  return dateTimeString;
+}
+
 async function getEmailTemplate(htmlData) {
   try {
     const html = await fs.readFile(path.join(__dirname, "templates", "emailTemplate.html"), "utf8");
     return html
-      .replace(/{{text}}/g, htmlData.text || "")
-      .replace(/{{text2}}/g, htmlData.text2 || "")
-      .replace(/{{text3}}/g, htmlData.text3 || "");
+      .replace(/{{dateTime}}/g, htmlData.dateTime || "")
+      .replace(/{{title}}/g, htmlData.title || "")
+      .replace(/{{message}}/g, htmlData.message || "")
+      .replace(/{{clientIP}}/g, htmlData.clientIP || "")
+      .replace(/{{name}}/g, htmlData.name || "")
+      .replace(/{{email}}/g, htmlData.email || "");
   } catch (error) {
     console.error(`Error reading HTML template: ${error}`);
     throw error;
@@ -27,13 +38,16 @@ async function getEmailTemplate(htmlData) {
 }
 
 // Sends the email
-async function sendEmail({ name, email, message }) {
+async function sendEmail({ title, message, clientIP, name, email }) {
   try {
     // Prepare dynamic content
     const htmlData = { 
-        text: name, 
-        text2: email,
-        text3: message
+        dateTime: currenDateTime(), 
+        title: title,
+        message: message,
+        clientIP: clientIP,
+        name: name,
+        email
      };
 
     // Fetch and render email template

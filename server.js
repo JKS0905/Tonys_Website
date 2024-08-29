@@ -34,17 +34,14 @@ server.post("/send-email", rateLimitMiddleware, async (req, res) => {
   if (!isEmailServiceActive) {
     return res.status(503).send(`Email service is not active`);
   }
-  
+
   const clientIP = req.headers["cf-connecting-ip"];
   console.log(`Client IP: ${clientIP}`);
 
-  //const clientIP = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.connection.remoteAddress;
-  //console.log(`Client IP: ${clientIP}`);
-
-  const { name, email, title, message } = req.body;
+  const { title, message, name, email } = req.body;
 
   // Send Email function from module
-  const result = await sendEmail({ name, email, title, message });
+  const result = await sendEmail({ title, message, clientIP, name, email });
 
   if (result.success) {
     res.status(200).send(`Email sent successfully!`);
