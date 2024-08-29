@@ -12,6 +12,8 @@ const isEmailServiceActive = true;
 // ENV Variables
 const SERVER_PORT = process.env.SERVER_PORT;
 
+server.set("trust proxy", 1);
+
 // Rate Limiting Middleware
 const rateLimitMiddleware = rateLimit({
   windowMs: 60 * 60 * 20 * 1000,
@@ -24,7 +26,6 @@ const rateLimitMiddleware = rateLimit({
 server.use(express.static(path.join(__dirname, 'public')));
 
 server.use(bodyParser.urlencoded({ extended: true }));
-server.set("trust proxy", true);
 
 server.post("/send-email", rateLimitMiddleware, async (req, res) => {
   if (!isEmailServiceActive) {
