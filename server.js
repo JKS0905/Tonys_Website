@@ -28,7 +28,7 @@ const rateLimitMiddleware = rateLimit({
 // Serve static files from the 'public' directory
 server.use(express.static(path.join(__dirname, 'public')));
 
-server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
 
 server.post("/send-email", rateLimitMiddleware, async (req, res) => {
   if (!isEmailServiceActive) {

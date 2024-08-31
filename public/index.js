@@ -204,13 +204,14 @@ window.addEventListener("DOMContentLoaded", event => {
 
     form.addEventListener("submit", event => {
         event.preventDefault();
-
+        
         // Hide the submit button and show the loader
         submitButton.style.display = "none";
         loader.style.display = "block";
     
         const formData = new FormData(form);
-    
+        const jsonData = Object.fromEntries(formData.entries());
+
         // Create an AbortController instance
         const controller = new AbortController();
         const { signal } = controller; // Destructure signal from controller
@@ -222,9 +223,9 @@ window.addEventListener("DOMContentLoaded", event => {
     
         fetch("/send-email", {
             method: "POST",
-            body: new URLSearchParams(formData),
+            body: JSON.stringify(jsonData),
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/json"
             },
             signal // Pass the signal to fetch
         })
