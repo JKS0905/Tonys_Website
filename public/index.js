@@ -159,10 +159,19 @@ window.addEventListener("DOMContentLoaded", event => {
         }, { passive: true });
     });
 
-    // opens the sidebar
+    //// opens the sidebar
+    //sidebarBtn.addEventListener(eventToUseEnd, event => {
+    //    sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
+    //}, { passive: true });
+
     sidebarBtn.addEventListener(eventToUseEnd, event => {
-        sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
-    }, { passive: true });
+        if(!isSidebarOpen) {
+            openSidebar();
+        }
+        else {
+            closeSidebar();
+        }
+    }, { passive: true })
 
     // Opens the dropdown menu
     sidebarItemMenu.addEventListener(eventToUseEnd, event => {
