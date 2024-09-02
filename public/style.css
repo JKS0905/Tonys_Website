@@ -22,12 +22,6 @@ body {
     padding: 0;
 }
 
-
-.blurred {
-    filter: blur(5px);
-} 
-
-
 .header-main { 
     background-color: white;
     position: fixed;

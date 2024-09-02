@@ -384,7 +384,6 @@ const tlDropdown = gsap.timeline();
 
 function openSidebar() {
     tlSidebar.clear();
-    mainContentWraper.classList.add("blurred");
     sidebarBtn.classList.add("change");
     tlSidebar.set(sidebar, { opacity: 1 });
     tlSidebar.to(sidebar, { duration: 0.25, top: "auto", ease: "power1.out" });
@@ -401,7 +400,6 @@ function closeSidebar() {
     //tlSidebar.set(sidebarDropdownContent, { opacity: 0 });
     tlSidebar.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
     tlSidebar.set(sidebar, { opacity: 0 });
-    mainContentWraper.classList.remove("blurred");
 }
 
 function openSidebarDropdown() {
