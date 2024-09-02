@@ -160,18 +160,9 @@ window.addEventListener("DOMContentLoaded", event => {
     });
 
     //// opens the sidebar
-    //sidebarBtn.addEventListener(eventToUseEnd, event => {
-    //    sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
-    //}, { passive: true });
-
     sidebarBtn.addEventListener(eventToUseEnd, event => {
-        if(!isSidebarOpen) {
-            openSidebar();
-        }
-        else {
-            closeSidebar();
-        }
-    }, { passive: true })
+        sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
+    }, { passive: true });
 
     // Opens the dropdown menu
     sidebarItemMenu.addEventListener(eventToUseEnd, event => {
