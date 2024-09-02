@@ -121,6 +121,7 @@ window.addEventListener("DOMContentLoaded", event => {
 
     // desktop dropdown menu
     menuText.addEventListener(eventToUseEnd, event => {
+        console.log("hallo")
         if (dropdownContent.classList.contains("open")) {
             menuText.style.color = gray;
             menuArrow.style.fill = gray;
@@ -159,12 +160,12 @@ window.addEventListener("DOMContentLoaded", event => {
         }, { passive: true });
     });
 
-    //// opens the sidebar
+    // opens the sidebar
     sidebarBtn.addEventListener(eventToUseEnd, event => {
         sidebar.style.top !== "auto" ? openSidebar() : closeSidebar();
     }, { passive: true });
 
-    
+
     // Opens the dropdown menu
     sidebarItemMenu.addEventListener(eventToUseEnd, event => {
         sidebarDropdownContent.style.height !== "auto" ? openSidebarDropdown() : !isScrolling ? closeSidebarDropdown() : null;
@@ -390,13 +391,14 @@ function openSidebar() {
 }
 
 function closeSidebar() {
+    closeSidebarDropdown();
     tlSidebar.clear();
-    sidebarItemMenu.style.color = gray;
-    sidebarItemMenu.style.fill = gray;
+    //sidebarItemMenu.style.color = gray;
+    //sidebarItemMenu.style.fill = gray;
     sidebarBtn.classList.remove("change")
-    sidebarMenuArrow.classList.remove("rotate");
-    tlSidebar.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
-    tlSidebar.set(sidebarDropdownContent, { opacity: 0 });
+    //sidebarMenuArrow.classList.remove("rotate");
+    //tlSidebar.to(sidebarDropdownContent, { duration: 0.25, height: 0, ease: "power1.out"});
+    //tlSidebar.set(sidebarDropdownContent, { opacity: 0 });
     tlSidebar.to(sidebar, { duration: 0.25, top: parseFloat(sidebarTopValue), ease: "power1.out"}, "-=0.25");
     tlSidebar.set(sidebar, { opacity: 0 });
     mainContentWraper.classList.remove("blurred");
