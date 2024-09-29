@@ -62,8 +62,6 @@ server.post("/api-send-email", async (req, res) => {
   // Send Email function from module
   const result = await apiSendEmail({ title, subject, message, email });
 
-  console.log("Request body data:", req.body);
-
   if (result.success) {
     res.status(200).send(`Email sent successfully!`);
   } else {
@@ -78,5 +76,5 @@ server.use((req, res) => {
 
 // Start the server
 server.listen(SERVER_PORT, () => {
-  console.log(`Server is running on http://localhost:${SERVER_PORT}`);
+  console.log(`Server is running on https://steinnesstudio.no:${SERVER_PORT}`);
 });

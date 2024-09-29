@@ -13,7 +13,6 @@ const {
 // Sends the email
 async function apiSendEmail({title, subject, message, email}) {
   try {
-    console.log("Received email data:", { title, subject, message, email });
     // SMTP credentials
     let transporter = nodeMailer.createTransport({
       host: TRANSPORTER_HOST,
