@@ -1,3 +1,4 @@
+require('dotenv').config(); // Load environment variables from .env file
 const nodeMailer = require("nodemailer");
 const juice = require('juice');
 const fs = require('fs').promises;

@@ -1,7 +1,5 @@
+require('dotenv').config(); // Load environment variables from .env file
 const nodeMailer = require("nodemailer");
-const juice = require('juice');
-const fs = require('fs').promises;
-const path = require('path');
 
 // Load environment variables
 const {
@@ -9,14 +7,13 @@ const {
   TRANSPORTER_HOST,
   TRANSPORTER_USER,
   TRANSPORTER_PASSWORD,
-  SENDER_EMAIL,
-  RECIVING_EMAIL,
+  SENDER_EMAIL
 } = process.env;
 
 // Sends the email
 async function apiSendEmail({title, subject, message, email}) {
   try {
-    console.log(title)
+    console.log("Received email data:", { title, subject, message, email });
     // SMTP credentials
     let transporter = nodeMailer.createTransport({
       host: TRANSPORTER_HOST,
