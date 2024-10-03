@@ -16,11 +16,15 @@ const {
 
 const currenDateTime = () => {
   const currentDate = new Date();
-  const formattedDate = `${String(currentDate.getDate()).padStart(2, '0')}.${String(currentDate.getMonth() + 1).padStart(2, '0')}.${String(currentDate.getFullYear()).slice(-2)} -`;
-  const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}`;
+  // Create a new Date object with the offset
+  const offsetDate = new Date(currentDate.getTime() + 2 * 60 * 60 * 1000); // Offset by 2 hours
+
+  const formattedDate = `${String(offsetDate.getDate()).padStart(2, '0')}.${String(offsetDate.getMonth() + 1).padStart(2, '0')}.${String(offsetDate.getFullYear()).slice(-2)} -`;
+  const formattedTime = `${String(offsetDate.getHours()).padStart(2, '0')}:${String(offsetDate.getMinutes()).padStart(2, '0')}`;
+  
   const dateTimeString = `${formattedDate} ${formattedTime}`;
   return dateTimeString;
-}
+};
 
 async function getEmailTemplate(htmlData) {
   try {
