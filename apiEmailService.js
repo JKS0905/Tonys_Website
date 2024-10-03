@@ -7,7 +7,8 @@ const {
   TRANSPORTER_HOST,
   TRANSPORTER_USER,
   TRANSPORTER_PASSWORD,
-  SENDER_EMAIL
+  SENDER_EMAIL,
+  API_KEY
 } = process.env;
 
 // Sends the email
@@ -44,4 +45,13 @@ async function apiSendEmail({title, subject, message, email}) {
   }
 }
 
-module.exports = { apiSendEmail };
+function checkApiKey(req, res, next) {
+  const apiKey = req.headers['authorization'];
+
+  if (!apiKey || apiKey !== API_KEY) {
+    return res.status(403).send(`Forbidden: Invalid API key`);
+  }
+  next(); // Proceed to the next middleware/route handler
+};
+
+module.exports = { apiSendEmail, checkApiKey };

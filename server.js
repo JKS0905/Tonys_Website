@@ -6,13 +6,14 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const rateLimit = require("express-rate-limit");
 const { sendEmail } = require('./emailService');  // Import the sendEmail function
-const { apiSendEmail } = require('./apiEmailService');  // Import the sendEmail function from external programs
+const { apiSendEmail, checkApiKey } = require('./apiEmailService');  // Import the sendEmail function from external programs
 
 const isEmailServiceActive = true;
 const isApiServiceAcitve = true;
 
 // ENV Variables
 const SERVER_PORT = process.env.SERVER_PORT;
+const API_KEY = process.env.SERVER_PORT;
 
 server.set("trust proxy", 1);
 
@@ -52,7 +53,7 @@ server.post("/send-email", rateLimitMiddleware, async (req, res) => {
 });
 
 // Email service to send emails from post requests from external programs
-server.post("/api-send-email", async (req, res) => {
+server.post("/api-send-email", checkApiKey, async (req, res) => {
   if (!isApiServiceAcitve) {
     return res.status(503).send(`API Email service is not active`);
   }
