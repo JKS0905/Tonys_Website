@@ -49,6 +49,7 @@ function checkApiKey(req, res, next) {
   const apiKey = req.headers['authorization'];
 
   if (!apiKey || apiKey !== API_KEY) {
+    console.error('Invalid API key'); // Log the error
     return res.status(403).send(`Forbidden: Invalid API key`);
   }
   next(); // Proceed to the next middleware/route handler
